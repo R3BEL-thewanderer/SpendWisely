@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useSpendWise } from '../context/SpendWiseContext';
+import { ThemeToggle } from './ThemeToggle';
 
 interface PhoneShellProps {
   children: React.ReactNode;
@@ -68,6 +69,12 @@ export function PhoneShell({ children }: PhoneShellProps) {
           <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 font-medium">
             Live Demo
           </span>
+        </div>
+
+        {/* Desktop Quick Day/Night Toggle from Rotaract */}
+        <div className="absolute top-6 right-8 flex items-center gap-2.5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-black/5 dark:border-white/10 shadow-sm pointer-events-auto z-40">
+          <span className="text-[11px] font-semibold text-zinc-600 dark:text-zinc-300">Theme</span>
+          <ThemeToggle fontSize="9.5px" />
         </div>
       </div>
 

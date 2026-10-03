@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { useSpendWise } from '../context/SpendWiseContext';
 import { formatCurrency } from '../lib/currency';
+import { ThemeToggle } from './ThemeToggle';
 
 type ProfileSubView = 'PROFILE' | 'SETTINGS' | 'APPEARANCE';
 
@@ -65,16 +66,35 @@ export function ProfileScreen() {
           </div>
         </div>
 
-        {/* 3 Theme Options */}
-        <div className="flex flex-col gap-3 mt-2">
-          {/* Light Mode Card */}
+        {/* Rotaract Animated Day & Night Toggle Showcase Card */}
+        <div className="p-5 rounded-[28px] bg-gradient-to-b from-white/10 to-white/5 border border-white/10 flex flex-col items-center justify-center text-center gap-3 mt-2 shadow-lg">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-400">
+            Interactive Day / Night Switch
+          </span>
+          <p className="text-xs text-zinc-300 max-w-xs">
+            Toggle between bright sunny skies and star-filled night with animated sun, moon, clouds and stars.
+          </p>
+          <div className="py-2">
+            <ThemeToggle fontSize="14px" showLabels />
+          </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[11px] font-medium text-zinc-300">
+            <span>Currently Active:</span>
+            <span className="font-bold text-white">
+              {isDark ? '🌙 Night Mode' : '☀️ Day Mode'}
+            </span>
+          </div>
+        </div>
+
+        {/* 2 Interactive Theme Option Cards with Quick Toggle */}
+        <div className="flex flex-col gap-3">
+          {/* Day Mode Card */}
           <div
             onClick={() => {
               if (isDark) toggleTheme();
             }}
             className={`p-4 rounded-[26px] border cursor-pointer transition flex items-center justify-between ${
               !isDark
-                ? 'bg-white/15 border-blue-500 shadow-md ring-1 ring-blue-500'
+                ? 'bg-gradient-to-r from-sky-500/20 to-amber-500/20 border-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.25)] ring-1 ring-sky-400'
                 : 'bg-white/5 border-white/10 hover:bg-white/10'
             }`}
           >
@@ -83,21 +103,28 @@ export function ProfileScreen() {
                 <Sun className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-xs text-white">Light Mode</h3>
-                <p className="text-[11px] text-zinc-400">Clean, bright and minimal for everyday use.</p>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-bold text-xs text-white">Day Mode</h3>
+                  {!isDark && (
+                    <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-extrabold text-[9px] uppercase tracking-wider">
+                      Active
+                    </span>
+                  )}
+                </div>
+                <p className="text-[11px] text-zinc-400 mt-0.5">Clean, bright blue sky with soft daylight.</p>
               </div>
             </div>
 
             <div
               className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                !isDark ? 'border-blue-500 bg-blue-500 text-white' : 'border-zinc-500'
+                !isDark ? 'border-sky-400 bg-sky-500 text-white' : 'border-zinc-600'
               }`}
             >
               {!isDark && <Check className="w-3 h-3 stroke-[3]" />}
             </div>
           </div>
 
-          {/* Dark Mode Card (Highlighted with neon border matching Image 3 Screen 4) */}
+          {/* Night Mode Card */}
           <div
             onClick={() => {
               if (!isDark) toggleTheme();
@@ -114,40 +141,26 @@ export function ProfileScreen() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-bold text-xs text-white">Dark Mode</h3>
-                  <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 font-extrabold text-[9px] uppercase tracking-wider">
-                    Popular
-                  </span>
+                  <h3 className="font-bold text-xs text-white">Night Mode</h3>
+                  {isDark && (
+                    <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-extrabold text-[9px] uppercase tracking-wider">
+                      Active
+                    </span>
+                  )}
                 </div>
                 <p className="text-[11px] text-zinc-400 mt-0.5">
-                  A modern dark experience with beautiful gradients.
+                  Deep dark sky with moon craters and sparkling stars.
                 </p>
               </div>
             </div>
 
             <div
               className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                isDark ? 'border-purple-400 bg-purple-500 text-white' : 'border-zinc-500'
+                isDark ? 'border-purple-400 bg-purple-500 text-white' : 'border-zinc-600'
               }`}
             >
               {isDark && <Check className="w-3 h-3 stroke-[3]" />}
             </div>
-          </div>
-
-          {/* System Default Card */}
-          <div className="p-4 rounded-[26px] bg-white/5 border border-white/10 flex items-center justify-between opacity-70">
-            <div className="flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
-                <Palette className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-xs text-white">System Default</h3>
-                <p className="text-[11px] text-zinc-400">
-                  Automatically switch based on your system settings.
-                </p>
-              </div>
-            </div>
-            <div className="w-5 h-5 rounded-full border border-zinc-600" />
           </div>
         </div>
 
@@ -199,39 +212,36 @@ export function ProfileScreen() {
         <div className="flex flex-col gap-1.5 shrink-0">
           <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 px-1">Appearance</span>
           <div className="rounded-[24px] bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs overflow-hidden">
-            <div
-              onClick={() => setSubView('APPEARANCE')}
-              className="p-3.5 flex items-center justify-between border-b border-zinc-100 dark:border-white/5 cursor-pointer hover:bg-zinc-50 dark:hover:bg-white/5 transition"
-            >
+            {/* Animated Day & Night Toggle Row */}
+            <div className="p-3.5 flex items-center justify-between border-b border-zinc-100 dark:border-white/5">
               <div className="flex items-center gap-3">
-                <Sun className="w-4 h-4 text-amber-500" />
-                <span className="text-xs font-medium text-zinc-900 dark:text-white">Light Mode</span>
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-400/20 via-sky-400/20 to-indigo-500/20 flex items-center justify-center text-sm">
+                  {isDark ? '🌙' : '☀️'}
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-zinc-900 dark:text-white block">
+                    Day & Night Mode
+                  </span>
+                  <span className="text-[10px] text-zinc-400 block">
+                    {isDark ? 'Night (Dark Sky & Stars)' : 'Day (Bright Sky & Sun)'}
+                  </span>
+                </div>
               </div>
-              {!isDark && <Check className="w-4 h-4 text-blue-600 stroke-[3]" />}
+              <div className="flex items-center gap-2">
+                <ThemeToggle fontSize="10.5px" />
+              </div>
             </div>
 
-            <div
-              onClick={() => setSubView('APPEARANCE')}
-              className="p-3.5 flex items-center justify-between border-b border-zinc-100 dark:border-white/5 cursor-pointer hover:bg-zinc-50 dark:hover:bg-white/5 transition"
-            >
-              <div className="flex items-center gap-3">
-                <Moon className="w-4 h-4 text-purple-500" />
-                <span className="text-xs font-medium text-zinc-900 dark:text-white">Dark Mode</span>
-              </div>
-              {isDark ? (
-                <Check className="w-4 h-4 text-purple-400 stroke-[3]" />
-              ) : (
-                <ChevronRight className="w-4 h-4 text-zinc-400" />
-              )}
-            </div>
-
+            {/* Appearance Details / Customization Subview link */}
             <div
               onClick={() => setSubView('APPEARANCE')}
               className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-white/5 transition"
             >
               <div className="flex items-center gap-3">
-                <Palette className="w-4 h-4 text-blue-500" />
-                <span className="text-xs font-medium text-zinc-900 dark:text-white">System Default</span>
+                <Palette className="w-4 h-4 text-purple-500" />
+                <span className="text-xs font-medium text-zinc-900 dark:text-white">
+                  Appearance Settings
+                </span>
               </div>
               <ChevronRight className="w-4 h-4 text-zinc-400" />
             </div>

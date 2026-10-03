@@ -17,6 +17,7 @@ import { useSpendWise } from '../context/SpendWiseContext';
 import { formatCurrency } from '../lib/currency';
 import { SmartInsightCard } from './SmartInsightCard';
 import { TransactionRow } from './TransactionRow';
+import { ThemeToggle } from './ThemeToggle';
 
 export function HomeScreen() {
   const {
@@ -72,6 +73,11 @@ export function HomeScreen() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Day / Night Theme Switch */}
+          <div className="flex items-center justify-center p-1 rounded-full bg-white/70 dark:bg-white/10 border border-black/5 dark:border-white/10 shadow-xs">
+            <ThemeToggle fontSize="7.8px" />
+          </div>
+
           {/* Notification Bell */}
           <button
             onClick={() => showToast('No new notifications')}
