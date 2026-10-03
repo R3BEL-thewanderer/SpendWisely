@@ -20,7 +20,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { id: 'HOME', label: 'Home', icon: Home },
-  { id: 'TRANSACTIONS', label: 'Transactions', icon: Receipt },
+  { id: 'TRANSACTIONS', label: 'Ledger', icon: Receipt },
   { id: 'BUDGETS', label: 'Budgets', icon: PieChart },
   { id: 'GOALS', label: 'Goals', icon: Trophy },
   { id: 'ANALYTICS', label: 'Analytics', icon: BarChart2 },
@@ -34,8 +34,8 @@ export function BottomNavigation() {
   if (currentScreen === 'LANDING') return null;
 
   return (
-    <div className="shrink-0 w-full px-2.5 pb-2 sm:pb-2.5 pt-0.5 z-30 pointer-events-auto">
-      <div className="w-full rounded-[28px] px-1.5 py-1.5 flex items-center justify-between shadow-lg border border-black/5 dark:border-white/10 bg-white/90 dark:bg-[#181a1d]/90 backdrop-blur-xl transition-all">
+    <div className="shrink-0 w-full px-3 pb-2 sm:pb-2.5 pt-0.5 z-30 pointer-events-auto">
+      <div className="w-full rounded-[24px] px-1.5 py-1.5 flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#e7e5e4] dark:border-white/10 bg-white/95 dark:bg-[#1c1917]/95 backdrop-blur-xl transition-all">
         {NAV_ITEMS.map((item) => {
           const isSelected =
             currentScreen === item.id ||
@@ -46,24 +46,24 @@ export function BottomNavigation() {
             <button
               key={item.id}
               onClick={() => navigateTo(item.id)}
-              className={`flex-1 flex flex-col items-center justify-center py-1 rounded-2xl transition-all duration-200 ${
-                isSelected ? 'scale-105' : 'hover:opacity-80 active:scale-95 text-zinc-400 dark:text-zinc-500'
+              className={`flex-1 flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-200 ${
+                isSelected
+                  ? 'bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white'
+                  : 'hover:bg-black/5 dark:hover:bg-white/5 active:scale-95 text-[#777169] dark:text-[#a8a29e]'
               }`}
             >
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                  isSelected
-                    ? 'text-zinc-950 dark:text-white font-bold'
-                    : 'text-zinc-400 dark:text-zinc-500'
-                }`}
-              >
-                <IconComponent className={`w-4 h-4 ${isSelected ? 'stroke-[2.5]' : 'stroke-[1.9]'}`} />
+              <div className="w-5 h-5 flex items-center justify-center">
+                <IconComponent
+                  className={`w-4 h-4 ${
+                    isSelected ? 'stroke-[2] text-[#0c0a09] dark:text-white' : 'stroke-[1.6]'
+                  }`}
+                />
               </div>
               <span
-                className={`text-[9.5px] mt-0.5 tracking-tight font-medium truncate max-w-full px-0.5 ${
+                className={`text-[10px] mt-0.5 tracking-wide font-normal truncate max-w-full font-sans ${
                   isSelected
-                    ? 'text-zinc-950 dark:text-white font-bold'
-                    : 'text-zinc-400 dark:text-zinc-500'
+                    ? 'font-medium text-[#0c0a09] dark:text-white'
+                    : 'text-[#777169] dark:text-[#a8a29e]'
                 }`}
               >
                 {item.label}

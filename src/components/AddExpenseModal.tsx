@@ -4,10 +4,8 @@ import React, { useState } from 'react';
 import {
   ArrowLeft,
   Calendar,
-  ChevronRight,
   CreditCard,
   FileText,
-  MoreHorizontal,
   Plus,
   Receipt,
   Tag,
@@ -84,44 +82,45 @@ export function AddExpenseModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-      <div className="w-full sm:w-[390px] max-h-[92vh] bg-[#FAF8F5] dark:bg-[#121316] sm:rounded-[36px] rounded-t-[32px] border border-black/10 dark:border-white/10 shadow-2xl flex flex-col overflow-y-auto animate-slide-up">
-        {/* Top Header Navigation matching Image 3 Screen 3 */}
-        <div className="px-5 py-3.5 border-b border-black/5 dark:border-white/5 flex items-center justify-between flex-shrink-0">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/40 backdrop-blur-xs animate-fade-in font-sans">
+      <div className="w-full sm:w-[400px] max-h-[92vh] bg-[#f5f5f5] dark:bg-[#0c0a09] sm:rounded-2xl rounded-t-2xl border border-[#e7e5e4] dark:border-white/10 shadow-2xl flex flex-col overflow-y-auto animate-slide-up">
+        {/* Top Header Navigation */}
+        <div className="px-5 py-3.5 border-b border-[#e7e5e4] dark:border-white/5 flex items-center justify-between flex-shrink-0">
           <button
             onClick={closeModal}
-            className="w-8 h-8 rounded-full bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95"
+            className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white"
             aria-label="Back"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
 
-          <span className="text-xs font-bold text-zinc-900 dark:text-white">
-            Add Expense
+          <span className="font-display font-light text-base tracking-tight text-[#0c0a09] dark:text-white">
+            Add Expense Entry
           </span>
 
           <button
             onClick={closeModal}
-            className="w-8 h-8 rounded-full bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95"
-            aria-label="Options"
+            className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white"
+            aria-label="Close"
           >
-            <MoreHorizontal className="w-4 h-4 opacity-70" />
+            <X className="w-4 h-4 opacity-70" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-5 flex flex-col gap-4">
-          {/* Top Glowing Orb with Floating Center Icon (Image 3 Screen 3) */}
+          {/* Top Atmospheric Pastel Bloom with Floating Icon */}
           <div className="relative w-full flex flex-col items-center justify-center py-2">
-            <div className="absolute w-36 h-36 rounded-full bg-gradient-to-tr from-[#FFE4E6]/80 via-[#FED7AA]/70 to-[#E0E7FF]/60 blur-2xl pointer-events-none" />
+            <div className="absolute w-36 h-36 rounded-full bg-[#f4c5a8]/25 blur-2xl pointer-events-none" />
+            <div className="absolute w-32 h-32 -bottom-2 rounded-full bg-[#c8b8e0]/20 blur-2xl pointer-events-none" />
 
-            <div className="relative z-10 w-16 h-16 rounded-full bg-white/95 dark:bg-zinc-800 shadow-md border border-white/80 dark:border-white/10 flex items-center justify-center">
-              <Receipt className="w-7 h-7 text-rose-500 stroke-[2]" />
+            <div className="relative z-10 w-14 h-14 rounded-full bg-white dark:bg-[#1c1917] shadow-2xs border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white">
+              <Receipt className="w-6 h-6 stroke-[1.8]" />
             </div>
 
-            {/* Big Amount Input Display */}
+            {/* Big Amount Input Display with Waldenburg Light / EB Garamond 300 */}
             <div className="relative z-10 mt-3 flex flex-col items-center">
               <div className="flex items-center justify-center gap-1">
-                <span className="text-3xl font-black text-zinc-900 dark:text-white">₹</span>
+                <span className="font-display font-light text-4xl text-[#0c0a09] dark:text-white">₹</span>
                 <input
                   type="number"
                   step="any"
@@ -129,27 +128,27 @@ export function AddExpenseModal() {
                   value={amountStr}
                   onChange={(e) => setAmountStr(e.target.value)}
                   placeholder="0"
-                  className="w-40 text-center text-3xl font-black bg-transparent focus:outline-none placeholder:text-zinc-400 text-zinc-900 dark:text-white"
+                  className="w-44 text-center font-display font-light text-4xl bg-transparent focus:outline-none placeholder:text-[#a8a29e] text-[#0c0a09] dark:text-white tracking-tight"
                 />
               </div>
-              <span className="text-[11px] text-zinc-400 dark:text-zinc-500 font-semibold mt-0.5">
-                Enter amount
+              <span className="text-[11px] text-[#777169] tracking-[0.16px] mt-0.5">
+                Enter expense amount
               </span>
             </div>
           </div>
 
-          {/* Form Rows Group (Image 3 Screen 3 Design) */}
-          <div className="rounded-3xl bg-white dark:bg-zinc-800/90 border border-black/5 dark:border-white/10 p-1 divide-y divide-black/5 dark:divide-white/5 shadow-xs">
+          {/* Form Rows Group */}
+          <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 p-1 divide-y divide-[#e7e5e4] dark:divide-white/5 shadow-2xs">
             {/* Category */}
             <div className="flex items-center justify-between p-3.5">
-              <div className="flex items-center gap-2.5 opacity-70">
+              <div className="flex items-center gap-2.5 text-[#777169]">
                 <Tag className="w-4 h-4" />
-                <span className="text-xs font-medium">Category</span>
+                <span className="text-xs font-medium tracking-[0.15px]">Category</span>
               </div>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="bg-transparent text-xs font-semibold text-zinc-900 dark:text-white focus:outline-none cursor-pointer text-right"
+                className="bg-transparent text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none cursor-pointer text-right"
               >
                 {EXPENSE_CATEGORIES.map((c) => (
                   <option key={c} value={c}>
@@ -159,46 +158,45 @@ export function AddExpenseModal() {
               </select>
             </div>
 
-            {/* Description */}
+            {/* Title / Description */}
             <div className="flex items-center justify-between p-3.5 gap-2">
-              <div className="flex items-center gap-2.5 opacity-70 flex-shrink-0">
+              <div className="flex items-center gap-2.5 text-[#777169] flex-shrink-0">
                 <FileText className="w-4 h-4" />
-                <span className="text-xs font-medium">Description</span>
+                <span className="text-xs font-medium tracking-[0.15px]">Title</span>
               </div>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Add a description"
-                className="text-xs font-semibold text-zinc-900 dark:text-white bg-transparent focus:outline-none text-right flex-1 placeholder:text-zinc-400"
+                placeholder="e.g. Blue Tokai Coffee"
+                className="text-xs font-medium text-[#0c0a09] dark:text-white bg-transparent focus:outline-none text-right flex-1 placeholder:text-[#a8a29e]"
               />
             </div>
 
             {/* Date */}
             <div className="flex items-center justify-between p-3.5">
-              <div className="flex items-center gap-2.5 opacity-70">
+              <div className="flex items-center gap-2.5 text-[#777169]">
                 <Calendar className="w-4 h-4" />
-                <span className="text-xs font-medium">Date</span>
+                <span className="text-xs font-medium tracking-[0.15px]">Date</span>
               </div>
               <input
                 type="text"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                placeholder="Today"
-                className="text-xs font-semibold text-zinc-900 dark:text-white bg-transparent focus:outline-none text-right w-28"
+                className="text-xs font-medium text-[#0c0a09] dark:text-white bg-transparent focus:outline-none text-right"
               />
             </div>
 
             {/* Payment Method */}
             <div className="flex items-center justify-between p-3.5">
-              <div className="flex items-center gap-2.5 opacity-70">
+              <div className="flex items-center gap-2.5 text-[#777169]">
                 <CreditCard className="w-4 h-4" />
-                <span className="text-xs font-medium">Payment Method</span>
+                <span className="text-xs font-medium tracking-[0.15px]">Payment Method</span>
               </div>
               <select
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
-                className="bg-transparent text-xs font-semibold text-zinc-900 dark:text-white focus:outline-none cursor-pointer text-right"
+                className="bg-transparent text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none cursor-pointer text-right"
               >
                 {PAYMENT_METHODS.map((pm) => (
                   <option key={pm} value={pm}>
@@ -210,15 +208,15 @@ export function AddExpenseModal() {
 
             {/* Tags */}
             <div className="flex items-center justify-between p-3.5">
-              <div className="flex items-center gap-2.5 opacity-70">
+              <div className="flex items-center gap-2.5 text-[#777169]">
                 <Tag className="w-4 h-4" />
-                <span className="text-xs font-medium">Tags</span>
+                <span className="text-xs font-medium tracking-[0.15px]">Tags</span>
               </div>
               <div className="flex items-center gap-1.5 flex-wrap justify-end">
                 {tags.map((t) => (
                   <span
                     key={t}
-                    className="px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#059669] text-[10px] font-bold"
+                    className="px-2.5 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-zinc-200 text-[10px] font-medium"
                   >
                     {t}
                   </span>
@@ -231,9 +229,9 @@ export function AddExpenseModal() {
                       onChange={(e) => setNewTagInput(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                       placeholder="Tag"
-                      className="w-16 px-1.5 py-0.5 rounded bg-zinc-100 text-[10px]"
+                      className="w-16 px-1.5 py-0.5 rounded-md bg-[#f0efed] text-[10px]"
                     />
-                    <button type="button" onClick={addTag} className="text-xs font-bold text-blue-600">
+                    <button type="button" onClick={addTag} className="text-xs font-medium text-[#0c0a09]">
                       ✓
                     </button>
                   </div>
@@ -241,7 +239,7 @@ export function AddExpenseModal() {
                   <button
                     type="button"
                     onClick={() => setShowTagInput(true)}
-                    className="w-5 h-5 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center text-xs opacity-60"
+                    className="w-5 h-5 rounded-full bg-[#f0efed] dark:bg-white/10 flex items-center justify-center text-xs text-[#777169]"
                   >
                     <Plus className="w-3 h-3" />
                   </button>
@@ -251,26 +249,26 @@ export function AddExpenseModal() {
 
             {/* Notes */}
             <div className="flex items-center justify-between p-3.5 gap-2">
-              <div className="flex items-center gap-2.5 opacity-70 flex-shrink-0">
+              <div className="flex items-center gap-2.5 text-[#777169] flex-shrink-0">
                 <FileText className="w-4 h-4" />
-                <span className="text-xs font-medium">Notes</span>
+                <span className="text-xs font-medium tracking-[0.15px]">Notes</span>
               </div>
               <input
                 type="text"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="Add a note (optional)"
-                className="text-xs font-semibold text-zinc-900 dark:text-white bg-transparent focus:outline-none text-right flex-1 placeholder:text-zinc-400"
+                placeholder="Add an optional memo"
+                className="text-xs font-medium text-[#0c0a09] dark:text-white bg-transparent focus:outline-none text-right flex-1 placeholder:text-[#a8a29e]"
               />
             </div>
           </div>
 
-          {/* Primary Save Expense Button (Image 3 Screen 3) */}
+          {/* Primary Near-Black Ink Pill CTA */}
           <button
             type="submit"
-            className="w-full py-4 rounded-full bg-[#18181B] dark:bg-white text-white dark:text-zinc-900 font-bold text-xs shadow-md hover:opacity-95 active:scale-[0.99] transition flex items-center justify-center gap-1.5 mt-1"
+            className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition flex items-center justify-center gap-2 mt-1 tracking-[0.15px] cursor-pointer"
           >
-            <span>Save Expense</span>
+            <span>Record Expense</span>
             <span className="text-sm">→</span>
           </button>
         </form>

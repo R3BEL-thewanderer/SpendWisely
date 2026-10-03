@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import {
+  ArrowDownLeft,
   ArrowRight,
   ArrowUpRight,
   Bell,
@@ -11,7 +12,6 @@ import {
   Plus,
   QrCode,
   Sparkles,
-  TrendingUp,
 } from 'lucide-react';
 import { useSpendWise } from '../context/SpendWiseContext';
 import { formatCurrency } from '../lib/currency';
@@ -51,65 +51,66 @@ export function HomeScreen() {
   const momDiff = currExpenses - prevExpenses;
   const momPct = prevExpenses > 0 ? Math.round((Math.abs(momDiff) / prevExpenses) * 100) : 8;
 
-  // Total balance display amount - fall back to 48250 if not calculated yet
   const displayBalance = totals.balance || 48250;
 
   return (
-    <div className="relative flex-1 w-full px-5 pt-3 pb-28 flex flex-col gap-5 overflow-y-auto no-scrollbar">
-      {/* Top Atmospheric Ambient Glow */}
-      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full bg-gradient-to-tr from-[#FFD8CC]/45 via-[#E7E0FF]/40 to-[#C8E2FF]/45 blur-3xl pointer-events-none" />
+    <div className="relative flex-1 w-full px-5 pt-3 pb-8 flex flex-col gap-5 overflow-y-auto no-scrollbar">
+      {/* Atmospheric Pastel Gradient Orbs (signature brand pattern) */}
+      <div className="absolute -top-16 left-1/4 w-72 h-72 rounded-full orb-peach opacity-60 dark:opacity-20 pointer-events-none" />
+      <div className="absolute top-48 -right-12 w-64 h-64 rounded-full orb-mint opacity-50 dark:opacity-20 pointer-events-none" />
 
-      {/* Header: Greeting, Notifications, Avatar */}
-      <div className="relative z-10 flex items-center justify-between shrink-0">
+      {/* Header: Greeting in Waldenburg / EB Garamond 300 */}
+      <div className="relative z-10 flex items-center justify-between shrink-0 pt-1">
         <div>
-          <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Good Morning,</span>
-          <div className="flex items-center gap-1.5 mt-0.5">
-            <h1 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
-              {firstName}
-            </h1>
-            <span className="text-lg">☀️</span>
-          </div>
-          <p className="text-[11px] text-zinc-400 dark:text-zinc-500">Let&apos;s make today a smart one.</p>
+          <span className="text-[11px] uppercase tracking-widest text-[#777169] dark:text-[#a8a29e] font-sans font-semibold">
+            Overview
+          </span>
+          <h1 className="font-display text-2xl font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff] mt-0.5">
+            Good morning, {firstName}
+          </h1>
+          <p className="text-[12px] text-[#777169] dark:text-[#a8a29e] font-sans">
+            A quiet ledger for your financial wellbeing.
+          </p>
         </div>
 
         <div className="flex items-center gap-2">
           {/* Day / Night Theme Switch */}
-          <div className="flex items-center justify-center p-1 rounded-full bg-white/70 dark:bg-white/10 border border-black/5 dark:border-white/10 shadow-xs">
+          <div className="flex items-center justify-center p-1 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-xs">
             <ThemeToggle fontSize="7.8px" />
           </div>
 
           {/* Notification Bell */}
           <button
             onClick={() => showToast('No new notifications')}
-            className="w-10 h-10 rounded-full flex items-center justify-center bg-white/80 dark:bg-white/10 border border-black/5 dark:border-white/10 shadow-xs transition hover:scale-105 active:scale-95"
+            className="w-9 h-9 rounded-full flex items-center justify-center bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-xs transition hover:scale-105 active:scale-95 text-[#0c0a09] dark:text-[#ffffff]"
             aria-label="Notifications"
           >
-            <Bell className="w-4 h-4 opacity-75" />
+            <Bell className="w-4 h-4 opacity-75 stroke-[1.8]" />
           </button>
 
           {/* Profile Avatar with Photo/Initials */}
           <button
             onClick={() => navigateTo('PROFILE')}
-            className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#FFD8CC] via-[#F3EDFF] to-[#9CC9FF] p-0.5 shadow-xs transition hover:scale-105 active:scale-95"
+            className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] border border-[#e7e5e4] dark:border-white/10 p-0.5 shadow-xs transition hover:scale-105 active:scale-95"
             aria-label="Profile"
           >
-            <div className="w-full h-full rounded-full bg-zinc-800 text-white flex items-center justify-center font-bold text-xs shadow-inner overflow-hidden">
+            <div className="w-full h-full rounded-full bg-[#292524] text-white flex items-center justify-center font-display font-light text-xs">
               <span>{firstName.charAt(0).toUpperCase()}</span>
             </div>
           </button>
         </div>
       </div>
 
-      {/* Total Balance Glass Card (Image 1 Screen 2 Design - Fixed min height & shrink-0) */}
-      <div className="relative z-10 shrink-0 min-h-[148px] rounded-[32px] p-5 overflow-hidden border border-white/80 dark:border-white/10 bg-gradient-to-br from-[#EAF2FF]/95 via-[#F3EDFF]/90 to-[#FFF0EC]/95 dark:from-[#1D212C] dark:via-[#22212E] dark:to-[#2B2326] shadow-sm backdrop-blur-md flex flex-col justify-between">
+      {/* Total Balance Card (ElevenLabs Editorial Print Card) */}
+      <div className="relative z-10 shrink-0 rounded-2xl p-5 overflow-hidden border border-[#e7e5e4] dark:border-white/10 bg-white dark:bg-[#1c1917] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-300">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-sans">
               Total Balance
             </span>
             <button
               onClick={toggleBalanceVisibility}
-              className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition"
+              className="text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white transition"
               aria-label="Toggle Balance Visibility"
             >
               {isBalanceVisible ? (
@@ -120,46 +121,55 @@ export function HomeScreen() {
             </button>
           </div>
 
-          {/* Arrow to Analytics */}
           <button
             onClick={() => navigateTo('ANALYTICS')}
-            className="w-8 h-8 rounded-full bg-white/90 dark:bg-white/10 border border-white/60 dark:border-white/10 flex items-center justify-center shadow-xs hover:scale-105 active:scale-95 transition"
-            aria-label="View Analytics"
+            className="text-[12px] font-medium text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white flex items-center gap-1 transition font-sans"
           >
-            <ArrowRight className="w-3.5 h-3.5 opacity-70" />
+            <span>Analytics</span>
+            <ArrowRight className="w-3 h-3 stroke-[2]" />
           </button>
         </div>
 
-        {/* Big Balance Amount */}
-        <div className="my-2">
-          <span className="text-3xl sm:text-[34px] font-black tracking-tight text-zinc-900 dark:text-white block">
+        {/* Big Balance Amount in Waldenburg / EB Garamond 300 */}
+        <div className="my-2.5">
+          <span className="font-display text-[38px] leading-tight font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff] block">
             {isBalanceVisible ? formatCurrency(displayBalance) : '••••••••'}
           </span>
         </div>
 
-        {/* Trend Indicator Pill */}
-        <div className="flex items-center gap-2">
-          <div className="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold flex items-center gap-1">
-            <TrendingUp className="w-3 h-3" />
-            <span>↑ {momPct}% vs last month</span>
+        {/* Status Caption & CTAs */}
+        <div className="flex items-center justify-between pt-1 border-t border-[#f0efed] dark:border-white/5">
+          <div className="text-[11.5px] font-sans text-[#777169] dark:text-[#a8a29e]">
+            <span>Monthly spend: </span>
+            <span className="font-medium text-[#0c0a09] dark:text-white">{formatCurrency(currExpenses)}</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => openModal('ADD_EXPENSE')}
+              className="inline-flex items-center justify-center h-8 px-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#e7e5e4] text-white dark:text-[#0c0a09] text-xs font-medium font-sans transition active:scale-95"
+            >
+              <Plus className="w-3 h-3 mr-1 stroke-[2.5]" />
+              <span>Record</span>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* 4 Quick Actions (Image 1 Screen 2 Design) */}
+      {/* 4 Quick Action Plates ({colors.surface-strong}) */}
       <div className="relative z-10 shrink-0 grid grid-cols-4 gap-2.5">
         {/* Add Expense */}
         <button
           onClick={() => openModal('ADD_EXPENSE')}
           className="flex flex-col items-center gap-1.5 group"
         >
-          <div className="w-[68px] h-[68px] rounded-[24px] bg-white/90 dark:bg-zinc-800/80 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:scale-105 active:scale-95">
-            <div className="w-10 h-10 rounded-full bg-[#EBF5FF] dark:bg-blue-500/20 text-[#2563EB] dark:text-[#93C5FD] flex items-center justify-center">
-              <Plus className="w-5 h-5 stroke-[2.5]" />
+          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
+            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+              <Plus className="w-4 h-4 stroke-[2]" />
             </div>
           </div>
-          <span className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 text-center leading-tight">
-            Add<br />Expense
+          <span className="text-[11px] font-normal text-[#4e4e4e] dark:text-[#a8a29e] text-center font-sans">
+            Expense
           </span>
         </button>
 
@@ -168,13 +178,13 @@ export function HomeScreen() {
           onClick={() => openModal('ADD_INCOME')}
           className="flex flex-col items-center gap-1.5 group"
         >
-          <div className="w-[68px] h-[68px] rounded-[24px] bg-white/90 dark:bg-zinc-800/80 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:scale-105 active:scale-95">
-            <div className="w-10 h-10 rounded-full bg-[#ECFDF5] dark:bg-emerald-500/20 text-[#059669] dark:text-[#6EE7B7] flex items-center justify-center">
-              <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
+          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
+            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+              <ArrowDownLeft className="w-4 h-4 stroke-[2]" />
             </div>
           </div>
-          <span className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 text-center leading-tight">
-            Add<br />Income
+          <span className="text-[11px] font-normal text-[#4e4e4e] dark:text-[#a8a29e] text-center font-sans">
+            Income
           </span>
         </button>
 
@@ -183,13 +193,13 @@ export function HomeScreen() {
           onClick={() => openModal('TRANSACTION_FILTER')}
           className="flex flex-col items-center gap-1.5 group"
         >
-          <div className="w-[68px] h-[68px] rounded-[24px] bg-white/90 dark:bg-zinc-800/80 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:scale-105 active:scale-95">
-            <div className="w-10 h-10 rounded-full bg-[#F5F3FF] dark:bg-purple-500/20 text-[#7C3AED] dark:text-[#C4B5FD] flex items-center justify-center">
-              <QrCode className="w-4 h-4 stroke-[2]" />
+          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
+            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+              <QrCode className="w-4 h-4 stroke-[1.8]" />
             </div>
           </div>
-          <span className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 text-center leading-tight">
-            Scan<br />Receipt
+          <span className="text-[11px] font-normal text-[#4e4e4e] dark:text-[#a8a29e] text-center font-sans">
+            Scan
           </span>
         </button>
 
@@ -199,35 +209,35 @@ export function HomeScreen() {
             onClick={() => setShowMoreMenu(!showMoreMenu)}
             className="flex flex-col items-center gap-1.5 group w-full"
           >
-            <div className="w-[68px] h-[68px] rounded-[24px] bg-white/90 dark:bg-zinc-800/80 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:scale-105 active:scale-95">
-              <div className="w-10 h-10 rounded-full bg-[#F5F5F4] dark:bg-zinc-700/40 text-[#57534E] dark:text-zinc-300 flex items-center justify-center">
-                <MoreHorizontal className="w-5 h-5" />
+            <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
+              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+                <MoreHorizontal className="w-4 h-4" />
               </div>
             </div>
-            <span className="text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 text-center leading-tight">
+            <span className="text-[11px] font-normal text-[#4e4e4e] dark:text-[#a8a29e] text-center font-sans">
               More
             </span>
           </button>
 
           {/* Popup Dropdown for More menu */}
           {showMoreMenu && (
-            <div className="absolute right-0 top-20 z-40 w-48 rounded-2xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 shadow-xl p-1.5 flex flex-col gap-1 text-xs animate-slide-up">
+            <div className="absolute right-0 top-20 z-40 w-48 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-lg p-1.5 flex flex-col gap-0.5 text-xs animate-slide-up">
               <button
                 onClick={() => {
                   setShowMoreMenu(false);
                   navigateTo('CATEGORIES');
                 }}
-                className="px-3 py-2 rounded-xl text-left font-medium hover:bg-black/5 dark:hover:bg-white/10 flex items-center gap-2"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
               >
                 <span>🏷️</span>
-                <span>Manage Categories</span>
+                <span>Categories</span>
               </button>
               <button
                 onClick={() => {
                   setShowMoreMenu(false);
                   navigateTo('GOALS');
                 }}
-                className="px-3 py-2 rounded-xl text-left font-medium hover:bg-black/5 dark:hover:bg-white/10 flex items-center gap-2"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
               >
                 <span>🏆</span>
                 <span>Savings Goals</span>
@@ -237,7 +247,7 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   openModal('AI_ASSISTANT');
                 }}
-                className="px-3 py-2 rounded-xl text-left font-medium hover:bg-black/5 dark:hover:bg-white/10 flex items-center gap-2"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
               >
                 <span>✨</span>
                 <span>Ask SpendWise AI</span>
@@ -247,81 +257,77 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   navigateTo('LANDING');
                 }}
-                className="px-3 py-2 rounded-xl text-left font-medium hover:bg-black/5 dark:hover:bg-white/10 flex items-center gap-2"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
               >
-                <span>🚀</span>
-                <span>Landing Preview</span>
+                <span>📖</span>
+                <span>Editorial Cover</span>
               </button>
             </div>
           )}
         </div>
       </div>
 
-      {/* Recent Transactions Section (Directly after Quick Actions matching Image 1 Screen 2) */}
-      <div className="relative z-10 shrink-0 flex flex-col gap-2.5">
-        <div className="flex items-center justify-between">
-          <h2 className="font-bold text-sm tracking-tight text-zinc-900 dark:text-white">
-            Recent Transactions
+      {/* Recent Ledger Entries (Editorial print list) */}
+      <div className="relative z-10 shrink-0 flex flex-col gap-2">
+        <div className="flex items-center justify-between px-0.5">
+          <h2 className="font-display text-lg font-light text-[#0c0a09] dark:text-[#ffffff]">
+            Recent Ledger
           </h2>
           <button
             onClick={() => navigateTo('TRANSACTIONS')}
-            className="text-xs font-semibold text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition"
+            className="text-xs font-sans text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white transition"
           >
-            See All
+            View all
           </button>
         </div>
 
         {recentTransactions.length === 0 ? (
-          <div className="p-8 rounded-[28px] bg-white/80 dark:bg-white/5 border border-black/5 text-center flex flex-col items-center">
-            <p className="text-xs font-semibold">No transactions yet</p>
+          <div className="p-8 rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-center flex flex-col items-center">
+            <p className="text-xs text-[#777169] font-sans">No entries recorded yet</p>
           </div>
         ) : (
-          <div className="flex flex-col gap-1.5">
+          <div className="bg-white dark:bg-[#1c1917] rounded-2xl border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] overflow-hidden">
             {recentTransactions.map((tx) => (
-              <div
+              <TransactionRow
                 key={tx.id}
-                className="bg-white/85 dark:bg-zinc-800/80 rounded-2xl border border-black/5 dark:border-white/5 shadow-xs"
-              >
-                <TransactionRow
-                  transaction={tx}
-                  onClick={() => {
-                    setSelectedTransaction(tx);
-                    openModal('TRANSACTION_DETAIL');
-                  }}
-                />
-              </div>
+                transaction={tx}
+                onClick={() => {
+                  setSelectedTransaction(tx);
+                  openModal('TRANSACTION_DETAIL');
+                }}
+              />
             ))}
           </div>
         )}
       </div>
 
-      {/* SpendWise AI Assistant Banner Card (Cleanly placed below Recent Transactions) */}
+      {/* SpendWise AI Assistant (Editorial commentary style card) */}
       <div
         onClick={() => openModal('AI_ASSISTANT')}
-        className="relative z-10 shrink-0 rounded-[28px] p-4 border border-purple-500/20 bg-gradient-to-br from-[#F5F3FF]/90 via-[#FAF5FF]/80 to-white/90 dark:from-[#251E33] dark:to-[#191924] shadow-xs cursor-pointer hover:border-purple-500/40 transition"
+        className="relative z-10 shrink-0 rounded-2xl p-4.5 border border-[#e7e5e4] dark:border-white/10 bg-white dark:bg-[#1c1917] shadow-[0_4px_16px_rgba(0,0,0,0.02)] cursor-pointer hover:border-[#0c0a09] dark:hover:border-white/30 transition group"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#C9B8FF] to-[#9CC9FF] flex items-center justify-center text-zinc-950 shadow-xs">
-              <Sparkles className="w-4 h-4 fill-current" />
+            <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#292524] flex items-center justify-center text-[#0c0a09] dark:text-white">
+              <Sparkles className="w-4 h-4 stroke-[1.8]" />
             </div>
             <div>
-              <h3 className="font-bold text-xs tracking-tight text-zinc-900 dark:text-white">
-                SpendWise AI
+              <h3 className="font-display text-base font-light text-[#0c0a09] dark:text-[#ffffff]">
+                SpendWise Assistant
               </h3>
-              <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
-                Verified financial clarity
+              <p className="text-[11px] text-[#777169] dark:text-[#a8a29e] font-sans">
+                Quiet verification &amp; domain analysis
               </p>
             </div>
           </div>
 
-          <span className="px-3 py-1 rounded-full bg-[#18181B] dark:bg-white text-white dark:text-zinc-900 font-bold text-[10px] shadow-xs">
-            Ask AI
+          <span className="btn-primary !h-7 !px-3 !text-[11px]">
+            Inquire
           </span>
         </div>
 
-        {/* Quick Question Chips */}
-        <div className="grid grid-cols-3 gap-1.5 mt-2.5">
+        {/* Quick Inquiry Chips */}
+        <div className="grid grid-cols-3 gap-1.5 mt-3">
           {['Where did money go?', 'How much on food?', 'How is budget?'].map((q) => (
             <button
               key={q}
@@ -330,7 +336,7 @@ export function HomeScreen() {
                 openModal('AI_ASSISTANT');
                 askAssistant(q);
               }}
-              className="py-1 px-1.5 rounded-xl text-[10px] font-medium text-center truncate bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition"
+              className="py-1 px-2 rounded-lg text-[10.5px] font-normal text-center truncate bg-[#f5f5f5] dark:bg-[#292524] text-[#4e4e4e] dark:text-[#d6d3d1] border border-transparent hover:border-[#d6d3d1] transition font-sans"
             >
               {q}
             </button>
@@ -341,19 +347,13 @@ export function HomeScreen() {
       {/* Smart Insights Section */}
       {insights.length > 0 && (
         <div className="relative z-10 shrink-0 flex flex-col gap-2">
-          <div className="flex items-center justify-between">
-            <h2 className="font-bold text-sm tracking-tight text-zinc-900 dark:text-white">
-              Smart Insights
+          <div className="flex items-center justify-between px-0.5">
+            <h2 className="font-display text-lg font-light text-[#0c0a09] dark:text-[#ffffff]">
+              Field Notes &amp; Observations
             </h2>
-            <button
-              onClick={() => openModal('AI_ASSISTANT')}
-              className="text-xs font-semibold text-purple-600 dark:text-purple-400 hover:underline"
-            >
-              Deep Dive
-            </button>
           </div>
 
-          <div className="flex items-stretch gap-3 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-none">
+          <div className="flex items-stretch gap-3 overflow-x-auto pb-1 -mx-5 px-5 no-scrollbar">
             {insights.map((insight) => (
               <SmartInsightCard
                 key={insight.id}

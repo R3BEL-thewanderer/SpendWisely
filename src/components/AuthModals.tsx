@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
-  Check,
   ChevronDown,
   Eye,
   EyeOff,
@@ -61,43 +60,43 @@ export function AuthModals() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-      <div className="w-full sm:w-[390px] max-h-[92vh] bg-[#FAF8F5] dark:bg-[#121316] sm:rounded-[36px] rounded-t-[32px] border border-black/10 dark:border-white/10 shadow-2xl flex flex-col overflow-y-auto animate-slide-up">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/40 backdrop-blur-xs animate-fade-in font-sans">
+      <div className="w-full sm:w-[400px] max-h-[92vh] bg-[#f5f5f5] dark:bg-[#0c0a09] sm:rounded-2xl rounded-t-2xl border border-[#e7e5e4] dark:border-white/10 shadow-2xl flex flex-col overflow-y-auto animate-slide-up">
         {/* ============================================================== */}
-        {/* 1. SIGN IN MODAL (Image 2 Screen 2) */}
+        {/* 1. SIGN IN MODAL */}
         {/* ============================================================== */}
         {activeModal === 'AUTH_SIGN_IN' && (
-          <div className="relative p-6 flex flex-col justify-between min-h-[560px]">
-            {/* Ambient Top Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-gradient-to-tr from-[#FFD8CC]/40 via-[#E7E0FF]/40 to-[#C8E2FF]/40 blur-2xl pointer-events-none" />
+          <div className="relative p-6 flex flex-col justify-between min-h-[540px]">
+            {/* Soft Pastel Atmospheric Bloom */}
+            <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#f4c5a8]/25 blur-3xl pointer-events-none" />
 
             <div>
               {/* Header bar */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#FF8A73] via-[#7B61FF] to-[#00D2FF] p-0.5">
-                    <div className="w-full h-full rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center">
-                      <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#FF8A73] via-[#7B61FF] to-[#00D2FF]" />
-                    </div>
+                  <div className="w-6 h-6 rounded-full bg-[#0c0a09] dark:bg-white text-white dark:text-[#0c0a09] flex items-center justify-center font-display font-light text-xs">
+                    S
                   </div>
-                  <span className="font-extrabold text-sm tracking-tight">SpendWise</span>
+                  <span className="font-display font-light text-sm tracking-tight text-[#0c0a09] dark:text-white">
+                    SpendWise
+                  </span>
                 </div>
 
                 <button
                   onClick={closeModal}
-                  className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center"
+                  className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white shadow-2xs"
                 >
                   <X className="w-4 h-4 opacity-70" />
                 </button>
               </div>
 
               {/* Title & Subtitle */}
-              <div className="mt-7">
-                <h2 className="text-2xl font-black tracking-tight text-zinc-900 dark:text-white">
-                  Welcome <span className="text-[#3B82F6]">back</span>
+              <div className="mt-6">
+                <h2 className="font-display font-light text-3xl tracking-tight text-[#0c0a09] dark:text-white leading-tight">
+                  Welcome to your ledger.
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                  Sign in to continue your journey towards smarter spending.
+                <p className="text-xs text-[#777169] mt-1 tracking-[0.16px]">
+                  Sign in to inspect and reconcile your accounts.
                 </p>
               </div>
 
@@ -105,93 +104,92 @@ export function AuthModals() {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleFinishAuth('Welcome back, Ashish!');
+                  handleFinishAuth('Welcome back to SpendWise');
                 }}
-                className="mt-6 flex flex-col gap-3.5"
+                className="mt-6 flex flex-col gap-3"
               >
                 {/* Email input */}
-                <div className="flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <Mail className="w-4 h-4 opacity-40 flex-shrink-0" />
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <Mail className="w-4 h-4 text-[#a8a29e] flex-shrink-0" />
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Email</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Email Address</span>
                     <input
                       type="email"
                       defaultValue="ashish.singh@example.com"
-                      placeholder="Enter your email address"
-                      className="text-xs font-medium bg-transparent focus:outline-none placeholder:opacity-40"
+                      placeholder="name@example.com"
+                      className="text-xs font-medium bg-transparent focus:outline-none text-[#0c0a09] dark:text-white placeholder:text-[#a8a29e]"
                     />
                   </div>
                 </div>
 
                 {/* Password input */}
-                <div className="flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <Lock className="w-4 h-4 opacity-40 flex-shrink-0" />
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <Lock className="w-4 h-4 text-[#a8a29e] flex-shrink-0" />
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Password</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Passphrase</span>
                     <input
                       type={showPassword ? 'text' : 'password'}
                       defaultValue="••••••••••••"
-                      placeholder="Enter your password"
-                      className="text-xs font-medium bg-transparent focus:outline-none placeholder:opacity-40"
+                      placeholder="Enter passkey"
+                      className="text-xs font-medium bg-transparent focus:outline-none text-[#0c0a09] dark:text-white placeholder:text-[#a8a29e]"
                     />
                   </div>
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="opacity-40 hover:opacity-100"
+                    className="text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
 
                 {/* Remember me & Forgot Password */}
-                <div className="flex items-center justify-between text-xs mt-1">
-                  <label className="flex items-center gap-2 cursor-pointer opacity-80">
+                <div className="flex items-center justify-between text-xs mt-1 text-[#777169]">
+                  <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
-                      className="rounded accent-blue-600"
+                      className="rounded accent-[#292524]"
                     />
-                    <span>Remember me</span>
+                    <span className="tracking-[0.15px]">Keep signed in</span>
                   </label>
 
                   <button
                     type="button"
                     onClick={() => openModal('AUTH_FORGOT_PASSWORD')}
-                    className="font-semibold text-blue-600 hover:underline"
+                    className="font-medium text-[#0c0a09] dark:text-white hover:underline tracking-[0.15px]"
                   >
-                    Forgot password?
+                    Recover passkey
                   </button>
                 </div>
 
-                {/* Primary Sign In Button */}
+                {/* Primary Sign In Button - Near-Black Ink Pill */}
                 <button
                   type="submit"
-                  className="w-full py-4 mt-2 rounded-full bg-[#18181B] dark:bg-white text-white dark:text-zinc-900 font-bold text-xs shadow-md hover:opacity-95 active:scale-[0.99] transition flex items-center justify-center gap-1.5"
+                  className="w-full py-3.5 mt-2 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition active:scale-[0.99] flex items-center justify-center gap-2 tracking-[0.15px] cursor-pointer"
                 >
-                  <span>Sign In</span>
+                  <span>Access Ledger</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
 
-                {/* Google Sign In */}
+                {/* Secondary Google Sign In */}
                 <button
                   type="button"
-                  onClick={() => handleFinishAuth('Signed in with Google')}
-                  className="w-full py-3.5 rounded-full bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 font-bold text-xs shadow-xs hover:bg-black/5 transition flex items-center justify-center gap-2"
+                  onClick={() => handleFinishAuth('Authenticated with Google')}
+                  className="w-full py-3 rounded-full bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 font-medium text-xs text-[#0c0a09] dark:text-white shadow-2xs hover:bg-[#fafafa] dark:hover:bg-white/5 transition flex items-center justify-center gap-2 tracking-[0.15px] cursor-pointer"
                 >
-                  <span className="font-bold text-blue-500">G</span>
                   <span>Continue with Google</span>
                 </button>
               </form>
             </div>
 
             {/* Bottom Switch Link */}
-            <div className="text-center text-xs opacity-80 mt-6">
-              <span>Don&apos;t have an account? </span>
+            <div className="text-center text-xs text-[#777169] mt-6 tracking-[0.15px]">
+              <span>Need a personal ledger? </span>
               <button
                 onClick={() => openModal('AUTH_SIGN_UP')}
-                className="font-bold text-blue-600 hover:underline"
+                className="font-medium text-[#0c0a09] dark:text-white hover:underline cursor-pointer"
               >
                 Create Account
               </button>
@@ -200,25 +198,28 @@ export function AuthModals() {
         )}
 
         {/* ============================================================== */}
-        {/* 2. SIGN UP MODAL (Image 2 Screen 1) */}
+        {/* 2. SIGN UP MODAL */}
         {/* ============================================================== */}
         {activeModal === 'AUTH_SIGN_UP' && (
-          <div className="relative p-6 flex flex-col justify-between min-h-[580px]">
+          <div className="relative p-6 flex flex-col justify-between min-h-[560px]">
+            {/* Atmospheric Lavender Bloom */}
+            <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#c8b8e0]/25 blur-3xl pointer-events-none" />
+
             <div>
               {/* Header */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#FF8A73] via-[#7B61FF] to-[#00D2FF] p-0.5">
-                    <div className="w-full h-full rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center">
-                      <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#FF8A73] via-[#7B61FF] to-[#00D2FF]" />
-                    </div>
+                  <div className="w-6 h-6 rounded-full bg-[#0c0a09] dark:bg-white text-white dark:text-[#0c0a09] flex items-center justify-center font-display font-light text-xs">
+                    S
                   </div>
-                  <span className="font-extrabold text-sm tracking-tight">SpendWise</span>
+                  <span className="font-display font-light text-sm tracking-tight text-[#0c0a09] dark:text-white">
+                    SpendWise
+                  </span>
                 </div>
 
                 <button
                   onClick={closeModal}
-                  className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center"
+                  className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white shadow-2xs"
                 >
                   <X className="w-4 h-4 opacity-70" />
                 </button>
@@ -226,11 +227,11 @@ export function AuthModals() {
 
               {/* Headline */}
               <div className="mt-5">
-                <h2 className="text-2xl font-black tracking-tight text-zinc-900 dark:text-white">
-                  Create your <span className="text-[#8B5CF6]">account</span>
+                <h2 className="font-display font-light text-3xl tracking-tight text-[#0c0a09] dark:text-white leading-tight">
+                  Open your ledger.
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                  Start your journey towards smarter money habits.
+                <p className="text-xs text-[#777169] mt-1 tracking-[0.16px]">
+                  Establish clarity and discipline over your finances.
                 </p>
               </div>
 
@@ -240,82 +241,82 @@ export function AuthModals() {
                   e.preventDefault();
                   openModal('AUTH_ONBOARDING');
                 }}
-                className="mt-5 flex flex-col gap-3"
+                className="mt-5 flex flex-col gap-2.5"
               >
                 {/* Full name */}
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <User className="w-4 h-4 opacity-40 flex-shrink-0" />
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <User className="w-4 h-4 text-[#a8a29e] flex-shrink-0" />
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Full Name</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Full Name</span>
                     <input
                       type="text"
-                      placeholder="Enter your full name"
+                      placeholder="Your full name"
                       defaultValue="Ashish Singh"
-                      className="text-xs font-medium bg-transparent focus:outline-none"
+                      className="text-xs font-medium bg-transparent focus:outline-none text-[#0c0a09] dark:text-white"
                     />
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <Mail className="w-4 h-4 opacity-40 flex-shrink-0" />
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <Mail className="w-4 h-4 text-[#a8a29e] flex-shrink-0" />
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Email</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Email Address</span>
                     <input
                       type="email"
-                      placeholder="Enter your email address"
+                      placeholder="name@example.com"
                       defaultValue="ashish.singh@example.com"
-                      className="text-xs font-medium bg-transparent focus:outline-none"
+                      className="text-xs font-medium bg-transparent focus:outline-none text-[#0c0a09] dark:text-white"
                     />
                   </div>
                 </div>
 
                 {/* Password */}
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <Lock className="w-4 h-4 opacity-40 flex-shrink-0" />
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <Lock className="w-4 h-4 text-[#a8a29e] flex-shrink-0" />
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Password</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Passkey</span>
                     <input
                       type={showPassword ? 'text' : 'password'}
                       defaultValue="Secret123!"
-                      className="text-xs font-medium bg-transparent focus:outline-none"
+                      className="text-xs font-medium bg-transparent focus:outline-none text-[#0c0a09] dark:text-white"
                     />
                   </div>
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="opacity-40"
+                    className="text-[#a8a29e]"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
 
                 {/* Confirm Password */}
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <Lock className="w-4 h-4 opacity-40 flex-shrink-0" />
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <Lock className="w-4 h-4 text-[#a8a29e] flex-shrink-0" />
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Confirm Password</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Confirm Passkey</span>
                     <input
                       type={showConfirmPassword ? 'text' : 'password'}
                       defaultValue="Secret123!"
-                      className="text-xs font-medium bg-transparent focus:outline-none"
+                      className="text-xs font-medium bg-transparent focus:outline-none text-[#0c0a09] dark:text-white"
                     />
                   </div>
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="opacity-40"
+                    className="text-[#a8a29e]"
                   >
                     {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
 
-                {/* Create Account Button */}
+                {/* Create Account Button - Near-Black Ink Pill */}
                 <button
                   type="submit"
-                  className="w-full py-4 mt-2 rounded-full bg-[#18181B] dark:bg-white text-white dark:text-zinc-900 font-bold text-xs shadow-md hover:opacity-95 active:scale-[0.99] transition flex items-center justify-center gap-1.5"
+                  className="w-full py-3.5 mt-2 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition flex items-center justify-center gap-2 tracking-[0.15px] cursor-pointer"
                 >
-                  <span>Create Account</span>
+                  <span>Continue to Ledger Setup</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
 
@@ -323,19 +324,18 @@ export function AuthModals() {
                 <button
                   type="button"
                   onClick={() => openModal('AUTH_ONBOARDING')}
-                  className="w-full py-3.5 rounded-full bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 font-bold text-xs shadow-xs hover:bg-black/5 transition flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-full bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 font-medium text-xs text-[#0c0a09] dark:text-white shadow-2xs hover:bg-[#fafafa] transition flex items-center justify-center gap-2 tracking-[0.15px] cursor-pointer"
                 >
-                  <span className="font-bold text-blue-500">G</span>
                   <span>Continue with Google</span>
                 </button>
               </form>
             </div>
 
-            <div className="text-center text-xs opacity-80 mt-4">
+            <div className="text-center text-xs text-[#777169] mt-4 tracking-[0.15px]">
               <span>Already have an account? </span>
               <button
                 onClick={() => openModal('AUTH_SIGN_IN')}
-                className="font-bold text-blue-600 hover:underline"
+                className="font-medium text-[#0c0a09] dark:text-white hover:underline cursor-pointer"
               >
                 Sign In
               </button>
@@ -344,108 +344,85 @@ export function AuthModals() {
         )}
 
         {/* ============================================================== */}
-        {/* 3. FORGOT PASSWORD MODAL (Image 2 Screen 3) */}
+        {/* 3. FORGOT PASSWORD MODAL */}
         {/* ============================================================== */}
         {activeModal === 'AUTH_FORGOT_PASSWORD' && (
-          <div className="relative p-6 flex flex-col justify-between min-h-[500px]">
+          <div className="relative p-6 flex flex-col justify-between min-h-[480px]">
             <div>
               {/* Back to sign in */}
               <button
                 onClick={() => openModal('AUTH_SIGN_IN')}
-                className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center"
+                className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white shadow-2xs"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
 
-              <div className="mt-6 flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#FF8A73] via-[#7B61FF] to-[#00D2FF] p-0.5">
-                    <div className="w-full h-full rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center">
-                      <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#FF8A73] via-[#7B61FF] to-[#00D2FF]" />
-                    </div>
-                  </div>
-                  <span className="font-extrabold text-sm tracking-tight">SpendWise</span>
-                </div>
-
-                <h2 className="text-2xl font-black tracking-tight text-zinc-900 dark:text-white mt-3">
-                  Forgot your <br />
-                  <span className="text-[#FF6584]">password?</span>
+              <div className="mt-5 flex flex-col gap-2">
+                <h2 className="font-display font-light text-3xl tracking-tight text-[#0c0a09] dark:text-white">
+                  Recover Passkey
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  No worries! Enter your email address and we&apos;ll send you a reset link.
+                <p className="text-xs text-[#777169] tracking-[0.16px]">
+                  Enter your email address and we&apos;ll send recovery instructions.
                 </p>
               </div>
 
               {/* Email Box */}
-              <div className="mt-6 flex items-center gap-3 px-4 py-3.5 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                <Mail className="w-4 h-4 opacity-40 flex-shrink-0" />
+              <div className="mt-6 flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                <Mail className="w-4 h-4 text-[#a8a29e] flex-shrink-0" />
                 <div className="flex flex-col flex-1">
-                  <span className="text-[10px] font-semibold opacity-50 uppercase">Email</span>
+                  <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Email Address</span>
                   <input
                     type="email"
                     defaultValue="ashish.singh@example.com"
-                    placeholder="Enter your email address"
-                    className="text-xs font-medium bg-transparent focus:outline-none"
+                    placeholder="Enter your email"
+                    className="text-xs font-medium bg-transparent focus:outline-none text-[#0c0a09] dark:text-white"
                   />
                 </div>
               </div>
 
               <button
                 onClick={() => {
-                  showToast('Reset link sent to your email!');
+                  showToast('Recovery instructions dispatched to your email.');
                   openModal('AUTH_SIGN_IN');
                 }}
-                className="w-full py-4 mt-4 rounded-full bg-[#18181B] dark:bg-white text-white dark:text-zinc-900 font-bold text-xs shadow-md hover:opacity-95 active:scale-[0.99] transition flex items-center justify-center gap-1.5"
+                className="w-full py-3.5 mt-4 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition flex items-center justify-center gap-2 tracking-[0.15px] cursor-pointer"
               >
-                <span>Send Reset Link</span>
+                <span>Send Instructions</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
-
-              {/* Graphic Icon card */}
-              <div className="mt-8 flex flex-col items-center justify-center text-center">
-                <div className="w-14 h-14 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center mb-2 shadow-xs">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <h4 className="text-xs font-bold text-zinc-900 dark:text-white">
-                  A reset link will be sent to your email
-                </h4>
-                <p className="text-[11px] text-zinc-500 max-w-[200px] mt-0.5">
-                  You&apos;ll see a confirmation message here after submission.
-                </p>
-              </div>
             </div>
 
             <div className="text-center mt-6">
               <button
                 onClick={() => openModal('AUTH_SIGN_IN')}
-                className="text-xs font-bold text-blue-600 hover:underline flex items-center justify-center gap-1 mx-auto"
+                className="text-xs font-medium text-[#777169] hover:text-[#0c0a09] dark:hover:text-white hover:underline flex items-center justify-center gap-1 mx-auto tracking-[0.15px]"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back to Sign In</span>
+                <span>Return to Sign In</span>
               </button>
             </div>
           </div>
         )}
 
         {/* ============================================================== */}
-        {/* 4. ONBOARDING SETUP (Image 2 Screen 4: Step 1 of 3) */}
+        {/* 4. ONBOARDING SETUP */}
         {/* ============================================================== */}
         {activeModal === 'AUTH_ONBOARDING' && (
-          <div className="relative p-6 flex flex-col justify-between min-h-[620px]">
+          <div className="relative p-6 flex flex-col justify-between min-h-[600px]">
             <div>
               {/* Top Progress & Back */}
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => openModal('AUTH_SIGN_UP')}
-                  className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center"
+                  className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white shadow-2xs"
                 >
                   <ArrowLeft className="w-4 h-4" />
                 </button>
 
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-[10px] font-semibold opacity-60">Step 1 of 3</span>
-                  <div className="w-28 h-1.5 rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
-                    <div className="w-1/3 h-full rounded-full bg-blue-500" />
+                  <span className="text-[10px] font-medium text-[#777169] uppercase tracking-wider">Step 1 of 2</span>
+                  <div className="w-24 h-1 rounded-full bg-[#f0efed] dark:bg-zinc-800 overflow-hidden">
+                    <div className="w-1/2 h-full rounded-full bg-[#292524] dark:bg-zinc-200" />
                   </div>
                 </div>
 
@@ -454,99 +431,90 @@ export function AuthModals() {
 
               {/* Title */}
               <div className="mt-5">
-                <h2 className="text-2xl font-black tracking-tight text-zinc-900 dark:text-white">
-                  Let&apos;s set up <br />
-                  your <span className="text-[#3B82F6]">SpendWise</span>
+                <h2 className="font-display font-light text-3xl tracking-tight text-[#0c0a09] dark:text-white leading-tight">
+                  Personalize your ledger
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                  Tell us a bit about yourself to personalize your experience.
+                <p className="text-xs text-[#777169] mt-1 tracking-[0.16px]">
+                  Establish currency baseline and planned monthly limits.
                 </p>
               </div>
 
               {/* Inputs */}
               <div className="mt-5 flex flex-col gap-2.5">
                 {/* Your Name */}
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <User className="w-4 h-4 opacity-40" />
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <User className="w-4 h-4 text-[#a8a29e]" />
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Your Name</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Account Holder</span>
                     <input
                       type="text"
                       value={setupName}
                       onChange={(e) => setSetupName(e.target.value)}
-                      className="text-xs font-semibold bg-transparent focus:outline-none"
+                      className="text-xs font-medium text-[#0c0a09] dark:text-white bg-transparent focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Currency */}
-                <div className="flex items-center justify-between px-4 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
+                <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-bold opacity-60">₹</span>
+                    <span className="text-sm font-medium text-[#777169]">₹</span>
                     <div className="flex flex-col">
-                      <span className="text-[10px] font-semibold opacity-50 uppercase">Currency</span>
-                      <span className="text-xs font-semibold">{setupCurrency}</span>
+                      <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Currency</span>
+                      <span className="text-xs font-medium text-[#0c0a09] dark:text-white">{setupCurrency}</span>
                     </div>
                   </div>
-                  <ChevronDown className="w-4 h-4 opacity-50" />
+                  <ChevronDown className="w-4 h-4 text-[#a8a29e]" />
                 </div>
 
                 {/* Monthly Income */}
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <Wallet className="w-4 h-4 opacity-40" />
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <Wallet className="w-4 h-4 text-[#a8a29e]" />
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Monthly Income</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Monthly Inflow</span>
                     <input
                       type="number"
                       value={setupIncome}
                       onChange={(e) => setSetupIncome(e.target.value)}
-                      className="text-xs font-semibold bg-transparent focus:outline-none"
+                      className="text-xs font-medium text-[#0c0a09] dark:text-white bg-transparent focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Monthly Spending Budget */}
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 shadow-xs">
-                  <div className="w-4 h-4 flex items-center justify-center font-bold text-xs opacity-40">📊</div>
+                <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+                  <span className="text-xs text-[#a8a29e]">📊</span>
                   <div className="flex flex-col flex-1">
-                    <span className="text-[10px] font-semibold opacity-50 uppercase">Monthly Spending Budget</span>
+                    <span className="text-[9px] font-medium text-[#777169] uppercase tracking-wider">Monthly Planned Budget</span>
                     <input
                       type="number"
                       value={setupBudget}
                       onChange={(e) => setSetupBudget(e.target.value)}
-                      className="text-xs font-semibold bg-transparent focus:outline-none"
+                      className="text-xs font-medium text-[#0c0a09] dark:text-white bg-transparent focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Preferred Categories Chips */}
                 <div className="mt-2 flex flex-col gap-1.5">
-                  <span className="text-xs font-bold text-zinc-900 dark:text-white">
-                    Preferred Spending Categories
+                  <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
+                    Active Tracking Categories
                   </span>
                   <div className="grid grid-cols-3 gap-1.5">
-                    {[
-                      { name: 'Food', color: 'bg-blue-50 text-blue-600', icon: '🍽️' },
-                      { name: 'Transport', color: 'bg-purple-50 text-purple-600', icon: '🚗' },
-                      { name: 'Shopping', color: 'bg-pink-50 text-pink-600', icon: '🛍️' },
-                      { name: 'Bills', color: 'bg-amber-50 text-amber-600', icon: '🏠' },
-                      { name: 'Entertainment', color: 'bg-emerald-50 text-emerald-600', icon: '🎮' },
-                      { name: 'Health', color: 'bg-rose-50 text-rose-600', icon: '❤️' },
-                    ].map((item) => {
-                      const isSelected = selectedCategories.includes(item.name);
+                    {['Food', 'Transport', 'Shopping', 'Bills', 'Entertainment', 'Health'].map((name) => {
+                      const isSelected = selectedCategories.includes(name);
                       return (
                         <button
-                          key={item.name}
+                          key={name}
                           type="button"
-                          onClick={() => toggleCategory(item.name)}
-                          className={`py-2 px-2.5 rounded-2xl text-[11px] font-semibold flex items-center justify-center gap-1.5 transition ${
+                          onClick={() => toggleCategory(name)}
+                          className={`py-2 px-2.5 rounded-full text-xs font-medium transition cursor-pointer tracking-[0.15px] ${
                             isSelected
-                              ? `${item.color} border border-current shadow-xs`
-                              : 'bg-white dark:bg-zinc-800 border border-black/5 opacity-60'
+                              ? 'bg-[#292524] text-white shadow-xs'
+                              : 'bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-[#777169]'
                           }`}
                         >
-                          <span>{item.icon}</span>
-                          <span>{item.name}</span>
+                          <span>{name}</span>
                         </button>
                       );
                     })}
@@ -555,12 +523,12 @@ export function AuthModals() {
               </div>
             </div>
 
-            {/* Continue Button */}
+            {/* Continue Button - Near-Black Ink Pill */}
             <button
-              onClick={() => handleFinishAuth('SpendWise personalized successfully! 🎉')}
-              className="w-full py-4 mt-4 rounded-full bg-[#18181B] dark:bg-white text-white dark:text-zinc-900 font-bold text-xs shadow-md hover:opacity-95 active:scale-[0.99] transition flex items-center justify-center gap-1.5"
+              onClick={() => handleFinishAuth('Ledger configured successfully')}
+              className="w-full py-3.5 mt-4 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition active:scale-[0.99] flex items-center justify-center gap-2 tracking-[0.15px] cursor-pointer"
             >
-              <span>Continue</span>
+              <span>Initialize Ledger</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

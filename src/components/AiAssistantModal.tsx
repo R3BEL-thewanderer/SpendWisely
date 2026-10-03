@@ -45,24 +45,26 @@ export function AiAssistantModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/40 backdrop-blur-xs animate-fade-in font-sans">
       {/* Modal Card / Bottom Sheet */}
-      <div className="w-full sm:w-[390px] h-[85vh] sm:h-[650px] bg-[#F8F7F4] dark:bg-[#15171a] sm:rounded-[36px] rounded-t-[32px] border border-black/10 dark:border-white/10 shadow-2xl flex flex-col overflow-hidden animate-slide-up">
+      <div className="w-full sm:w-[400px] h-[85vh] sm:h-[650px] bg-[#f5f5f5] dark:bg-[#0c0a09] sm:rounded-2xl rounded-t-2xl border border-[#e7e5e4] dark:border-white/10 shadow-2xl flex flex-col overflow-hidden animate-slide-up">
         {/* Header */}
-        <div className="px-5 py-4 border-b border-black/5 dark:border-white/5 flex items-center justify-between flex-shrink-0">
+        <div className="px-5 py-4 border-b border-[#e7e5e4] dark:border-white/5 flex items-center justify-between flex-shrink-0 bg-white dark:bg-[#1c1917]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#C9B8FF] to-[#9CC9FF] flex items-center justify-center text-zinc-950 shadow-xs">
-              <Sparkles className="w-4 h-4 fill-current" />
+            <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white shadow-2xs">
+              <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="font-bold text-sm tracking-tight">SpendWise AI</h2>
-              <p className="text-[11px] opacity-60">Verified financial analysis</p>
+              <h2 className="font-display font-light text-base tracking-tight text-[#0c0a09] dark:text-white">
+                Ledger Intelligence
+              </h2>
+              <p className="text-[10px] text-[#777169] tracking-[0.16px]">Disciplined financial reasoning</p>
             </div>
           </div>
 
           <button
             onClick={closeModal}
-            className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center transition hover:scale-105 active:scale-95"
+            className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-white/5 flex items-center justify-center transition hover:scale-105 active:scale-95 text-[#0c0a09] dark:text-white"
             aria-label="Close Assistant"
           >
             <X className="w-4 h-4 opacity-70" />
@@ -70,12 +72,12 @@ export function AiAssistantModal() {
         </div>
 
         {/* Suggestion Chips */}
-        <div className="px-4 py-2 border-b border-black/5 dark:border-white/5 overflow-x-auto flex items-center gap-2 scrollbar-none flex-shrink-0">
+        <div className="px-4 py-2 border-b border-[#e7e5e4] dark:border-white/5 overflow-x-auto flex items-center gap-2 scrollbar-none flex-shrink-0 bg-[#fafafa] dark:bg-[#1c1917]">
           {suggestions.map((s) => (
             <button
               key={s}
               onClick={() => askAssistant(s)}
-              className="py-1 px-3 rounded-full text-[11px] font-medium whitespace-nowrap bg-white/80 dark:bg-white/10 border border-black/5 dark:border-white/10 hover:bg-white active:scale-95 transition"
+              className="py-1 px-3 rounded-full text-[11px] font-medium whitespace-nowrap bg-white dark:bg-[#0c0a09] border border-[#e7e5e4] dark:border-white/10 text-[#777169] hover:text-[#0c0a09] dark:hover:text-white active:scale-95 transition cursor-pointer tracking-[0.15px]"
             >
               {s}
             </button>
@@ -93,10 +95,10 @@ export function AiAssistantModal() {
             >
               {/* Avatar */}
               <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs ${
+                className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs border border-[#e7e5e4] dark:border-white/10 ${
                   msg.isUser
-                    ? 'bg-purple-600 text-white font-bold'
-                    : 'bg-gradient-to-tr from-[#9CC9FF] to-[#C9B8FF] text-zinc-950 font-bold'
+                    ? 'bg-[#292524] text-white'
+                    : 'bg-[#f0efed] dark:bg-white/5 text-[#0c0a09] dark:text-white'
                 }`}
               >
                 {msg.isUser ? <User className="w-3.5 h-3.5" /> : <Bot className="w-3.5 h-3.5" />}
@@ -106,8 +108,8 @@ export function AiAssistantModal() {
               <div
                 className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed ${
                   msg.isUser
-                    ? 'bg-purple-600 text-white rounded-tr-none'
-                    : 'bg-white dark:bg-zinc-800/90 text-zinc-900 dark:text-zinc-100 border border-black/5 dark:border-white/10 rounded-tl-none shadow-xs'
+                    ? 'bg-[#292524] text-white rounded-tr-none tracking-[0.15px]'
+                    : 'bg-white dark:bg-[#1c1917] text-[#0c0a09] dark:text-zinc-100 border border-[#e7e5e4] dark:border-white/10 rounded-tl-none shadow-2xs tracking-[0.15px]'
                 }`}
               >
                 <div className="whitespace-pre-wrap font-normal">
@@ -127,9 +129,9 @@ export function AiAssistantModal() {
 
           {/* Thinking Indicator */}
           {isAssistantThinking && (
-            <div className="flex items-center gap-2 text-xs opacity-60 pl-9">
+            <div className="flex items-center gap-2 text-xs text-[#777169] pl-9">
               <Sparkles className="w-3.5 h-3.5 animate-spin" />
-              <span>Analyzing verified calculations...</span>
+              <span>Analyzing ledger balances...</span>
             </div>
           )}
 
@@ -137,7 +139,7 @@ export function AiAssistantModal() {
         </div>
 
         {/* Chat Input Bar */}
-        <div className="p-3 border-t border-black/5 dark:border-white/5 flex items-center gap-2 flex-shrink-0 bg-white/50 dark:bg-white/5">
+        <div className="p-3 border-t border-[#e7e5e4] dark:border-white/5 flex items-center gap-2 flex-shrink-0 bg-white dark:bg-[#1c1917]">
           <input
             type="text"
             value={input}
@@ -145,16 +147,16 @@ export function AiAssistantModal() {
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleSend();
             }}
-            placeholder="Ask about spending, budgets, goals..."
-            className="flex-1 px-4 py-2.5 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition placeholder:opacity-50"
+            placeholder="Query spending, allocations, goals..."
+            className="flex-1 px-3.5 py-2 rounded-lg bg-[#f0efed] dark:bg-white/5 border border-[#d6d3d1] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition placeholder:text-[#a8a29e]"
           />
           <button
             onClick={handleSend}
             disabled={!input.trim() || isAssistantThinking}
-            className="w-9 h-9 rounded-2xl bg-purple-600 text-white flex items-center justify-center disabled:opacity-40 transition active:scale-95 shadow-xs"
+            className="w-8 h-8 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white flex items-center justify-center disabled:opacity-40 transition active:scale-95 shadow-xs cursor-pointer"
             aria-label="Send Message"
           >
-            <Send className="w-4 h-4" />
+            <Send className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>

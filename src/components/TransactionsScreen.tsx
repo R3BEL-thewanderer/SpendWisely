@@ -68,77 +68,77 @@ export function TransactionsScreen() {
       {/* Scrollable transactions list */}
       <div className="flex-1 w-full overflow-y-auto px-5 pt-3 pb-24 flex flex-col gap-4 no-scrollbar">
         {/* Header: Title & Back Button */}
-        <div className="flex items-center justify-between shrink-0">
+        <div className="flex items-center justify-between shrink-0 pt-1">
           <div className="flex items-center gap-3">
             <button
               onClick={() => navigateTo('HOME')}
-              className="w-9 h-9 rounded-full bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95"
+              className="w-9 h-9 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white"
               aria-label="Back to Home"
             >
-              <ArrowLeft className="w-4 h-4 opacity-75" />
+              <ArrowLeft className="w-4 h-4 stroke-[1.8]" />
             </button>
             <div>
-              <h1 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+              <span className="text-[11px] uppercase tracking-widest text-[#777169] dark:text-[#a8a29e] font-sans font-semibold">
+                Ledger
+              </span>
+              <h1 className="font-display text-2xl font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff]">
                 Transactions
               </h1>
-              <p className="text-[11px] text-zinc-400 dark:text-zinc-500">
-                Your complete transaction history
-              </p>
             </div>
           </div>
 
           <button
             onClick={() => openModal('ADD_EXPENSE')}
-            className="w-9 h-9 rounded-full bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95"
+            className="w-9 h-9 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white"
             aria-label="Options"
           >
             <MoreHorizontal className="w-4 h-4 opacity-70" />
           </button>
         </div>
 
-        {/* Search Input Bar & Filter Button Row */}
+        {/* Search Input Bar (ElevenLabs 8px radius, hairline border, 2px ink focus) */}
         <div className="flex items-center gap-2 w-full shrink-0">
           <div className="relative flex-1">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#777169] dark:text-[#a8a29e]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search transactions..."
-              className="w-full pl-10 pr-8 py-2.5 rounded-2xl bg-white dark:bg-zinc-800/90 border border-black/5 dark:border-white/10 text-xs font-medium placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 shadow-2xs transition"
+              placeholder="Search ledger entries..."
+              className="w-full pl-10 pr-8 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/15 text-xs font-normal text-[#0c0a09] dark:text-white placeholder:text-[#a8a29e] focus:outline-none focus:border-[#0c0a09] dark:focus:border-white shadow-xs transition font-sans"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#777169]"
               >
-                <X className="w-3.5 h-3.5 opacity-40 hover:opacity-100" />
+                <X className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
 
           <button
             onClick={() => openModal('TRANSACTION_FILTER')}
-            className="w-10 h-10 rounded-2xl bg-white dark:bg-zinc-800 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-2xs transition hover:scale-105 active:scale-95 text-zinc-600 dark:text-zinc-300 shrink-0"
+            className="w-10 h-10 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/15 flex items-center justify-center shadow-xs transition hover:border-[#0c0a09] active:scale-95 text-[#0c0a09] dark:text-white shrink-0"
             aria-label="Filter"
           >
-            <SlidersHorizontal className="w-4 h-4" />
+            <SlidersHorizontal className="w-4 h-4 stroke-[1.8]" />
           </button>
         </div>
 
-        {/* Segmented Control Pill: All, Expenses, Income (Image 3 Screen 1) */}
-        <div className="flex items-center p-1 rounded-2xl bg-zinc-100 dark:bg-zinc-800/60 border border-black/5 dark:border-white/5 shrink-0">
+        {/* Editorial Segmented Pill Control (Ink pill primary, no saturated colors) */}
+        <div className="flex items-center p-1 rounded-full bg-[#f0efed] dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shrink-0">
           {(['ALL', 'EXPENSE', 'INCOME'] as const).map((tab) => {
             const isSelected = selectedTab === tab;
-            const label = tab === 'ALL' ? 'All' : tab === 'EXPENSE' ? 'Expenses' : 'Income';
+            const label = tab === 'ALL' ? 'All Entries' : tab === 'EXPENSE' ? 'Expenses' : 'Income';
             return (
               <button
                 key={tab}
                 onClick={() => setSelectedTab(tab)}
-                className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                className={`flex-1 py-1.5 rounded-full text-xs font-medium transition-all font-sans ${
                   isSelected
-                    ? 'bg-gradient-to-r from-[#9C7CF8] to-[#805AD5] text-white shadow-xs'
-                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-800'
+                    ? 'bg-[#292524] dark:bg-white text-white dark:text-[#0c0a09] shadow-xs'
+                    : 'text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white'
                 }`}
               >
                 {label}
@@ -147,20 +147,20 @@ export function TransactionsScreen() {
           })}
         </div>
 
-        {/* Transactions List Grouped by Date (Image 3 Screen 1 Design) */}
+        {/* Transactions List Grouped by Date */}
         {filteredTransactions.length === 0 ? (
-          <div className="p-10 rounded-3xl bg-white/70 dark:bg-white/5 border border-black/5 text-center flex flex-col items-center justify-center my-6">
-            <p className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
-              No matching transactions found
+          <div className="p-10 rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-center flex flex-col items-center justify-center my-6">
+            <p className="text-xs font-normal text-[#777169] dark:text-[#a8a29e] font-sans">
+              No matching records found
             </p>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setSelectedTab('ALL');
               }}
-              className="mt-3 px-3.5 py-1.5 rounded-xl bg-purple-600/10 text-purple-600 font-semibold text-xs"
+              className="mt-3 px-4 py-1.5 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white font-medium text-xs font-sans"
             >
-              Clear Filters
+              Reset filters
             </button>
           </div>
         ) : (
@@ -168,17 +168,17 @@ export function TransactionsScreen() {
             {Object.entries(groupedTransactions).map(([date, group]) => (
               <div key={date} className="flex flex-col gap-1.5">
                 <div className="flex items-center justify-between px-1">
-                  <span className="text-xs font-bold text-zinc-900 dark:text-white">
+                  <span className="text-[12px] font-medium text-[#777169] dark:text-[#a8a29e] font-sans uppercase tracking-wider">
                     {date}
                   </span>
-                  <span className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400">
+                  <span className="text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] font-sans">
                     {group.netExpense >= 0
                       ? `- ${formatCurrency(group.netExpense)}`
                       : `+ ${formatCurrency(-group.netExpense)}`}
                   </span>
                 </div>
 
-                <div className="rounded-2xl bg-white/90 dark:bg-zinc-800/80 border border-black/5 dark:border-white/5 divide-y divide-black/5 dark:divide-white/5 shadow-xs">
+                <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] overflow-hidden">
                   {group.txs.map((tx) => (
                     <TransactionRow
                       key={tx.id}
@@ -196,14 +196,14 @@ export function TransactionsScreen() {
         )}
       </div>
 
-      {/* 100% STATIC PINNED Floating Action Button (FAB) matching Image 3 Screen 1 */}
-      <div className="absolute bottom-3 right-4 z-20 pointer-events-auto">
+      {/* Floating Action Button (Warm near-black ink pill circle) */}
+      <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
         <button
           onClick={() => openModal('ADD_EXPENSE')}
-          className="w-13 h-13 rounded-full bg-gradient-to-tr from-[#7B61FF] via-[#6366F1] to-[#3B82F6] text-white font-bold shadow-[0_10px_25px_-5px_rgba(99,102,241,0.6)] flex items-center justify-center transition hover:scale-105 active:scale-95 cursor-pointer"
-          aria-label="Add Expense"
+          className="w-12 h-12 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#e7e5e4] text-white dark:text-[#0c0a09] shadow-lg flex items-center justify-center transition active:scale-95 cursor-pointer"
+          aria-label="Add Entry"
         >
-          <Plus className="w-6 h-6 stroke-[2.5]" />
+          <Plus className="w-5 h-5 stroke-[2.2]" />
         </button>
       </div>
     </div>

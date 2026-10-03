@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import {
   ArrowDown,
   ArrowUp,
-  BarChart3,
   ChevronDown,
   ChevronRight,
   Lightbulb,
@@ -15,20 +14,20 @@ import { calculateAnalytics } from '../lib/analytics';
 import { DatePeriod } from '../lib/types';
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'food & dining': '#3B82F6', // Blue
-  food: '#3B82F6',
-  shopping: '#EC4899', // Pink
-  'bills & utilities': '#F97316', // Orange
-  bills: '#F97316',
-  transport: '#8B5CF6', // Purple
-  entertainment: '#14B8A6', // Teal
-  healthcare: '#EF4444',
-  health: '#EF4444',
-  subscriptions: '#10B981',
-  other: '#6B7280',
+  'food & dining': '#a8c8e8', // Sky
+  food: '#a8c8e8',
+  shopping: '#e8b8c4', // Rose
+  'bills & utilities': '#f4c5a8', // Peach
+  bills: '#f4c5a8',
+  transport: '#c8b8e0', // Lavender
+  entertainment: '#a7e5d3', // Mint
+  healthcare: '#d6d3d1',
+  health: '#d6d3d1',
+  subscriptions: '#777169',
+  other: '#a8a29e',
 };
 
-const DEFAULT_COLOR_ORDER = ['#3B82F6', '#EC4899', '#F97316', '#8B5CF6', '#14B8A6', '#6B7280'];
+const DEFAULT_COLOR_ORDER = ['#a8c8e8', '#e8b8c4', '#f4c5a8', '#c8b8e0', '#a7e5d3', '#a8a29e'];
 
 export function AnalyticsScreen() {
   const { transactions, categories, budgets, goals, navigateTo } = useSpendWise();
@@ -93,12 +92,19 @@ export function AnalyticsScreen() {
   });
 
   return (
-    <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-y-auto px-5 pt-3 pb-8 gap-4 no-scrollbar animate-fade-in">
+    <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-y-auto px-5 pt-3 pb-8 gap-4.5 no-scrollbar animate-fade-in">
       {/* Top Header */}
-      <div className="flex items-center justify-between shrink-0">
+      <div className="flex items-center justify-between shrink-0 pt-1">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Analytics</h1>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">Understand your spending better</p>
+          <span className="text-[11px] uppercase tracking-widest text-[#777169] dark:text-[#a8a29e] font-sans font-semibold">
+            Intelligence
+          </span>
+          <h1 className="font-display text-2xl font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff] mt-0.5">
+            Analytics &amp; Trends
+          </h1>
+          <p className="text-[12px] text-[#777169] dark:text-[#a8a29e] font-sans">
+            Quiet clarity across your spending patterns.
+          </p>
         </div>
 
         {/* Month Selector Pill */}
@@ -106,57 +112,60 @@ export function AnalyticsScreen() {
           <select
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value as DatePeriod)}
-            className="appearance-none pl-3.5 pr-7 py-1.5 rounded-full bg-white dark:bg-zinc-800 border border-zinc-200/80 dark:border-white/10 text-xs font-semibold text-zinc-800 dark:text-zinc-200 shadow-xs focus:outline-none cursor-pointer"
+            className="appearance-none pl-3.5 pr-7 py-1.5 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white shadow-xs focus:outline-none cursor-pointer font-sans"
           >
             <option value="CURRENT_MONTH">March 2025</option>
             <option value="PREVIOUS_MONTH">February 2025</option>
             <option value="CURRENT_WEEK">This Week</option>
             <option value="ALL_TIME">All Time</option>
           </select>
-          <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none opacity-60 text-zinc-600 dark:text-zinc-300" />
+          <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none opacity-60 text-[#0c0a09] dark:text-white" />
         </div>
       </div>
 
-      {/* Total Spending Fluid Card */}
-      <div className="relative overflow-hidden rounded-[28px] p-5 shrink-0 min-h-[120px] bg-gradient-to-br from-[#E4EEFE] via-[#ECE8FE] to-[#FCE7F3]/60 dark:from-[#181A2A] dark:via-[#1F1B35] dark:to-[#161722] border border-white/80 dark:border-white/10 shadow-xs flex flex-col justify-center">
-        {/* Right side floating glass icon badge with illuminated bar chart */}
-        <div className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-2xl bg-white/80 dark:bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/70 dark:border-white/10 shadow-sm pointer-events-none">
-          <div className="flex items-end gap-1 h-6">
-            <span className="w-1.5 h-3 rounded-full bg-indigo-400 dark:bg-indigo-300" />
-            <span className="w-1.5 h-6 rounded-full bg-indigo-600 dark:bg-indigo-400" />
-            <span className="w-1.5 h-4.5 rounded-full bg-purple-500 dark:bg-purple-400" />
+      {/* Total Spending Editorial Gradient-Orb Card ({component.gradient-orb-card}) */}
+      <div className="relative overflow-hidden rounded-2xl p-5 shrink-0 min-h-[124px] bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+        {/* Soft atmospheric gradient orb bloom (sky & lavender) */}
+        <div className="absolute -right-8 -top-8 w-44 h-44 rounded-full orb-sky opacity-75 dark:opacity-20 pointer-events-none" />
+        <div className="absolute right-12 -bottom-10 w-40 h-40 rounded-full orb-lavender opacity-65 dark:opacity-20 pointer-events-none" />
+
+        {/* Right side floating indicator with minimal bars */}
+        <div className="absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#f0efed] dark:bg-[#292524] flex items-center justify-center pointer-events-none border border-[#e7e5e4] dark:border-white/10 shadow-xs z-10">
+          <div className="flex items-end gap-1 h-5">
+            <span className="w-1 h-2.5 rounded-full bg-[#777169] dark:bg-[#a8a29e]" />
+            <span className="w-1 h-5 rounded-full bg-[#0c0a09] dark:bg-white" />
+            <span className="w-1 h-3.5 rounded-full bg-[#292524] dark:bg-[#d6d3d1]" />
           </div>
         </div>
 
-        <div className="pr-16 flex flex-col">
-          <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-300">
+        <div className="pr-16 flex flex-col relative z-10">
+          <span className="text-[11px] uppercase tracking-widest font-semibold text-[#777169] dark:text-[#a8a29e] font-sans">
             Total Spending
           </span>
 
-          <div className="flex items-center gap-2.5 mt-1.5 flex-wrap">
-            <span className="text-[30px] font-extrabold tracking-tight text-zinc-900 dark:text-white leading-none">
+          <div className="flex items-baseline gap-2.5 mt-1.5 flex-wrap">
+            <span className="font-display text-[34px] font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff] leading-none">
               {formatCurrency(currExp)}
             </span>
-            <span className="inline-flex items-center gap-0.5 text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
-              <ArrowDown className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span className="inline-flex items-center gap-0.5 text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white border border-[#e7e5e4] dark:border-white/10 shrink-0 font-sans">
+              <ArrowDown className="w-3 h-3 stroke-[2]" />
               {pctExp}%
             </span>
           </div>
 
-          <p className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium">
+          <p className="mt-1 text-[11.5px] text-[#777169] dark:text-[#a8a29e] font-sans">
             vs last month
           </p>
         </div>
-
-        {/* Decorative subtle wave glow at bottom */}
-        <div className="absolute -bottom-4 left-0 right-0 h-10 bg-gradient-to-t from-white/35 dark:from-white/5 to-transparent pointer-events-none" />
       </div>
 
       {/* Spending Trend Spline Chart Card */}
-      <div className="rounded-[28px] p-5 shrink-0 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-3">
+      <div className="rounded-2xl p-5 shrink-0 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <h2 className="font-bold text-sm text-zinc-900 dark:text-white">Spending Trend</h2>
-          <div className="flex items-center gap-1 text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-700/50">
+          <h2 className="font-display text-base font-light text-[#0c0a09] dark:text-[#ffffff]">
+            Spending Trend
+          </h2>
+          <div className="flex items-center gap-1 text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] px-2.5 py-1 rounded-full bg-[#f0efed] dark:bg-[#292524] font-sans">
             <span>Monthly</span>
             <ChevronDown className="w-3 h-3 opacity-60" />
           </div>
@@ -172,31 +181,31 @@ export function AnalyticsScreen() {
               transform: 'translateX(-50%)',
             }}
           >
-            <div className="relative px-2.5 py-1 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[11px] font-bold shadow-md flex items-center justify-center">
+            <div className="relative px-2.5 py-1 rounded-full bg-[#0c0a09] dark:bg-white text-white dark:text-[#0c0a09] text-[11px] font-medium shadow-md flex items-center justify-center font-sans">
               <span>{formatCurrency(trendPoints[activeTooltipIndex].val)}</span>
               {/* Tooltip down caret */}
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-zinc-900 dark:bg-white rotate-45" />
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#0c0a09] dark:bg-white rotate-45" />
             </div>
           </div>
 
           <svg viewBox="0 0 340 100" className="w-full h-28 overflow-visible">
             <defs>
-              <linearGradient id="trendGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#818CF8" stopOpacity="0.35" />
-                <stop offset="60%" stopColor="#C084FC" stopOpacity="0.12" />
-                <stop offset="100%" stopColor="#C084FC" stopOpacity="0.0" />
+              <linearGradient id="trendGradientEditorial" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#c8b8e0" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#c8b8e0" stopOpacity="0.0" />
               </linearGradient>
             </defs>
 
             {/* Gradient area underneath */}
-            <path d={fillPath} fill="url(#trendGradient)" />
+            <path d={fillPath} fill="url(#trendGradientEditorial)" />
 
-            {/* Curved line */}
+            {/* Curved line in warm ink */}
             <path
               d={splinePath}
               fill="none"
-              stroke="#6366F1"
-              strokeWidth="2.5"
+              stroke="currentColor"
+              className="text-[#292524] dark:text-[#ffffff]"
+              strokeWidth="2"
               strokeLinecap="round"
             />
 
@@ -209,23 +218,13 @@ export function AnalyticsScreen() {
                   className="cursor-pointer"
                   onClick={() => setActiveTooltipIndex(i)}
                 >
-                  {isActive && (
-                    <circle
-                      cx={pt.x}
-                      cy={pt.y}
-                      r="7"
-                      fill="#6366F1"
-                      fillOpacity="0.25"
-                      className="animate-ping"
-                    />
-                  )}
                   <circle
                     cx={pt.x}
                     cy={pt.y}
                     r={isActive ? '5' : '3.5'}
-                    fill={isActive ? '#4F46E5' : '#818CF8'}
-                    stroke="#FFFFFF"
-                    strokeWidth={isActive ? '2' : '1.5'}
+                    className={isActive ? 'fill-[#0c0a09] dark:fill-white' : 'fill-[#777169] dark:fill-[#a8a29e]'}
+                    stroke="#ffffff"
+                    strokeWidth={isActive ? '2' : '1'}
                   />
                 </g>
               );
@@ -233,15 +232,15 @@ export function AnalyticsScreen() {
           </svg>
 
           {/* Month labels along X axis */}
-          <div className="flex items-center justify-between px-2 pt-1 text-[11px] font-medium text-zinc-400 dark:text-zinc-500">
+          <div className="flex items-center justify-between px-2 pt-1 text-[11px] font-normal text-[#777169] dark:text-[#a8a29e] font-sans">
             {trendPoints.map((pt, i) => (
               <span
                 key={pt.month}
                 onClick={() => setActiveTooltipIndex(i)}
                 className={`cursor-pointer transition-colors ${
                   i === activeTooltipIndex
-                    ? 'font-bold text-zinc-800 dark:text-zinc-200'
-                    : 'hover:text-zinc-600'
+                    ? 'font-medium text-[#0c0a09] dark:text-white'
+                    : 'hover:text-[#0c0a09]'
                 }`}
               >
                 {pt.month}
@@ -254,50 +253,54 @@ export function AnalyticsScreen() {
       {/* Income vs Expenses 2-Card Row */}
       <div className="grid grid-cols-2 gap-3 shrink-0">
         {/* Income Card */}
-        <div className="rounded-[24px] p-4 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-1.5">
-          <div className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-            <ArrowUp className="w-4 h-4 stroke-[2.5]" />
+        <div className="rounded-2xl p-4 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex flex-col gap-1.5">
+          <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#16a34a] flex items-center justify-center">
+            <ArrowUp className="w-4 h-4 stroke-[2]" />
           </div>
-          <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 mt-1">Income</span>
-          <span className="text-base font-extrabold tracking-tight text-zinc-900 dark:text-white">
+          <span className="text-[11px] font-normal uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-sans mt-0.5">
+            Income
+          </span>
+          <span className="font-display text-2xl font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff]">
             {formatCurrency(activeTotals.totalIncome || 45000)}
           </span>
-          <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
-            <ArrowUp className="w-2.5 h-2.5 stroke-[2.5]" />
-            <span>8% vs last month</span>
+          <div className="flex items-center gap-1 text-[10.5px] font-sans text-[#777169] dark:text-[#a8a29e]">
+            <span>↑ 8% vs last month</span>
           </div>
         </div>
 
         {/* Expenses Card */}
-        <div className="rounded-[24px] p-4 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-1.5">
-          <div className="w-8 h-8 rounded-full bg-rose-50 dark:bg-rose-950/40 text-rose-500 dark:text-rose-400 flex items-center justify-center">
-            <ArrowDown className="w-4 h-4 stroke-[2.5]" />
+        <div className="rounded-2xl p-4 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex flex-col gap-1.5">
+          <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+            <ArrowDown className="w-4 h-4 stroke-[2]" />
           </div>
-          <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 mt-1">Expenses</span>
-          <span className="text-base font-extrabold tracking-tight text-zinc-900 dark:text-white">
+          <span className="text-[11px] font-normal uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-sans mt-0.5">
+            Expenses
+          </span>
+          <span className="font-display text-2xl font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff]">
             {formatCurrency(currExp)}
           </span>
-          <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
-            <ArrowDown className="w-2.5 h-2.5 stroke-[2.5]" />
-            <span>12% vs last month</span>
+          <div className="flex items-center gap-1 text-[10.5px] font-sans text-[#777169] dark:text-[#a8a29e]">
+            <span>↓ 12% vs last month</span>
           </div>
         </div>
       </div>
 
       {/* Category Breakdown Donut Card */}
-      <div className="rounded-[28px] p-5 shrink-0 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-4">
+      <div className="rounded-2xl p-5 shrink-0 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-bold text-sm text-zinc-900 dark:text-white">Category Breakdown</h2>
+          <h2 className="font-display text-base font-light text-[#0c0a09] dark:text-[#ffffff]">
+            Category Allocation
+          </h2>
           <button
             onClick={() => navigateTo('CATEGORIES')}
-            className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:opacity-80 transition"
+            className="text-xs font-sans text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white transition"
           >
-            See All
+            Manage
           </button>
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Donut Chart with Center Totals */}
+          {/* Donut Chart with Center Totals in EB Garamond */}
           <div className="relative w-28 h-28 shrink-0 flex items-center justify-center">
             <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
               <circle
@@ -306,8 +309,8 @@ export function AnalyticsScreen() {
                 r={radius}
                 fill="transparent"
                 stroke="currentColor"
-                strokeWidth="11"
-                className="text-zinc-100 dark:text-zinc-700/40"
+                strokeWidth="10"
+                className="text-[#f0efed] dark:text-white/10"
               />
               {donutSegments.map((seg) => (
                 <circle
@@ -317,7 +320,7 @@ export function AnalyticsScreen() {
                   r={radius}
                   fill="transparent"
                   stroke={seg.color}
-                  strokeWidth="11"
+                  strokeWidth="10"
                   strokeDasharray={seg.strokeDasharray}
                   strokeDashoffset={seg.strokeDashoffset}
                   strokeLinecap="round"
@@ -326,19 +329,19 @@ export function AnalyticsScreen() {
               ))}
             </svg>
 
-            {/* Center Label */}
+            {/* Center Label in Waldenburg / EB Garamond 300 */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
-              <span className="text-xs font-black tracking-tight text-zinc-900 dark:text-white leading-none">
+              <span className="font-display text-sm font-light tracking-tight text-[#0c0a09] dark:text-white leading-none">
                 {formatCurrency(currExp)}
               </span>
-              <span className="text-[9px] font-semibold text-zinc-400 dark:text-zinc-500 mt-0.5">
-                Total Spent
+              <span className="text-[9px] font-sans text-[#777169] dark:text-[#a8a29e] mt-0.5">
+                Total
               </span>
             </div>
           </div>
 
-          {/* Right Legend List */}
-          <div className="flex-1 flex flex-col gap-1.5">
+          {/* Right Legend List with Pastel Markers */}
+          <div className="flex-1 flex flex-col gap-1.5 font-sans">
             {donutSegments.map((seg) => (
               <div key={seg.categoryName} className="flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
@@ -346,11 +349,11 @@ export function AnalyticsScreen() {
                     className="w-2 h-2 rounded-full shrink-0"
                     style={{ backgroundColor: seg.color }}
                   />
-                  <span className="font-medium text-zinc-700 dark:text-zinc-300 truncate max-w-[105px]">
+                  <span className="font-normal text-[#4e4e4e] dark:text-[#d6d3d1] truncate max-w-[105px]">
                     {seg.categoryName}
                   </span>
                 </div>
-                <span className="font-bold text-zinc-900 dark:text-white">
+                <span className="font-medium text-[#0c0a09] dark:text-white">
                   {seg.pct}%
                 </span>
               </div>
@@ -359,21 +362,23 @@ export function AnalyticsScreen() {
         </div>
       </div>
 
-      {/* Insight Card with Yellow Lightbulb */}
+      {/* Insight Card (Quiet editorial callout) */}
       <div
         onClick={() => navigateTo('HOME')}
-        className="rounded-[24px] p-4 shrink-0 bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/20 shadow-xs flex items-center gap-3.5 cursor-pointer hover:bg-amber-500/15 transition active:scale-[0.99]"
+        className="rounded-2xl p-4 shrink-0 bg-[#fafafa] dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex items-center gap-3.5 cursor-pointer hover:border-[#0c0a09] dark:hover:border-white/30 transition active:scale-[0.99]"
       >
-        <div className="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-          <Lightbulb className="w-5 h-5 fill-amber-500/30" />
+        <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center shrink-0">
+          <Lightbulb className="w-4 h-4 stroke-[1.8]" />
         </div>
         <div className="flex-1">
-          <h4 className="font-bold text-xs text-zinc-900 dark:text-white">Insight</h4>
-          <p className="text-[11px] text-zinc-600 dark:text-zinc-300 mt-0.5 leading-snug">
-            Your Food &amp; Drinks spending is 18% lower than last month. Great job!
+          <h4 className="font-display text-sm font-light text-[#0c0a09] dark:text-white">
+            Editorial Note
+          </h4>
+          <p className="text-[11.5px] text-[#777169] dark:text-[#a8a29e] mt-0.5 leading-snug font-sans">
+            Your Food &amp; Dining expenditures are 18% lower than last cycle. Keep this calm cadence.
           </p>
         </div>
-        <ChevronRight className="w-4 h-4 text-zinc-400 shrink-0" />
+        <ChevronRight className="w-4 h-4 text-[#a8a29e] shrink-0" />
       </div>
     </div>
   );
