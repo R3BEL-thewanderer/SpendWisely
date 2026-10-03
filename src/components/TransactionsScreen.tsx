@@ -72,7 +72,7 @@ export function TransactionsScreen() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => navigateTo('HOME')}
-              className="w-9 h-9 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white"
+              className="w-9 h-9 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white"
               aria-label="Back to Home"
             >
               <ArrowLeft className="w-4 h-4 stroke-[1.8]" />
@@ -89,7 +89,7 @@ export function TransactionsScreen() {
 
           <button
             onClick={() => openModal('ADD_EXPENSE')}
-            className="w-9 h-9 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white"
+            className="w-9 h-9 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white"
             aria-label="Options"
           >
             <MoreHorizontal className="w-4 h-4 opacity-70" />
@@ -105,7 +105,7 @@ export function TransactionsScreen() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search ledger entries..."
-              className="w-full pl-10 pr-8 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/15 text-xs font-normal text-[#0c0a09] dark:text-white placeholder:text-[#a8a29e] focus:outline-none focus:border-[#0c0a09] dark:focus:border-white shadow-xs transition font-sans"
+              className="w-full pl-10 pr-8 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] text-xs font-normal text-[#0c0a09] dark:text-white placeholder:text-[#a8a29e] focus:outline-none focus:border-[#0c0a09] dark:focus:border-white shadow-xs transition font-sans"
             />
             {searchQuery && (
               <button
@@ -119,7 +119,7 @@ export function TransactionsScreen() {
 
           <button
             onClick={() => openModal('TRANSACTION_FILTER')}
-            className="w-10 h-10 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/15 flex items-center justify-center shadow-xs transition hover:border-[#0c0a09] active:scale-95 text-[#0c0a09] dark:text-white shrink-0"
+            className="w-10 h-10 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition hover:border-[#0c0a09] active:scale-95 text-[#0c0a09] dark:text-white shrink-0"
             aria-label="Filter"
           >
             <SlidersHorizontal className="w-4 h-4 stroke-[1.8]" />
@@ -127,7 +127,7 @@ export function TransactionsScreen() {
         </div>
 
         {/* Editorial Segmented Pill Control (Ink pill primary, no saturated colors) */}
-        <div className="flex items-center p-1 rounded-full bg-[#f0efed] dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shrink-0">
+        <div className="flex items-center p-1 rounded-full bg-[#f0efed] dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shrink-0">
           {(['ALL', 'EXPENSE', 'INCOME'] as const).map((tab) => {
             const isSelected = selectedTab === tab;
             const label = tab === 'ALL' ? 'All Entries' : tab === 'EXPENSE' ? 'Expenses' : 'Income';
@@ -149,7 +149,7 @@ export function TransactionsScreen() {
 
         {/* Transactions List Grouped by Date */}
         {filteredTransactions.length === 0 ? (
-          <div className="p-10 rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-center flex flex-col items-center justify-center my-6">
+          <div className="p-10 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-center flex flex-col items-center justify-center my-6">
             <p className="text-xs font-normal text-[#777169] dark:text-[#a8a29e] font-sans">
               No matching records found
             </p>
@@ -158,7 +158,7 @@ export function TransactionsScreen() {
                 setSearchQuery('');
                 setSelectedTab('ALL');
               }}
-              className="mt-3 px-4 py-1.5 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white font-medium text-xs font-sans"
+              className="mt-3 px-4 py-1.5 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white font-medium text-xs font-sans"
             >
               Reset filters
             </button>
@@ -178,7 +178,7 @@ export function TransactionsScreen() {
                   </span>
                 </div>
 
-                <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] overflow-hidden">
+                <div className="rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.02)] overflow-hidden">
                   {group.txs.map((tx) => (
                     <TransactionRow
                       key={tx.id}
@@ -200,7 +200,7 @@ export function TransactionsScreen() {
       <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
         <button
           onClick={() => openModal('ADD_EXPENSE')}
-          className="w-12 h-12 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#e7e5e4] text-white dark:text-[#0c0a09] shadow-lg flex items-center justify-center transition active:scale-95 cursor-pointer"
+          className="w-12 h-12 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] shadow-lg flex items-center justify-center transition active:scale-95 cursor-pointer"
           aria-label="Add Entry"
         >
           <Plus className="w-5 h-5 stroke-[2.2]" />

@@ -83,15 +83,15 @@ export function AddExpenseModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/40 backdrop-blur-xs animate-fade-in font-sans">
-      <div className="w-full sm:w-[400px] max-h-[92vh] bg-[#f5f5f5] dark:bg-[#0c0a09] sm:rounded-2xl rounded-t-2xl border border-[#e7e5e4] dark:border-white/10 shadow-2xl flex flex-col overflow-y-auto animate-slide-up">
+      <div className="w-full sm:w-[400px] max-h-[92vh] bg-[#f5f5f5] dark:bg-[#181615] sm:rounded-2xl rounded-t-2xl border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xl flex flex-col overflow-y-auto animate-slide-up">
         {/* Top Header Navigation */}
-        <div className="px-5 py-3.5 border-b border-[#e7e5e4] dark:border-white/5 flex items-center justify-between flex-shrink-0">
+        <div className="px-5 py-3.5 border-b border-[#e7e5e4] dark:border-white/[0.06] flex items-center justify-between flex-shrink-0">
           <button
             onClick={closeModal}
-            className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white"
+            className="w-8 h-8 rounded-full bg-white dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white cursor-pointer"
             aria-label="Back"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 stroke-[1.8]" />
           </button>
 
           <span className="font-display font-light text-base tracking-tight text-[#0c0a09] dark:text-white">
@@ -100,7 +100,7 @@ export function AddExpenseModal() {
 
           <button
             onClick={closeModal}
-            className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white"
+            className="w-8 h-8 rounded-full bg-white dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white cursor-pointer"
             aria-label="Close"
           >
             <X className="w-4 h-4 opacity-70" />
@@ -113,7 +113,7 @@ export function AddExpenseModal() {
             <div className="absolute w-36 h-36 rounded-full bg-[#f4c5a8]/25 blur-2xl pointer-events-none" />
             <div className="absolute w-32 h-32 -bottom-2 rounded-full bg-[#c8b8e0]/20 blur-2xl pointer-events-none" />
 
-            <div className="relative z-10 w-14 h-14 rounded-full bg-white dark:bg-[#1c1917] shadow-2xs border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white">
+            <div className="relative z-10 w-14 h-14 rounded-full bg-white dark:bg-[#24211e] shadow-2xs border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center text-[#0c0a09] dark:text-white">
               <Receipt className="w-6 h-6 stroke-[1.8]" />
             </div>
 
@@ -131,17 +131,17 @@ export function AddExpenseModal() {
                   className="w-44 text-center font-display font-light text-4xl bg-transparent focus:outline-none placeholder:text-[#a8a29e] text-[#0c0a09] dark:text-white tracking-tight"
                 />
               </div>
-              <span className="text-[11px] text-[#777169] tracking-[0.16px] mt-0.5">
+              <span className="text-[11px] text-[#777169] dark:text-[#a8a29e] tracking-[0.16px] mt-0.5">
                 Enter expense amount
               </span>
             </div>
           </div>
 
           {/* Form Rows Group */}
-          <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 p-1 divide-y divide-[#e7e5e4] dark:divide-white/5 shadow-2xs">
+          <div className="rounded-2xl bg-white dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] p-1 divide-y divide-[#e7e5e4] dark:divide-white/[0.06] shadow-2xs">
             {/* Category */}
             <div className="flex items-center justify-between p-3.5">
-              <div className="flex items-center gap-2.5 text-[#777169]">
+              <div className="flex items-center gap-2.5 text-[#777169] dark:text-[#a8a29e]">
                 <Tag className="w-4 h-4" />
                 <span className="text-xs font-medium tracking-[0.15px]">Category</span>
               </div>
@@ -216,7 +216,7 @@ export function AddExpenseModal() {
                 {tags.map((t) => (
                   <span
                     key={t}
-                    className="px-2.5 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-zinc-200 text-[10px] font-medium"
+                    className="px-2.5 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/10 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-zinc-200 text-[10px] font-medium"
                   >
                     {t}
                   </span>
@@ -229,9 +229,9 @@ export function AddExpenseModal() {
                       onChange={(e) => setNewTagInput(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                       placeholder="Tag"
-                      className="w-16 px-1.5 py-0.5 rounded-md bg-[#f0efed] text-[10px]"
+                      className="w-16 px-1.5 py-0.5 rounded-md bg-[#f0efed] dark:bg-[#181615] text-[#0c0a09] dark:text-white text-[10px]"
                     />
-                    <button type="button" onClick={addTag} className="text-xs font-medium text-[#0c0a09]">
+                    <button type="button" onClick={addTag} className="text-xs font-medium text-[#0c0a09] dark:text-white">
                       ✓
                     </button>
                   </div>
@@ -239,7 +239,7 @@ export function AddExpenseModal() {
                   <button
                     type="button"
                     onClick={() => setShowTagInput(true)}
-                    className="w-5 h-5 rounded-full bg-[#f0efed] dark:bg-white/10 flex items-center justify-center text-xs text-[#777169]"
+                    className="w-5 h-5 rounded-full bg-[#f0efed] dark:bg-white/10 flex items-center justify-center text-xs text-[#777169] dark:text-[#a8a29e]"
                   >
                     <Plus className="w-3 h-3" />
                   </button>
@@ -249,7 +249,7 @@ export function AddExpenseModal() {
 
             {/* Notes */}
             <div className="flex items-center justify-between p-3.5 gap-2">
-              <div className="flex items-center gap-2.5 text-[#777169] flex-shrink-0">
+              <div className="flex items-center gap-2.5 text-[#777169] dark:text-[#a8a29e] flex-shrink-0">
                 <FileText className="w-4 h-4" />
                 <span className="text-xs font-medium tracking-[0.15px]">Notes</span>
               </div>
@@ -263,10 +263,10 @@ export function AddExpenseModal() {
             </div>
           </div>
 
-          {/* Primary Near-Black Ink Pill CTA */}
+          {/* Primary Ink Pill CTA */}
           <button
             type="submit"
-            className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition flex items-center justify-center gap-2 mt-1 tracking-[0.15px] cursor-pointer"
+            className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:text-[#0c0a09] dark:hover:bg-[#f0efed] text-white font-medium text-xs shadow-xs transition flex items-center justify-center gap-2 mt-1 tracking-[0.15px] cursor-pointer"
           >
             <span>Record Expense</span>
             <span className="text-sm">→</span>

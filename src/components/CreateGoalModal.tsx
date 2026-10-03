@@ -120,7 +120,7 @@ export function CreateGoalModal() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           {/* Goal Name */}
-          <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+          <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] shadow-2xs">
             <div className="flex items-center gap-2.5 flex-1">
               <User className="w-4 h-4 text-[#a8a29e] shrink-0" />
               <input
@@ -144,7 +144,7 @@ export function CreateGoalModal() {
           </div>
 
           {/* Target Amount */}
-          <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+          <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] shadow-2xs">
             <span className="text-sm font-medium text-[#777169]">₹</span>
             <input
               type="number"
@@ -157,7 +157,7 @@ export function CreateGoalModal() {
           </div>
 
           {/* Current Savings (Optional) */}
-          <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs">
+          <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] shadow-2xs">
             <PiggyBank className="w-4 h-4 text-[#a8a29e] shrink-0" />
             <input
               type="number"
@@ -169,7 +169,7 @@ export function CreateGoalModal() {
           </div>
 
           {/* Target Date */}
-          <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs cursor-pointer">
+          <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] shadow-2xs cursor-pointer">
             <div className="flex items-center gap-2.5">
               <Calendar className="w-4 h-4 text-[#a8a29e]" />
               <span className="text-xs font-medium text-[#777169] tracking-[0.15px]">
@@ -183,7 +183,7 @@ export function CreateGoalModal() {
           </div>
 
           {/* Goal Category */}
-          <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 shadow-2xs cursor-pointer">
+          <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] shadow-2xs cursor-pointer">
             <div className="flex items-center gap-2.5">
               <Tag className="w-4 h-4 text-[#a8a29e]" />
               <span className="text-xs font-medium text-[#777169] tracking-[0.15px]">
@@ -248,19 +248,19 @@ export function CreateGoalModal() {
 
           {/* Live Preview Card */}
           <div className="flex flex-col gap-1 mt-1">
-            <span className="text-[10px] font-medium text-[#777169] uppercase tracking-[0.96px]">
+            <span className="text-[10px] font-medium text-[#777169] dark:text-[#a8a29e] uppercase tracking-[0.96px]">
               Ledger Preview
             </span>
-            <div className="p-3.5 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs flex items-center justify-between">
+            <div className="p-3.5 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shrink-0 text-[#0c0a09] dark:text-white">
+                <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-transparent dark:border-white/[0.04] flex items-center justify-center shrink-0 text-[#0c0a09] dark:text-white">
                   <ActiveIcon className="w-4 h-4 stroke-[1.8]" />
                 </div>
                 <div>
                   <h4 className="font-medium text-xs text-[#0c0a09] dark:text-white tracking-[0.15px]">
                     {name.trim() || 'MacBook Pro'}
                   </h4>
-                  <p className="text-[10px] text-[#777169]">
+                  <p className="text-[10px] text-[#777169] dark:text-[#a8a29e]">
                     {formatCurrency(currentSavings)} / {formatCurrency(targetAmount || 150000)}
                   </p>
                 </div>
@@ -275,7 +275,7 @@ export function CreateGoalModal() {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition active:scale-[0.98] tracking-[0.15px] cursor-pointer"
+              className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] font-medium text-xs shadow-xs transition active:scale-[0.98] tracking-[0.15px] cursor-pointer"
             >
               <span>Save Savings Goal</span>
             </button>

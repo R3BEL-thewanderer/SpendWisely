@@ -23,32 +23,32 @@ export function SmartInsightCard({ insight, onAction, onClick }: SmartInsightCar
   return (
     <div
       onClick={onClick}
-      className={`min-w-[260px] max-w-[280px] p-4 rounded-3xl border transition-all duration-200 cursor-pointer hover:scale-[1.02] active:scale-[0.99] flex flex-col justify-between shadow-sm ${
+      className={`min-w-[260px] max-w-[280px] p-4.5 rounded-2xl border transition-all duration-200 cursor-pointer hover:scale-[1.01] active:scale-[0.99] flex flex-col justify-between shadow-xs ${
         isWarning
-          ? 'bg-gradient-to-br from-rose-500/10 to-orange-500/5 border-rose-500/20'
+          ? 'bg-white dark:bg-[#181615] border-rose-200 dark:border-rose-900/30'
           : isSuccess
-          ? 'bg-gradient-to-br from-emerald-500/10 to-teal-500/5 border-emerald-500/20'
-          : 'bg-white/80 dark:bg-white/5 border-black/5 dark:border-white/10'
+          ? 'bg-white dark:bg-[#181615] border-emerald-200 dark:border-emerald-900/30'
+          : 'bg-white dark:bg-[#181615] border-[#e7e5e4] dark:border-white/[0.08]'
       }`}
     >
       <div>
         {/* Header: Icon & Action */}
         <div className="flex items-center justify-between mb-2.5">
           <div
-            className={`w-7 h-7 rounded-xl flex items-center justify-center ${
+            className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 border ${
               isWarning
-                ? 'bg-rose-500/20 text-rose-500'
+                ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-900/40'
                 : isSuccess
-                ? 'bg-emerald-500/20 text-emerald-500'
-                : 'bg-blue-500/20 text-blue-500'
+                ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900/40'
+                : 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border-transparent dark:border-white/[0.04]'
             }`}
           >
             {isWarning ? (
-              <AlertTriangle className="w-4 h-4" />
+              <AlertTriangle className="w-3.5 h-3.5 stroke-[1.8]" />
             ) : isSuccess ? (
-              <CheckCircle2 className="w-4 h-4" />
+              <CheckCircle2 className="w-3.5 h-3.5 stroke-[1.8]" />
             ) : (
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-3.5 h-3.5 stroke-[1.8]" />
             )}
           </div>
 
@@ -58,29 +58,29 @@ export function SmartInsightCard({ insight, onAction, onClick }: SmartInsightCar
                 e.stopPropagation();
                 onAction?.();
               }}
-              className="flex items-center text-[11px] font-semibold text-purple-600 dark:text-purple-400 hover:underline"
+              className="inline-flex items-center text-[11px] font-medium text-[#0c0a09] dark:text-white hover:underline gap-0.5 font-sans"
             >
-              {insight.actionText}
-              <ChevronRight className="w-3 h-3 ml-0.5" />
+              <span>{insight.actionText}</span>
+              <ChevronRight className="w-3 h-3 stroke-[2]" />
             </button>
           )}
         </div>
 
-        {/* Title */}
-        <h4 className="font-bold text-sm leading-snug line-clamp-1">
+        {/* Title in Waldenburg / EB Garamond 300 */}
+        <h4 className="font-display font-light text-[15px] tracking-tight text-[#0c0a09] dark:text-white leading-snug line-clamp-1">
           {insight.title}
         </h4>
 
         {/* Description */}
-        <p className="text-xs opacity-75 mt-1 leading-relaxed line-clamp-3">
+        <p className="text-[11.5px] text-[#777169] dark:text-[#a8a29e] mt-1.5 leading-relaxed line-clamp-3 font-sans">
           {insight.description}
         </p>
       </div>
 
-      <div className="flex items-center gap-1.5 mt-3 pt-2 border-t border-black/5 dark:border-white/5">
-        <Info className="w-3 h-3 opacity-40" />
-        <span className="text-[10px] opacity-50 uppercase tracking-wider font-semibold">
-          SpendWise AI Insight
+      <div className="flex items-center gap-1.5 mt-3.5 pt-2 border-t border-[#f0efed] dark:border-white/[0.05]">
+        <Info className="w-3 h-3 text-[#a8a29e] dark:text-[#777169]" />
+        <span className="text-[10px] uppercase tracking-wider font-medium text-[#777169] dark:text-[#a8a29e] font-sans">
+          Editorial Observation
         </span>
       </div>
     </div>

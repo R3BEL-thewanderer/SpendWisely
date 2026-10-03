@@ -71,7 +71,7 @@ export function ProfileScreen() {
         </div>
 
         {/* Animated Day & Night Toggle Showcase Card */}
-        <div className="relative p-5 rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex flex-col items-center justify-center text-center gap-3 mt-2 shadow-[0_4px_16px_rgba(0,0,0,0.03)] overflow-hidden">
+        <div className="relative p-5 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex flex-col items-center justify-center text-center gap-3 mt-2 shadow-[0_4px_16px_rgba(0,0,0,0.03)] overflow-hidden">
           {/* Atmospheric bloom */}
           <div className="absolute top-0 right-0 w-36 h-36 rounded-full bg-[#c8b8e0]/20 blur-2xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-36 h-36 rounded-full bg-[#a8c8e8]/20 blur-2xl pointer-events-none" />
@@ -102,12 +102,12 @@ export function ProfileScreen() {
             }}
             className={`p-4 rounded-xl border transition flex items-center justify-between cursor-pointer ${
               !isDark
-                ? 'bg-white dark:bg-[#1c1917] border-[#0c0a09] dark:border-white shadow-[0_4px_16px_rgba(0,0,0,0.04)] ring-1 ring-[#0c0a09]'
-                : 'bg-white dark:bg-[#1c1917] border-[#e7e5e4] dark:border-white/10 hover:border-[#d6d3d1]'
+                ? 'bg-white dark:bg-[#181615] border-[#0c0a09] dark:border-white shadow-[0_4px_16px_rgba(0,0,0,0.04)] ring-1 ring-[#0c0a09]'
+                : 'bg-white dark:bg-[#181615] border-[#e7e5e4] dark:border-white/[0.08] hover:border-[#d6d3d1]'
             }`}
           >
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
+              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-transparent dark:border-white/[0.04] text-[#0c0a09] dark:text-white flex items-center justify-center">
                 <Sun className="w-4 h-4" />
               </div>
               <div>
@@ -121,7 +121,7 @@ export function ProfileScreen() {
                     </span>
                   )}
                 </div>
-                <p className="text-[11px] text-[#777169] mt-0.5 tracking-[0.15px]">
+                <p className="text-[11px] text-[#777169] dark:text-[#a8a29e] mt-0.5 tracking-[0.15px]">
                   Off-white canvas, warm near-black ink, soft pastel blooms.
                 </p>
               </div>
@@ -143,12 +143,12 @@ export function ProfileScreen() {
             }}
             className={`p-4 rounded-xl border transition flex items-center justify-between cursor-pointer ${
               isDark
-                ? 'bg-[#1c1917] border-white shadow-[0_4px_16px_rgba(0,0,0,0.15)] ring-1 ring-white'
-                : 'bg-white dark:bg-[#1c1917] border-[#e7e5e4] dark:border-white/10 hover:border-[#d6d3d1]'
+                ? 'bg-[#181615] border-white/60 shadow-[0_4px_20px_rgba(0,0,0,0.4)] ring-1 ring-white/60'
+                : 'bg-white dark:bg-[#181615] border-[#e7e5e4] dark:border-white/[0.08] hover:border-[#d6d3d1]'
             }`}
           >
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
+              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-transparent dark:border-white/[0.04] text-[#0c0a09] dark:text-white flex items-center justify-center">
                 <Moon className="w-4 h-4" />
               </div>
               <div>
@@ -162,7 +162,7 @@ export function ProfileScreen() {
                     </span>
                   )}
                 </div>
-                <p className="text-[11px] text-[#777169] mt-0.5 tracking-[0.15px]">
+                <p className="text-[11px] text-[#777169] dark:text-[#a8a29e] mt-0.5 tracking-[0.15px]">
                   Deep charcoal slate with moon craters and sparkling night sky.
                 </p>
               </div>
@@ -181,7 +181,7 @@ export function ProfileScreen() {
         {/* Theme Preview Card */}
         <div className="mt-2 flex flex-col gap-2">
           <span className="text-xs font-medium text-[#777169] tracking-[0.15px]">Preview</span>
-          <div className="p-4 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xs flex items-center justify-between">
             <div className="flex flex-col gap-1.5">
               <div className="w-8 h-1 rounded-full bg-[#292524] dark:bg-white" />
               <div className="w-14 h-1 rounded-full bg-[#777169]/40" />
@@ -229,7 +229,7 @@ export function ProfileScreen() {
           <span className="text-[11px] font-medium uppercase tracking-[0.96px] text-[#777169] px-1">
             Appearance
           </span>
-          <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs overflow-hidden">
+          <div className="rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xs overflow-hidden">
             {/* Animated Day & Night Toggle Row */}
             <div className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5">
               <div className="flex items-center gap-3">
@@ -271,7 +271,7 @@ export function ProfileScreen() {
           <span className="text-[11px] font-medium uppercase tracking-[0.96px] text-[#777169] px-1">
             Preferences
           </span>
-          <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs overflow-hidden">
+          <div className="rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xs overflow-hidden">
             <div className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5">
               <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">Currency</span>
               <div className="flex items-center gap-1 text-xs text-[#777169]">
@@ -295,7 +295,7 @@ export function ProfileScreen() {
           <span className="text-[11px] font-medium uppercase tracking-[0.96px] text-[#777169] px-1">
             Security
           </span>
-          <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs overflow-hidden">
+          <div className="rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xs overflow-hidden">
             <div className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5">
               <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">Change Password</span>
               <ChevronRight className="w-4 h-4 text-[#a8a29e]" />
@@ -312,7 +312,7 @@ export function ProfileScreen() {
           <span className="text-[11px] font-medium uppercase tracking-[0.96px] text-[#777169] px-1">
             Data
           </span>
-          <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs overflow-hidden">
+          <div className="rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xs overflow-hidden">
             <div
               onClick={() => alert('Data exported to spendwise-ledger.json')}
               className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"
@@ -337,7 +337,7 @@ export function ProfileScreen() {
           <span className="text-[11px] font-medium uppercase tracking-[0.96px] text-[#777169] px-1">
             Account
           </span>
-          <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs overflow-hidden">
+          <div className="rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xs overflow-hidden">
             <div
               onClick={() => setShowLogoutDialog(true)}
               className="p-3.5 flex items-center justify-between cursor-pointer hover:bg-rose-50/50 dark:hover:bg-rose-950/20 text-[#dc2626]"
@@ -373,7 +373,7 @@ export function ProfileScreen() {
 
         <button
           onClick={() => setSubView('SETTINGS')}
-          className="w-9 h-9 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white"
+          className="w-9 h-9 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white"
           aria-label="Settings"
         >
           <MoreHorizontal className="w-4 h-4 opacity-70" />
@@ -387,7 +387,7 @@ export function ProfileScreen() {
         <div className="absolute w-40 h-40 -bottom-2 rounded-full bg-[#a8c8e8]/25 blur-3xl pointer-events-none" />
 
         <div className="relative">
-          <div className="w-22 h-22 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 p-1 shadow-sm">
+          <div className="w-22 h-22 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] p-1 shadow-sm">
             <div className="w-full h-full rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center font-display font-light text-2xl">
               {userProfile.name.charAt(0).toUpperCase()}
             </div>
@@ -417,21 +417,21 @@ export function ProfileScreen() {
 
       {/* 3 Stat Cards Row */}
       <div className="grid grid-cols-3 gap-2 shrink-0">
-        <div className="p-3 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
+        <div className="p-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
           <span className="text-[10px] text-[#777169] font-medium tracking-[0.15px]">Currency</span>
           <span className="font-display font-light text-base text-[#0c0a09] dark:text-white mt-0.5">
             {userProfile.currency || 'INR ₹'}
           </span>
         </div>
 
-        <div className="p-3 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
+        <div className="p-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
           <span className="text-[10px] text-[#777169] font-medium tracking-[0.15px]">Monthly Income</span>
           <span className="font-display font-light text-sm text-[#0c0a09] dark:text-white mt-0.5">
             {formatCurrency(userProfile.monthlyIncome || 45000)}
           </span>
         </div>
 
-        <div className="p-3 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
+        <div className="p-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
           <span className="text-[10px] text-[#777169] font-medium tracking-[0.15px]">Monthly Budget</span>
           <span className="font-display font-light text-sm text-[#0c0a09] dark:text-white mt-0.5">
             {formatCurrency(userProfile.monthlyBudget || 30000)}
@@ -444,7 +444,7 @@ export function ProfileScreen() {
         <span className="text-[11px] font-medium uppercase tracking-[0.96px] text-[#777169] px-1">
           Account Information
         </span>
-        <div className="rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs overflow-hidden">
+        <div className="rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xs overflow-hidden">
           <div className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5">
             <div className="flex items-center gap-2.5">
               <div className="w-7 h-7 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#777169]">
@@ -508,7 +508,7 @@ export function ProfileScreen() {
       </div>
 
       {/* Upgrade to Premium Card with Pastel Bloom */}
-      <div className="relative p-4 rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex items-center justify-between cursor-pointer hover:shadow-md transition shrink-0 overflow-hidden">
+      <div className="relative p-4 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex items-center justify-between cursor-pointer hover:shadow-md transition shrink-0 overflow-hidden">
         {/* Soft peach bloom */}
         <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#f4c5a8]/20 blur-2xl pointer-events-none" />
 
@@ -551,7 +551,7 @@ export function ProfileScreen() {
           className="absolute inset-0 bg-black/40 backdrop-blur-xs"
         />
 
-        <div className="relative w-full max-w-[340px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xl p-5 flex flex-col items-center text-center gap-3">
+        <div className="relative w-full max-w-[340px] rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xl p-5 flex flex-col items-center text-center gap-3">
           {/* Close X */}
           <button
             onClick={() => setShowLogoutDialog(false)}

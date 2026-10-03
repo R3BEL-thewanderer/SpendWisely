@@ -24,16 +24,16 @@ import { useSpendWise } from '../context/SpendWiseContext';
 import { formatCurrency } from '../lib/currency';
 
 const CATEGORY_COLORS: Record<string, { color: string; bg: string; icon: LucideIcon }> = {
-  food: { color: '#a8c8e8', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: Coffee },
-  dining: { color: '#a8c8e8', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: Coffee },
-  drinks: { color: '#a8c8e8', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: Coffee },
-  shopping: { color: '#f4c5a8', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: ShoppingBag },
-  transport: { color: '#c8b8e0', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: Car },
-  bills: { color: '#a7e5d3', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: Home },
-  utilities: { color: '#a7e5d3', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: Home },
-  entertainment: { color: '#e8b8c4', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: Tv },
-  health: { color: '#dc2626', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: HeartPulse },
-  education: { color: '#a8c8e8', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: GraduationCap },
+  food: { color: '#a8c8e8', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: Coffee },
+  dining: { color: '#a8c8e8', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: Coffee },
+  drinks: { color: '#a8c8e8', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: Coffee },
+  shopping: { color: '#f4c5a8', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: ShoppingBag },
+  transport: { color: '#c8b8e0', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: Car },
+  bills: { color: '#a7e5d3', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: Home },
+  utilities: { color: '#a7e5d3', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: Home },
+  entertainment: { color: '#e8b8c4', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: Tv },
+  health: { color: '#dc2626', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: HeartPulse },
+  education: { color: '#a8c8e8', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: GraduationCap },
 };
 
 function getCategoryTheme(name: string) {
@@ -41,7 +41,7 @@ function getCategoryTheme(name: string) {
   for (const [key, val] of Object.entries(CATEGORY_COLORS)) {
     if (lower.includes(key)) return val;
   }
-  return { color: '#777169', bg: 'bg-[#f0efed] dark:bg-white/5 text-[#292524] dark:text-zinc-200 border border-[#e7e5e4] dark:border-white/10', icon: Receipt };
+  return { color: '#777169', bg: 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]', icon: Receipt };
 }
 
 export function BudgetsScreen() {
@@ -52,7 +52,10 @@ export function BudgetsScreen() {
     openModal,
     setSelectedBudget,
     navigateTo,
+    themeMode,
   } = useSpendWise();
+
+  const isDark = themeMode === 'DARK';
 
   const activeBudget = selectedBudget || budgets[0];
   const activeResult =
@@ -89,7 +92,7 @@ export function BudgetsScreen() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigateTo('HOME')}
-            className="w-9 h-9 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white"
+            className="w-9 h-9 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white"
             aria-label="Back"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -98,7 +101,7 @@ export function BudgetsScreen() {
             <h1 className="font-display font-light text-2xl tracking-[-0.32px] text-[#0c0a09] dark:text-white leading-tight">
               Monthly Budget
             </h1>
-            <p className="text-[11px] text-[#777169] tracking-[0.16px]">
+            <p className="text-[11px] text-[#777169] dark:text-[#a8a29e] tracking-[0.16px]">
               Disciplined capital allocation
             </p>
           </div>
@@ -113,7 +116,7 @@ export function BudgetsScreen() {
                 const found = budgets.find((b) => b.id === e.target.value);
                 if (found) setSelectedBudget(found);
               }}
-              className="appearance-none pl-3.5 pr-7 py-1.5 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-xs font-medium shadow-2xs focus:outline-none cursor-pointer text-[#0c0a09] dark:text-zinc-200"
+              className="appearance-none pl-3.5 pr-7 py-1.5 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-xs font-medium shadow-xs focus:outline-none cursor-pointer text-[#0c0a09] dark:text-zinc-200"
             >
               {budgets.map((b) => (
                 <option key={b.id} value={b.id}>
@@ -121,12 +124,12 @@ export function BudgetsScreen() {
                 </option>
               ))}
             </select>
-            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none opacity-60" />
+            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none opacity-60 text-[#0c0a09] dark:text-white" />
           </div>
 
           <button
             onClick={() => openModal('CREATE_BUDGET')}
-            className="w-9 h-9 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white"
+            className="w-9 h-9 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white"
             aria-label="Options"
           >
             <MoreHorizontal className="w-4 h-4 opacity-70" />
@@ -135,13 +138,13 @@ export function BudgetsScreen() {
       </div>
 
       {!activeBudget || !activeResult ? (
-        <div className="p-10 rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-center flex flex-col items-center">
-          <p className="text-sm font-medium text-[#777169]">No active budget found</p>
+        <div className="p-10 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-center flex flex-col items-center">
+          <p className="text-sm font-medium text-[#777169] dark:text-[#a8a29e]">No active budget found</p>
         </div>
       ) : (
         <>
           {/* Main Multicolor Donut & Legend Editorial Card */}
-          <div className="relative rounded-2xl p-5 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex flex-col gap-4 overflow-hidden">
+          <div className="relative rounded-2xl p-5 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex flex-col gap-4 overflow-hidden">
             {/* Subtle atmospheric orb bloom in background */}
             <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#c8b8e0]/20 blur-3xl pointer-events-none" />
             <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-[#a7e5d3]/20 blur-3xl pointer-events-none" />
@@ -155,7 +158,7 @@ export function BudgetsScreen() {
                     cx="70"
                     cy="70"
                     r={radius}
-                    className="stroke-[#f0efed] dark:stroke-zinc-800"
+                    className="stroke-[#f0efed] dark:stroke-[#24211e]"
                     strokeWidth="11"
                     fill="none"
                   />
@@ -254,7 +257,7 @@ export function BudgetsScreen() {
                 return (
                   <div
                     key={cat.categoryName}
-                    className="p-3.5 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col gap-2.5"
+                    className="p-3.5 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex flex-col gap-2.5"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -267,7 +270,7 @@ export function BudgetsScreen() {
                           <span className="font-medium text-xs text-[#0c0a09] dark:text-white tracking-[0.15px]">
                             {cat.categoryName}
                           </span>
-                          <span className="text-[11px] text-[#777169] tracking-[0.15px]">
+                          <span className="text-[11px] text-[#777169] dark:text-[#a8a29e] tracking-[0.15px]">
                             {formatCurrency(cat.spent)} / {formatCurrency(cat.allocatedLimit)}
                           </span>
                         </div>
@@ -282,7 +285,7 @@ export function BudgetsScreen() {
                     </div>
 
                     {/* Horizontal Progress Bar */}
-                    <div className="w-full h-1 rounded-full bg-[#f0efed] dark:bg-zinc-800 overflow-hidden">
+                    <div className="w-full h-1.5 rounded-full bg-[#f0efed] dark:bg-[#24211e] overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all duration-700"
                         style={{
@@ -292,6 +295,8 @@ export function BudgetsScreen() {
                               ? '#dc2626'
                               : cat.status === 'NEAR_LIMIT'
                               ? '#f4c5a8'
+                              : isDark
+                              ? '#ffffff'
                               : '#292524',
                         }}
                       />
@@ -303,19 +308,19 @@ export function BudgetsScreen() {
           </div>
 
           {/* Stay on Track Bottom Editorial Card */}
-          <div className="relative rounded-2xl p-4 bg-[#fafafa] dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-2xs flex items-center justify-between overflow-hidden">
+          <div className="relative rounded-2xl p-4 bg-[#fafafa] dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex items-center justify-between overflow-hidden">
             {/* Soft mint bloom */}
             <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#a7e5d3]/20 blur-2xl pointer-events-none" />
 
             <div className="relative z-10 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
+              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] text-[#0c0a09] dark:text-white flex items-center justify-center">
                 <Target className="w-4 h-4 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
                 <h4 className="font-display font-light text-sm text-[#0c0a09] dark:text-white tracking-tight">
                   Stay on Track
                 </h4>
-                <p className="text-[11px] text-[#777169] tracking-[0.15px]">
+                <p className="text-[11px] text-[#777169] dark:text-[#a8a29e] tracking-[0.15px]">
                   {activeResult.status === 'OVER_BUDGET'
                     ? 'Review category allocations to rebalance spending.'
                     : `You're ${Math.max(100 - Math.round(activeResult.usagePercentage), 0)}% under your planned limit.`}
@@ -325,7 +330,7 @@ export function BudgetsScreen() {
 
             <button
               onClick={() => openModal('AI_ASSISTANT')}
-              className="relative z-10 w-8 h-8 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white flex items-center justify-center shadow-xs transition active:scale-95"
+              className="relative z-10 w-8 h-8 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] flex items-center justify-center shadow-xs transition active:scale-95"
               aria-label="View Insights"
             >
               <ArrowRight className="w-4 h-4" />

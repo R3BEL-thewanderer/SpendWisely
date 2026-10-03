@@ -75,14 +75,14 @@ export function HomeScreen() {
 
         <div className="flex items-center gap-2">
           {/* Day / Night Theme Switch */}
-          <div className="flex items-center justify-center p-1 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-xs">
+          <div className="flex items-center justify-center p-1 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs">
             <ThemeToggle fontSize="7.8px" />
           </div>
 
           {/* Notification Bell */}
           <button
             onClick={() => showToast('No new notifications')}
-            className="w-9 h-9 rounded-full flex items-center justify-center bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-xs transition hover:scale-105 active:scale-95 text-[#0c0a09] dark:text-[#ffffff]"
+            className="w-9 h-9 rounded-full flex items-center justify-center bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs transition hover:scale-105 active:scale-95 text-[#0c0a09] dark:text-[#ffffff]"
             aria-label="Notifications"
           >
             <Bell className="w-4 h-4 opacity-75 stroke-[1.8]" />
@@ -91,26 +91,30 @@ export function HomeScreen() {
           {/* Profile Avatar with Photo/Initials */}
           <button
             onClick={() => navigateTo('PROFILE')}
-            className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] border border-[#e7e5e4] dark:border-white/10 p-0.5 shadow-xs transition hover:scale-105 active:scale-95"
+            className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] p-0.5 shadow-xs transition hover:scale-105 active:scale-95"
             aria-label="Profile"
           >
-            <div className="w-full h-full rounded-full bg-[#292524] text-white flex items-center justify-center font-display font-light text-xs">
+            <div className="w-full h-full rounded-full bg-[#292524] dark:bg-white/10 text-white flex items-center justify-center font-display font-light text-xs">
               <span>{firstName.charAt(0).toUpperCase()}</span>
             </div>
           </button>
         </div>
       </div>
 
-      {/* Total Balance Card (ElevenLabs Editorial Print Card) */}
-      <div className="relative z-10 shrink-0 rounded-2xl p-5 overflow-hidden border border-[#e7e5e4] dark:border-white/10 bg-white dark:bg-[#1c1917] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-        <div className="flex items-center justify-between">
+      {/* Total Balance Card (ElevenLabs Editorial Print Card with atmospheric ambient bloom) */}
+      <div className="relative z-10 shrink-0 rounded-2xl p-5 overflow-hidden border border-[#e7e5e4] dark:border-white/[0.08] bg-white dark:bg-[#181615] shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.35)] flex flex-col justify-between">
+        {/* Subtle Atmospheric Gradient Bloom inside the card */}
+        <div className="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-[radial-gradient(circle,rgba(167,229,211,0.12)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -left-8 -bottom-8 w-40 h-40 rounded-full bg-[radial-gradient(circle,rgba(200,184,224,0.1)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="relative z-10 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-semibold uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-sans">
               Total Balance
             </span>
             <button
               onClick={toggleBalanceVisibility}
-              className="text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white transition"
+              className="text-[#a8a29e] hover:text-[#0c0a09] dark:text-[#a8a29e] dark:hover:text-white transition"
               aria-label="Toggle Balance Visibility"
             >
               {isBalanceVisible ? (
@@ -131,14 +135,14 @@ export function HomeScreen() {
         </div>
 
         {/* Big Balance Amount in Waldenburg / EB Garamond 300 */}
-        <div className="my-2.5">
-          <span className="font-display text-[38px] leading-tight font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff] block">
+        <div className="relative z-10 my-2.5">
+          <span className="font-display text-[40px] leading-tight font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff] block">
             {isBalanceVisible ? formatCurrency(displayBalance) : '••••••••'}
           </span>
         </div>
 
         {/* Status Caption & CTAs */}
-        <div className="flex items-center justify-between pt-1 border-t border-[#f0efed] dark:border-white/5">
+        <div className="relative z-10 flex items-center justify-between pt-1 border-t border-[#f0efed] dark:border-white/[0.06]">
           <div className="text-[11.5px] font-sans text-[#777169] dark:text-[#a8a29e]">
             <span>Monthly spend: </span>
             <span className="font-medium text-[#0c0a09] dark:text-white">{formatCurrency(currExpenses)}</span>
@@ -147,7 +151,7 @@ export function HomeScreen() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => openModal('ADD_EXPENSE')}
-              className="inline-flex items-center justify-center h-8 px-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#e7e5e4] text-white dark:text-[#0c0a09] text-xs font-medium font-sans transition active:scale-95"
+              className="inline-flex items-center justify-center h-8 px-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] text-xs font-medium font-sans transition active:scale-95 shadow-xs"
             >
               <Plus className="w-3 h-3 mr-1 stroke-[2.5]" />
               <span>Record</span>
@@ -163,8 +167,8 @@ export function HomeScreen() {
           onClick={() => openModal('ADD_EXPENSE')}
           className="flex flex-col items-center gap-1.5 group"
         >
-          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
-            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
+            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white flex items-center justify-center border border-transparent dark:border-white/[0.04]">
               <Plus className="w-4 h-4 stroke-[2]" />
             </div>
           </div>
@@ -178,8 +182,8 @@ export function HomeScreen() {
           onClick={() => openModal('ADD_INCOME')}
           className="flex flex-col items-center gap-1.5 group"
         >
-          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
-            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
+            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white flex items-center justify-center border border-transparent dark:border-white/[0.04]">
               <ArrowDownLeft className="w-4 h-4 stroke-[2]" />
             </div>
           </div>
@@ -193,8 +197,8 @@ export function HomeScreen() {
           onClick={() => openModal('TRANSACTION_FILTER')}
           className="flex flex-col items-center gap-1.5 group"
         >
-          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
-            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+          <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
+            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white flex items-center justify-center border border-transparent dark:border-white/[0.04]">
               <QrCode className="w-4 h-4 stroke-[1.8]" />
             </div>
           </div>
@@ -209,8 +213,8 @@ export function HomeScreen() {
             onClick={() => setShowMoreMenu(!showMoreMenu)}
             className="flex flex-col items-center gap-1.5 group w-full"
           >
-            <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
-              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+            <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
+              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white flex items-center justify-center border border-transparent dark:border-white/[0.04]">
                 <MoreHorizontal className="w-4 h-4" />
               </div>
             </div>
@@ -221,7 +225,7 @@ export function HomeScreen() {
 
           {/* Popup Dropdown for More menu */}
           {showMoreMenu && (
-            <div className="absolute right-0 top-20 z-40 w-48 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-lg p-1.5 flex flex-col gap-0.5 text-xs animate-slide-up">
+            <div className="absolute right-0 top-20 z-40 w-48 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-lg p-1.5 flex flex-col gap-0.5 text-xs animate-slide-up">
               <button
                 onClick={() => {
                   setShowMoreMenu(false);
@@ -282,11 +286,11 @@ export function HomeScreen() {
         </div>
 
         {recentTransactions.length === 0 ? (
-          <div className="p-8 rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-center flex flex-col items-center">
-            <p className="text-xs text-[#777169] font-sans">No entries recorded yet</p>
+          <div className="p-8 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-center flex flex-col items-center">
+            <p className="text-xs text-[#777169] dark:text-[#a8a29e] font-sans">No entries recorded yet</p>
           </div>
         ) : (
-          <div className="bg-white dark:bg-[#1c1917] rounded-2xl border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] overflow-hidden">
+          <div className="bg-white dark:bg-[#181615] rounded-2xl border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.02)] overflow-hidden">
             {recentTransactions.map((tx) => (
               <TransactionRow
                 key={tx.id}
@@ -304,11 +308,11 @@ export function HomeScreen() {
       {/* SpendWise AI Assistant (Editorial commentary style card) */}
       <div
         onClick={() => openModal('AI_ASSISTANT')}
-        className="relative z-10 shrink-0 rounded-2xl p-4.5 border border-[#e7e5e4] dark:border-white/10 bg-white dark:bg-[#1c1917] shadow-[0_4px_16px_rgba(0,0,0,0.02)] cursor-pointer hover:border-[#0c0a09] dark:hover:border-white/30 transition group"
+        className="relative z-10 shrink-0 rounded-2xl p-4.5 border border-[#e7e5e4] dark:border-white/[0.08] bg-white dark:bg-[#181615] shadow-[0_4px_16px_rgba(0,0,0,0.02)] cursor-pointer hover:border-[#0c0a09] dark:hover:border-white/30 transition group"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#292524] flex items-center justify-center text-[#0c0a09] dark:text-white">
+            <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#24211e] flex items-center justify-center text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04]">
               <Sparkles className="w-4 h-4 stroke-[1.8]" />
             </div>
             <div>
@@ -321,7 +325,7 @@ export function HomeScreen() {
             </div>
           </div>
 
-          <span className="btn-primary !h-7 !px-3 !text-[11px]">
+          <span className="inline-flex items-center justify-center h-7 px-3 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] text-[11px] font-medium font-sans transition">
             Inquire
           </span>
         </div>
@@ -336,7 +340,7 @@ export function HomeScreen() {
                 openModal('AI_ASSISTANT');
                 askAssistant(q);
               }}
-              className="py-1 px-2 rounded-lg text-[10.5px] font-normal text-center truncate bg-[#f5f5f5] dark:bg-[#292524] text-[#4e4e4e] dark:text-[#d6d3d1] border border-transparent hover:border-[#d6d3d1] transition font-sans"
+              className="py-1 px-2 rounded-lg text-[10.5px] font-normal text-center truncate bg-[#f5f5f5] dark:bg-[#24211e] text-[#4e4e4e] dark:text-[#d6d3d1] border border-transparent dark:border-white/[0.04] hover:border-[#d6d3d1] dark:hover:border-white/20 transition font-sans"
             >
               {q}
             </button>

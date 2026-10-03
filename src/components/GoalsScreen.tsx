@@ -121,22 +121,22 @@ export function GoalsScreen() {
 
           {/* 3 Metrics Cards (Saved, Remaining, Target Date) */}
           <div className="grid grid-cols-3 gap-2 shrink-0">
-            <div className="p-3 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
-              <span className="text-[10px] text-[#777169] font-medium tracking-[0.15px]">Saved</span>
+            <div className="p-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs text-center flex flex-col items-center justify-center">
+              <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] font-medium tracking-[0.15px]">Saved</span>
               <span className="font-display font-light text-sm text-[#0c0a09] dark:text-white mt-0.5">
                 {formatCurrency(selectedGoal.currentSavings)}
               </span>
             </div>
 
-            <div className="p-3 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
-              <span className="text-[10px] text-[#777169] font-medium tracking-[0.15px]">Remaining</span>
+            <div className="p-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs text-center flex flex-col items-center justify-center">
+              <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] font-medium tracking-[0.15px]">Remaining</span>
               <span className="font-display font-light text-sm text-[#0c0a09] dark:text-white mt-0.5">
                 {formatCurrency(remaining)}
               </span>
             </div>
 
-            <div className="p-3 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] text-center flex flex-col items-center justify-center">
-              <span className="text-[10px] text-[#777169] font-medium tracking-[0.15px]">Target Date</span>
+            <div className="p-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs text-center flex flex-col items-center justify-center">
+              <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] font-medium tracking-[0.15px]">Target Date</span>
               <span className="font-display font-light text-xs text-[#0c0a09] dark:text-white mt-0.5 truncate max-w-full">
                 {selectedGoal.targetDate || '30 Jun 2026'}
               </span>
@@ -144,9 +144,9 @@ export function GoalsScreen() {
           </div>
 
           {/* Full-width Progress Bar */}
-          <div className="w-full h-1.5 rounded-full bg-[#f0efed] dark:bg-zinc-800 overflow-hidden shrink-0">
+          <div className="w-full h-1.5 rounded-full bg-[#f0efed] dark:bg-[#24211e] overflow-hidden shrink-0">
             <div
-              className="h-full rounded-full bg-[#292524] dark:bg-zinc-200 transition-all duration-700"
+              className="h-full rounded-full bg-[#292524] dark:bg-white transition-all duration-700"
               style={{ width: `${Math.round(progress * 100)}%` }}
             />
           </div>
@@ -169,17 +169,17 @@ export function GoalsScreen() {
               {(selectedGoal.contributions || []).slice(0, 4).map((c) => (
                 <div
                   key={c.id}
-                  className="p-3 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex items-center justify-between"
+                  className="p-3 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex items-center justify-between"
                 >
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-transparent dark:border-white/[0.04] text-[#0c0a09] dark:text-white flex items-center justify-center">
                       <Plus className="w-3.5 h-3.5" />
                     </div>
                     <div>
                       <h4 className="font-medium text-xs text-[#0c0a09] dark:text-white tracking-[0.15px]">
                         Capital Deposit
                       </h4>
-                      <p className="text-[10px] text-[#777169]">{c.date}</p>
+                      <p className="text-[10px] text-[#777169] dark:text-[#a8a29e]">{c.date}</p>
                     </div>
                   </div>
 
@@ -202,10 +202,10 @@ export function GoalsScreen() {
         </div>
 
         {/* STATIC Bottom Actions Bar with Near-Black Ink Pill */}
-        <div className="shrink-0 px-5 py-3 bg-white/90 dark:bg-[#1c1917]/90 backdrop-blur-md border-t border-[#e7e5e4] dark:border-white/10 flex items-center gap-2.5 z-20">
+        <div className="shrink-0 px-5 py-3 bg-white/90 dark:bg-[#181615]/90 backdrop-blur-md border-t border-[#e7e5e4] dark:border-white/[0.08] flex items-center gap-2.5 z-20">
           <button
             onClick={() => openModal('ADD_MONEY_GOAL')}
-            className="flex-1 py-3 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer tracking-[0.15px]"
+            className="flex-1 py-3 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] font-medium text-xs shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer tracking-[0.15px]"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Money</span>
@@ -262,7 +262,7 @@ export function GoalsScreen() {
 
           <button
             onClick={() => openModal('CREATE_GOAL')}
-            className="w-9 h-9 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs transition active:scale-95 text-[#0c0a09] dark:text-white cursor-pointer"
+            className="w-9 h-9 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition active:scale-95 text-[#0c0a09] dark:text-white cursor-pointer"
             aria-label="Create Goal"
           >
             <MoreHorizontal className="w-4 h-4 opacity-70" />
@@ -270,7 +270,7 @@ export function GoalsScreen() {
         </div>
 
         {/* Hero Editorial Card with Pastel Atmospheric Bloom */}
-        <div className="relative rounded-2xl p-5 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex items-center justify-between shrink-0 overflow-hidden">
+        <div className="relative rounded-2xl p-5 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex items-center justify-between shrink-0 overflow-hidden">
           {/* Pastel orb blooms */}
           <div className="absolute top-0 right-0 w-36 h-36 rounded-full bg-[#f4c5a8]/20 blur-2xl pointer-events-none" />
           <div className="absolute -bottom-8 left-10 w-36 h-36 rounded-full bg-[#c8b8e0]/20 blur-2xl pointer-events-none" />
@@ -280,18 +280,18 @@ export function GoalsScreen() {
               Turn your dreams <br />
               into reality
             </span>
-            <span className="text-xs text-[#777169] mt-1 tracking-[0.15px]">
+            <span className="text-xs text-[#777169] dark:text-[#a8a29e] mt-1 tracking-[0.15px]">
               Save consistently and achieve what matters to you.
             </span>
           </div>
 
-          <div className="relative z-10 w-12 h-12 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center shadow-2xs shrink-0 text-[#0c0a09] dark:text-white">
+          <div className="relative z-10 w-12 h-12 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-transparent dark:border-white/[0.04] flex items-center justify-center shadow-xs shrink-0 text-[#0c0a09] dark:text-white">
             <Target className="w-5 h-5 stroke-[1.8]" />
           </div>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex items-center p-1 rounded-full bg-[#f0efed] dark:bg-zinc-800/60 shrink-0">
+        <div className="flex items-center p-1 rounded-full bg-[#f0efed] dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shrink-0">
           {(['ALL', 'IN_PROGRESS', 'COMPLETED'] as const).map((tab) => {
             const isSelected = filter === tab;
             const label =
@@ -302,8 +302,8 @@ export function GoalsScreen() {
                 onClick={() => setFilter(tab)}
                 className={`flex-1 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer tracking-[0.15px] ${
                   isSelected
-                    ? 'bg-[#292524] text-white shadow-xs'
-                    : 'text-[#777169] hover:text-[#0c0a09] dark:hover:text-white'
+                    ? 'bg-[#292524] dark:bg-white text-white dark:text-[#0c0a09] shadow-xs'
+                    : 'text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white'
                 }`}
               >
                 {label}
@@ -329,11 +329,11 @@ export function GoalsScreen() {
                   setSelectedGoal(goal);
                   navigateTo('GOAL_DETAIL');
                 }}
-                className="group p-4 rounded-xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.02)] cursor-pointer hover:shadow-md transition active:scale-[0.99] flex flex-col gap-3"
+                className="group p-4 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs cursor-pointer hover:shadow-md transition active:scale-[0.99] flex flex-col gap-3"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-transparent dark:border-white/[0.04] text-[#0c0a09] dark:text-white flex items-center justify-center shrink-0">
                       <GoalIcon className="w-4 h-4 stroke-[1.8]" />
                     </div>
 
@@ -341,7 +341,7 @@ export function GoalsScreen() {
                       <h3 className="font-medium text-xs text-[#0c0a09] dark:text-white tracking-[0.15px]">
                         {goal.name}
                       </h3>
-                      <p className="text-[11px] text-[#777169] mt-0.5 tracking-[0.15px]">
+                      <p className="text-[11px] text-[#777169] dark:text-[#a8a29e] mt-0.5 tracking-[0.15px]">
                         {formatCurrency(goal.currentSavings)} / {formatCurrency(goal.targetAmount)}
                       </p>
                     </div>
@@ -357,7 +357,7 @@ export function GoalsScreen() {
                         setSelectedGoal(goal);
                         navigateTo('GOAL_DETAIL');
                       }}
-                      className="w-7 h-7 rounded-full bg-[#f0efed] dark:bg-white/5 flex items-center justify-center text-[#777169] cursor-pointer"
+                      className="w-7 h-7 rounded-full bg-[#f0efed] dark:bg-[#24211e] flex items-center justify-center text-[#777169] dark:text-[#a8a29e] cursor-pointer"
                     >
                       <MoreHorizontal className="w-3.5 h-3.5" />
                     </button>
@@ -366,15 +366,15 @@ export function GoalsScreen() {
 
                 {/* Progress Bar & Target Date */}
                 <div className="flex flex-col gap-1.5">
-                  <div className="w-full h-1 rounded-full bg-[#f0efed] dark:bg-zinc-800 overflow-hidden">
+                  <div className="w-full h-1.5 rounded-full bg-[#f0efed] dark:bg-[#24211e] overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-[#292524] dark:bg-zinc-200 transition-all duration-700"
+                      className="h-full rounded-full bg-[#292524] dark:bg-white transition-all duration-700"
                       style={{
                         width: `${progress}%`,
                       }}
                     />
                   </div>
-                  <div className="flex items-center gap-1 text-[10px] text-[#777169]">
+                  <div className="flex items-center gap-1 text-[10px] text-[#777169] dark:text-[#a8a29e]">
                     <Calendar className="w-3 h-3" />
                     <span>Target: {goal.targetDate || '30 Jun 2026'}</span>
                   </div>
@@ -389,7 +389,7 @@ export function GoalsScreen() {
       <div className="absolute bottom-3 left-5 right-5 z-20 pointer-events-auto">
         <button
           onClick={() => openModal('CREATE_GOAL')}
-          className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs flex items-center justify-center gap-2 transition active:scale-[0.98] cursor-pointer tracking-[0.15px]"
+          className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] font-medium text-xs shadow-xs flex items-center justify-center gap-2 transition active:scale-[0.98] cursor-pointer tracking-[0.15px]"
         >
           <Plus className="w-4 h-4 stroke-[2]" />
           <span>Create Goal</span>

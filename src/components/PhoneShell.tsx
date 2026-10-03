@@ -113,7 +113,7 @@ export function PhoneShell({ children }: PhoneShellProps) {
 
         {/* Global Toast Notification */}
         {toastMessage && (
-          <div className="absolute top-6 sm:top-12 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-[#0c0a09] text-white text-xs font-medium shadow-xl backdrop-blur-md animate-fade-in flex items-center gap-2 max-w-[85%] text-center border border-white/10">
+          <div className="absolute top-6 sm:top-12 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-[#0c0a09] dark:bg-white text-white dark:text-[#0c0a09] text-xs font-medium shadow-xl backdrop-blur-md animate-fade-in flex items-center gap-2 max-w-[85%] text-center border border-white/10 dark:border-black/10 font-sans">
             <span>{toastMessage}</span>
           </div>
         )}

@@ -112,7 +112,7 @@ export function AnalyticsScreen() {
           <select
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value as DatePeriod)}
-            className="appearance-none pl-3.5 pr-7 py-1.5 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white shadow-xs focus:outline-none cursor-pointer font-sans"
+            className="appearance-none pl-3.5 pr-7 py-1.5 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-xs font-medium text-[#0c0a09] dark:text-white shadow-xs focus:outline-none cursor-pointer font-sans"
           >
             <option value="CURRENT_MONTH">March 2025</option>
             <option value="PREVIOUS_MONTH">February 2025</option>
@@ -124,13 +124,13 @@ export function AnalyticsScreen() {
       </div>
 
       {/* Total Spending Editorial Gradient-Orb Card ({component.gradient-orb-card}) */}
-      <div className="relative overflow-hidden rounded-2xl p-5 shrink-0 min-h-[124px] bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+      <div className="relative overflow-hidden rounded-2xl p-5 shrink-0 min-h-[124px] bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
         {/* Soft atmospheric gradient orb bloom (sky & lavender) */}
         <div className="absolute -right-8 -top-8 w-44 h-44 rounded-full orb-sky opacity-75 dark:opacity-20 pointer-events-none" />
         <div className="absolute right-12 -bottom-10 w-40 h-40 rounded-full orb-lavender opacity-65 dark:opacity-20 pointer-events-none" />
 
         {/* Right side floating indicator with minimal bars */}
-        <div className="absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#f0efed] dark:bg-[#292524] flex items-center justify-center pointer-events-none border border-[#e7e5e4] dark:border-white/10 shadow-xs z-10">
+        <div className="absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#f0efed] dark:bg-[#24211e] flex items-center justify-center pointer-events-none border border-[#e7e5e4] dark:border-white/10 shadow-xs z-10">
           <div className="flex items-end gap-1 h-5">
             <span className="w-1 h-2.5 rounded-full bg-[#777169] dark:bg-[#a8a29e]" />
             <span className="w-1 h-5 rounded-full bg-[#0c0a09] dark:bg-white" />
@@ -147,7 +147,7 @@ export function AnalyticsScreen() {
             <span className="font-display text-[34px] font-light tracking-tight text-[#0c0a09] dark:text-[#ffffff] leading-none">
               {formatCurrency(currExp)}
             </span>
-            <span className="inline-flex items-center gap-0.5 text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white border border-[#e7e5e4] dark:border-white/10 shrink-0 font-sans">
+            <span className="inline-flex items-center gap-0.5 text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-[#e7e5e4] dark:border-white/10 shrink-0 font-sans">
               <ArrowDown className="w-3 h-3 stroke-[2]" />
               {pctExp}%
             </span>
@@ -160,12 +160,12 @@ export function AnalyticsScreen() {
       </div>
 
       {/* Spending Trend Spline Chart Card */}
-      <div className="rounded-2xl p-5 shrink-0 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-3">
+      <div className="rounded-2xl p-5 shrink-0 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <h2 className="font-display text-base font-light text-[#0c0a09] dark:text-[#ffffff]">
             Spending Trend
           </h2>
-          <div className="flex items-center gap-1 text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] px-2.5 py-1 rounded-full bg-[#f0efed] dark:bg-[#292524] font-sans">
+          <div className="flex items-center gap-1 text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] px-2.5 py-1 rounded-full bg-[#f0efed] dark:bg-[#24211e] font-sans">
             <span>Monthly</span>
             <ChevronDown className="w-3 h-3 opacity-60" />
           </div>
@@ -253,8 +253,8 @@ export function AnalyticsScreen() {
       {/* Income vs Expenses 2-Card Row */}
       <div className="grid grid-cols-2 gap-3 shrink-0">
         {/* Income Card */}
-        <div className="rounded-2xl p-4 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex flex-col gap-1.5">
-          <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#16a34a] flex items-center justify-center">
+        <div className="rounded-2xl p-4 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex flex-col gap-1.5">
+          <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#16a34a] flex items-center justify-center">
             <ArrowUp className="w-4 h-4 stroke-[2]" />
           </div>
           <span className="text-[11px] font-normal uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-sans mt-0.5">
@@ -269,8 +269,8 @@ export function AnalyticsScreen() {
         </div>
 
         {/* Expenses Card */}
-        <div className="rounded-2xl p-4 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex flex-col gap-1.5">
-          <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center">
+        <div className="rounded-2xl p-4 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex flex-col gap-1.5">
+          <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white flex items-center justify-center">
             <ArrowDown className="w-4 h-4 stroke-[2]" />
           </div>
           <span className="text-[11px] font-normal uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-sans mt-0.5">
@@ -286,7 +286,7 @@ export function AnalyticsScreen() {
       </div>
 
       {/* Category Breakdown Donut Card */}
-      <div className="rounded-2xl p-5 shrink-0 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-4">
+      <div className="rounded-2xl p-5 shrink-0 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h2 className="font-display text-base font-light text-[#0c0a09] dark:text-[#ffffff]">
             Category Allocation
@@ -365,9 +365,9 @@ export function AnalyticsScreen() {
       {/* Insight Card (Quiet editorial callout) */}
       <div
         onClick={() => navigateTo('HOME')}
-        className="rounded-2xl p-4 shrink-0 bg-[#fafafa] dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex items-center gap-3.5 cursor-pointer hover:border-[#0c0a09] dark:hover:border-white/30 transition active:scale-[0.99]"
+        className="rounded-2xl p-4 shrink-0 bg-[#fafafa] dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.02)] flex items-center gap-3.5 cursor-pointer hover:border-[#0c0a09] dark:hover:border-white/30 transition active:scale-[0.99]"
       >
-        <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white flex items-center justify-center shrink-0">
+        <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white flex items-center justify-center shrink-0">
           <Lightbulb className="w-4 h-4 stroke-[1.8]" />
         </div>
         <div className="flex-1">

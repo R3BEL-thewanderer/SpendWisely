@@ -71,13 +71,13 @@ export function LandingScreen() {
           <div className="absolute -top-6 -right-6 w-36 h-36 rounded-full bg-[#a8c8e8]/30 blur-2xl pointer-events-none" />
 
           {/* Main Editorial Card */}
-          <div className="w-[270px] p-5 rounded-2xl bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.04)] flex flex-col gap-3">
+          <div className="w-[270px] p-5 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.04)] flex flex-col gap-3">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-medium text-[#777169] tracking-[0.15px]">
+              <span className="text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] tracking-[0.15px]">
                 Monthly Ledger
               </span>
-              <div className="flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-zinc-200">
-                <TrendingDown className="w-3 h-3 text-[#16a34a]" />
+              <div className="flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] text-[#0c0a09] dark:text-zinc-200">
+                <TrendingDown className="w-3 h-3 text-[#16a34a] dark:text-[#4ade80]" />
                 <span>-12% spending</span>
               </div>
             </div>
@@ -86,7 +86,7 @@ export function LandingScreen() {
               <span className="font-display font-light text-2xl tracking-tight text-[#0c0a09] dark:text-white">
                 ₹ 24,580
               </span>
-              <span className="text-[10px] text-[#777169] tracking-[0.16px]">
+              <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] tracking-[0.16px]">
                 of ₹ 30,000 limit
               </span>
             </div>
@@ -96,8 +96,8 @@ export function LandingScreen() {
               <svg className="w-full h-full overflow-visible" viewBox="0 0 100 20">
                 <defs>
                   <linearGradient id="editorialGrad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#292524" />
-                    <stop offset="100%" stopColor="#777169" />
+                    <stop offset="0%" stopColor="currentColor" className="text-[#292524] dark:text-white" />
+                    <stop offset="100%" stopColor="currentColor" className="text-[#777169] dark:text-[#a8a29e]" />
                   </linearGradient>
                 </defs>
                 <path
@@ -118,7 +118,7 @@ export function LandingScreen() {
         {/* Primary Ink Pill */}
         <button
           onClick={() => openModal('AUTH_SIGN_IN')}
-          className="w-full h-11 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-[15px] shadow-xs transition flex items-center justify-center gap-2 cursor-pointer tracking-[0.15px]"
+          className="w-full h-11 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:text-[#0c0a09] dark:hover:bg-[#f0efed] text-white font-medium text-[15px] shadow-xs transition flex items-center justify-center gap-2 cursor-pointer tracking-[0.15px]"
         >
           <span>Sign In</span>
           <ArrowRight className="w-4 h-4" />

@@ -100,7 +100,7 @@ export function AddIncomeModal() {
                 value={source}
                 onChange={(e) => setSource(e.target.value)}
                 placeholder="e.g. Monthly Salary, Consulting"
-                className="w-full pl-10 pr-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition placeholder:text-[#a8a29e]"
+                className="w-full pl-10 pr-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition placeholder:text-[#a8a29e]"
               />
             </div>
           </div>
@@ -118,8 +118,8 @@ export function AddIncomeModal() {
                     onClick={() => setCategory(cat)}
                     className={`px-3 py-1.5 rounded-full text-xs font-medium transition cursor-pointer tracking-[0.15px] ${
                       isSelected
-                        ? 'bg-[#292524] text-white shadow-xs'
-                        : 'bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-[#777169] hover:text-[#0c0a09] dark:hover:text-white'
+                        ? 'bg-[#292524] dark:bg-white text-white dark:text-[#0c0a09] shadow-xs'
+                        : 'bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white'
                     }`}
                   >
                     {cat}
@@ -139,7 +139,7 @@ export function AddIncomeModal() {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 placeholder="Today"
-                className="w-full pl-9 pr-2.5 py-2 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition"
+                className="w-full pl-9 pr-2.5 py-2 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition"
               />
             </div>
           </div>
@@ -154,7 +154,7 @@ export function AddIncomeModal() {
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Additional notes for your ledger records..."
                 rows={2}
-                className="w-full pl-10 pr-3.5 py-2 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition placeholder:text-[#a8a29e]"
+                className="w-full pl-10 pr-3.5 py-2 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition placeholder:text-[#a8a29e]"
               />
             </div>
           </div>
@@ -162,7 +162,7 @@ export function AddIncomeModal() {
           {/* Submit Button - Near-Black Ink Pill */}
           <button
             type="submit"
-            className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition active:scale-[0.99] tracking-[0.15px] cursor-pointer mt-1"
+            className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] font-medium text-xs shadow-xs transition active:scale-[0.99] tracking-[0.15px] cursor-pointer mt-1"
           >
             Record Income Credit
           </button>

@@ -68,7 +68,7 @@ export function CreateBudgetModal() {
 
           <button
             onClick={closeModal}
-            className="w-8 h-8 rounded-full bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center transition active:scale-95 text-[#0c0a09] dark:text-white shadow-2xs"
+            className="w-8 h-8 rounded-full bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center transition active:scale-95 text-[#0c0a09] dark:text-white shadow-2xs"
             aria-label="Close"
           >
             <X className="w-4 h-4 opacity-70" />
@@ -77,10 +77,10 @@ export function CreateBudgetModal() {
 
         <form onSubmit={handleSubmit} className="p-5 flex flex-col gap-4">
           {/* Total Limit Input with Atmospheric Bloom */}
-          <div className="relative flex flex-col items-center justify-center py-4 bg-white dark:bg-[#1c1917] rounded-2xl border border-[#e7e5e4] dark:border-white/10 shadow-2xs overflow-hidden">
+          <div className="relative flex flex-col items-center justify-center py-4 bg-white dark:bg-[#181615] rounded-2xl border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#c8b8e0]/25 blur-2xl pointer-events-none" />
 
-            <span className="relative z-10 text-[10px] font-medium text-[#777169] uppercase tracking-[0.96px]">
+            <span className="relative z-10 text-[10px] font-medium text-[#777169] dark:text-[#a8a29e] uppercase tracking-[0.96px]">
               Monthly Planned Limit
             </span>
             <div className="relative z-10 flex items-center justify-center gap-1 mt-1">
@@ -100,31 +100,31 @@ export function CreateBudgetModal() {
 
           {/* Budget Name */}
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-[#777169] tracking-[0.15px]">Plan Name</label>
+            <label className="text-xs font-medium text-[#777169] dark:text-[#a8a29e] tracking-[0.15px]">Plan Name</label>
             <input
               type="text"
               autoFocus
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. October Primary Plan"
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition"
+              className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] dark:focus:border-white transition"
             />
           </div>
 
           {/* Month */}
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-[#777169] tracking-[0.15px]">Period</label>
+            <label className="text-xs font-medium text-[#777169] dark:text-[#a8a29e] tracking-[0.15px]">Period</label>
             <input
               type="text"
               value={month}
               onChange={(e) => setMonth(e.target.value)}
               placeholder="e.g. October 2026"
-              className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#1c1917] border border-[#d6d3d1] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] transition"
+              className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] text-xs font-medium text-[#0c0a09] dark:text-white focus:outline-none focus:border-2 focus:border-[#0c0a09] dark:focus:border-white transition"
             />
           </div>
 
           {/* Allocations summary preview */}
-          <div className="rounded-xl p-3 bg-white dark:bg-[#1c1917] border border-[#e7e5e4] dark:border-white/10 text-xs text-[#777169] flex flex-col gap-1 tracking-[0.15px]">
+          <div className="rounded-xl p-3 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-xs text-[#777169] dark:text-[#a8a29e] flex flex-col gap-1 tracking-[0.15px]">
             <span className="font-medium text-[#0c0a09] dark:text-zinc-200">Balanced Allocation Formula:</span>
             <span>Food: 25% • Shopping: 20% • Transport: 15% • Bills: 20% • Entertainment: 10% • Misc: 10%</span>
           </div>
@@ -132,7 +132,7 @@ export function CreateBudgetModal() {
           {/* Submit Button - Near-Black Ink Pill */}
           <button
             type="submit"
-            className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] text-white font-medium text-xs shadow-xs transition active:scale-[0.99] tracking-[0.15px] cursor-pointer mt-1"
+            className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] font-medium text-xs shadow-xs transition active:scale-[0.99] tracking-[0.15px] cursor-pointer mt-1"
           >
             Save Budget Plan
           </button>

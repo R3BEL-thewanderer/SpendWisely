@@ -252,18 +252,18 @@ export function DigitalGulak({
 
         {/* Overlay Text Inside the Gulak */}
         {showLabels && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center pt-8 pointer-events-none">
-            <span className="text-3xl font-extrabold tracking-tight drop-shadow-sm">
+          <div className="absolute inset-0 flex flex-col items-center justify-center pt-8 pointer-events-none text-[#0c0a09] dark:text-white">
+            <span className="font-display font-light text-3xl tracking-tight drop-shadow-xs">
               {percent}%
             </span>
-            <span className="text-sm font-bold tracking-tight mt-0.5">
+            <span className="font-medium text-xs tracking-tight mt-0.5 font-sans">
               {formatCurrency(currentAmount)}
             </span>
-            <span className="text-[11px] opacity-70">
+            <span className="text-[11px] text-[#777169] dark:text-[#a8a29e] font-sans">
               of {formatCurrency(targetAmount)}
             </span>
             {isCompleted && (
-              <span className="mt-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+              <span className="mt-1 text-[11px] font-medium px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
                 Goal Reached 🎉
               </span>
             )}

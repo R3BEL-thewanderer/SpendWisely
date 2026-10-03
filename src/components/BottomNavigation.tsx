@@ -35,7 +35,7 @@ export function BottomNavigation() {
 
   return (
     <div className="shrink-0 w-full px-3 pb-2 sm:pb-2.5 pt-0.5 z-30 pointer-events-auto">
-      <div className="w-full rounded-[24px] px-1.5 py-1.5 flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[#e7e5e4] dark:border-white/10 bg-white/95 dark:bg-[#1c1917]/95 backdrop-blur-xl transition-all">
+      <div className="w-full rounded-[24px] px-1.5 py-1.5 flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] border border-[#e7e5e4] dark:border-white/[0.08] bg-white/95 dark:bg-[#181615]/95 backdrop-blur-xl transition-all">
         {NAV_ITEMS.map((item) => {
           const isSelected =
             currentScreen === item.id ||
@@ -48,7 +48,7 @@ export function BottomNavigation() {
               onClick={() => navigateTo(item.id)}
               className={`flex-1 flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-200 ${
                 isSelected
-                  ? 'bg-[#f0efed] dark:bg-[#292524] text-[#0c0a09] dark:text-white'
+                  ? 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white'
                   : 'hover:bg-black/5 dark:hover:bg-white/5 active:scale-95 text-[#777169] dark:text-[#a8a29e]'
               }`}
             >

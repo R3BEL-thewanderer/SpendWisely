@@ -114,27 +114,27 @@ export function AddCategoryModal() {
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-[390px] max-h-[92vh] overflow-y-auto no-scrollbar rounded-[32px] bg-[#FAF8F5] dark:bg-zinc-900 border border-white/60 dark:border-white/10 shadow-2xl p-5 flex flex-col gap-4">
+      <div className="relative w-full max-w-[390px] max-h-[92vh] overflow-y-auto no-scrollbar rounded-2xl bg-[#f5f5f5] dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xl p-5 flex flex-col gap-4 font-sans">
         {/* Top Header */}
         <div className="flex items-center justify-between">
           <button
             onClick={closeModal}
-            className="w-9 h-9 rounded-full bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md flex items-center justify-center border border-zinc-200/80 dark:border-white/10 shadow-xs transition active:scale-95"
+            className="w-8 h-8 rounded-full bg-white dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center text-[#0c0a09] dark:text-white shadow-xs transition active:scale-95 cursor-pointer"
             aria-label="Back"
           >
-            <ArrowLeft className="w-4 h-4 text-zinc-700 dark:text-zinc-200" />
+            <ArrowLeft className="w-4 h-4 stroke-[1.8]" />
           </button>
 
-          <h2 className="font-bold text-base text-zinc-900 dark:text-white">
+          <h2 className="font-display font-light text-base tracking-tight text-[#0c0a09] dark:text-white">
             {isEdit ? 'Edit Category' : 'Add Category'}
           </h2>
 
           <button
             onClick={closeModal}
-            className="w-9 h-9 rounded-full bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md flex items-center justify-center border border-zinc-200/80 dark:border-white/10 shadow-xs transition active:scale-95"
+            className="w-8 h-8 rounded-full bg-white dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center text-[#0c0a09] dark:text-white shadow-xs transition active:scale-95 cursor-pointer"
             aria-label="Options"
           >
-            <MoreHorizontal className="w-4 h-4 text-zinc-700 dark:text-zinc-200" />
+            <MoreHorizontal className="w-4 h-4 opacity-70" />
           </button>
         </div>
 
@@ -142,7 +142,7 @@ export function AddCategoryModal() {
         <div className="relative flex flex-col items-center justify-center pt-2 pb-1">
           {/* Ambient Glowing Orb */}
           <div
-            className="absolute w-32 h-32 rounded-full blur-2xl opacity-60 pointer-events-none transition-colors duration-500"
+            className="absolute w-32 h-32 rounded-full blur-2xl opacity-40 pointer-events-none transition-colors duration-500"
             style={{
               background: `radial-gradient(circle, ${selectedColor} 0%, transparent 70%)`,
             }}
@@ -150,18 +150,17 @@ export function AddCategoryModal() {
 
           {/* Floating Icon Circle */}
           <div
-            className="relative w-20 h-20 rounded-full bg-white dark:bg-zinc-800 shadow-md border-2 flex items-center justify-center transition-all duration-300"
+            className="relative w-16 h-16 rounded-full bg-white dark:bg-[#24211e] shadow-xs border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center transition-all duration-300"
             style={{
-              borderColor: `${selectedColor}40`,
               color: selectedColor,
             }}
           >
-            <ActiveIconComponent className="w-9 h-9 stroke-[2]" />
+            <ActiveIconComponent className="w-7 h-7 stroke-[1.8]" />
           </div>
 
           <button
             type="button"
-            className="mt-2.5 flex items-center gap-1 text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition"
+            className="mt-2.5 flex items-center gap-1 text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white transition"
           >
             <span>Change Icon</span>
             <ChevronDown className="w-3 h-3" />
@@ -171,17 +170,17 @@ export function AddCategoryModal() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {/* Category Name Input */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400">
+            <label className="text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] uppercase tracking-wider">
               Category Name
             </label>
-            <div className="flex items-center gap-2.5 px-3.5 py-3 rounded-2xl bg-white dark:bg-zinc-800 border border-zinc-200/80 dark:border-white/10 shadow-xs">
-              <Tag className="w-4 h-4 text-zinc-400 shrink-0" />
+            <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#24211e] border border-[#d6d3d1] dark:border-white/[0.08] shadow-xs">
+              <Tag className="w-4 h-4 text-[#777169] dark:text-[#a8a29e] shrink-0" />
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter category name"
-                className="w-full bg-transparent text-xs font-semibold text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none"
+                className="w-full bg-transparent text-xs font-medium text-[#0c0a09] dark:text-white placeholder:text-[#a8a29e] focus:outline-none"
                 required
               />
             </div>
@@ -190,15 +189,12 @@ export function AddCategoryModal() {
           {/* Choose an Icon (4x3 Grid) */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400">
+              <span className="text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] uppercase tracking-wider">
                 Choose an Icon
-              </span>
-              <span className="text-[10px] font-semibold text-indigo-600 dark:text-indigo-400">
-                See All
               </span>
             </div>
 
-            <div className="grid grid-cols-4 gap-2.5">
+            <div className="grid grid-cols-4 gap-2">
               {ICONS_GRID.map((item) => {
                 const Icon = item.icon;
                 const isSelected = selectedIcon === item.id;
@@ -207,22 +203,13 @@ export function AddCategoryModal() {
                     key={item.id}
                     type="button"
                     onClick={() => setSelectedIcon(item.id)}
-                    className={`h-11 rounded-2xl flex items-center justify-center transition-all ${
+                    className={`h-10 rounded-xl flex items-center justify-center transition-all ${
                       isSelected
-                        ? 'border-2 shadow-xs scale-105'
-                        : 'bg-white dark:bg-zinc-800 border border-zinc-200/60 dark:border-white/5 text-zinc-500 hover:text-zinc-800'
+                        ? 'border border-[#0c0a09] dark:border-white shadow-xs bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white'
+                        : 'bg-white dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.06] text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white'
                     }`}
-                    style={
-                      isSelected
-                        ? {
-                            borderColor: selectedColor,
-                            backgroundColor: `${selectedColor}15`,
-                            color: selectedColor,
-                          }
-                        : {}
-                    }
                   >
-                    <Icon className="w-5 h-5 stroke-[2]" />
+                    <Icon className="w-4 h-4 stroke-[1.8]" />
                   </button>
                 );
               })}
@@ -231,8 +218,8 @@ export function AddCategoryModal() {
 
           {/* Choose a Color Swatches */}
           <div className="flex flex-col gap-2">
-            <span className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400">
-              Choose a Color
+            <span className="text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] uppercase tracking-wider">
+              Choose an Accent Tone
             </span>
             <div className="flex items-center justify-between px-1">
               {COLOR_PALETTE.map((color) => {
@@ -242,8 +229,8 @@ export function AddCategoryModal() {
                     key={color.id}
                     type="button"
                     onClick={() => setSelectedColor(color.hex)}
-                    className={`w-9 h-9 rounded-full transition-transform ${
-                      isSelected ? 'scale-110 ring-2 ring-offset-2 ring-zinc-400' : 'hover:scale-105'
+                    className={`w-8 h-8 rounded-full transition-transform ${
+                      isSelected ? 'scale-110 ring-2 ring-offset-2 ring-[#0c0a09] dark:ring-white ring-offset-[#f5f5f5] dark:ring-offset-[#181615]' : 'hover:scale-105'
                     }`}
                     style={{ backgroundColor: color.hex }}
                   />
@@ -254,25 +241,24 @@ export function AddCategoryModal() {
 
           {/* Preview Card */}
           <div className="flex flex-col gap-1.5">
-            <span className="text-[11px] font-bold text-zinc-600 dark:text-zinc-400">
+            <span className="text-[11px] font-medium text-[#777169] dark:text-[#a8a29e] uppercase tracking-wider">
               Preview
             </span>
-            <div className="p-3 rounded-2xl bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md border border-zinc-200/80 dark:border-white/10 shadow-xs flex items-center gap-3">
+            <div className="p-3 rounded-2xl bg-white dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex items-center gap-3">
               <div
-                className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0"
+                className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 bg-[#f0efed] dark:bg-white/5"
                 style={{
-                  backgroundColor: `${selectedColor}18`,
                   color: selectedColor,
                 }}
               >
-                <ActiveIconComponent className="w-5 h-5 stroke-[2.2]" />
+                <ActiveIconComponent className="w-4 h-4 stroke-[1.8]" />
               </div>
               <div>
-                <h4 className="font-bold text-xs text-zinc-900 dark:text-white">
+                <h4 className="font-medium text-xs text-[#0c0a09] dark:text-white">
                   {name.trim() || 'Shopping'}
                 </h4>
-                <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
-                  This category will appear in your transactions
+                <p className="text-[10px] text-[#777169] dark:text-[#a8a29e]">
+                  This category will appear in your ledger
                 </p>
               </div>
             </div>
@@ -282,16 +268,17 @@ export function AddCategoryModal() {
           <div className="flex flex-col gap-2 pt-2">
             <button
               type="submit"
-              className="w-full py-3.5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-bold text-xs shadow-md hover:opacity-90 active:scale-[0.98] transition flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:text-[#0c0a09] dark:hover:bg-[#f0efed] text-white font-medium text-xs shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>{isEdit ? 'Save Changes →' : 'Create Category →'}</span>
+              <span>{isEdit ? 'Save Changes' : 'Create Category'}</span>
+              <span className="text-sm">→</span>
             </button>
 
             {isEdit && (
               <button
                 type="button"
                 onClick={handleDelete}
-                className="w-full py-3 rounded-full border border-rose-300 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 font-bold text-xs hover:bg-rose-100/50 active:scale-[0.98] transition flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-full border border-rose-300 dark:border-rose-900/40 bg-transparent text-rose-600 dark:text-rose-400 font-medium text-xs hover:bg-rose-50/50 dark:hover:bg-rose-950/20 transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Delete Category</span>
