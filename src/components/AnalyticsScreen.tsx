@@ -93,16 +93,16 @@ export function AnalyticsScreen() {
   });
 
   return (
-    <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-y-auto px-5 pt-3 pb-28 gap-4 no-scrollbar animate-fade-in">
+    <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-y-auto px-5 pt-3 pb-8 gap-4 no-scrollbar animate-fade-in">
       {/* Top Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between shrink-0">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Analytics</h1>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">Understand your spending better</p>
         </div>
 
         {/* Month Selector Pill */}
-        <div className="relative">
+        <div className="relative shrink-0">
           <select
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value as DatePeriod)}
@@ -118,36 +118,42 @@ export function AnalyticsScreen() {
       </div>
 
       {/* Total Spending Fluid Card */}
-      <div className="relative overflow-hidden rounded-[28px] p-5 bg-gradient-to-br from-[#E2ECFE] via-[#EDE9FE] to-[#FCE7F3]/40 dark:from-indigo-950/40 dark:via-purple-950/30 dark:to-zinc-900 border border-white/80 dark:border-white/10 shadow-xs">
-        {/* Right side floating glass icon badge */}
-        <div className="absolute right-4 top-4 w-11 h-11 rounded-2xl bg-white/70 dark:bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/60 dark:border-white/10 shadow-xs">
-          <BarChart3 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 stroke-[2.2]" />
+      <div className="relative overflow-hidden rounded-[28px] p-5 shrink-0 min-h-[120px] bg-gradient-to-br from-[#E4EEFE] via-[#ECE8FE] to-[#FCE7F3]/60 dark:from-[#181A2A] dark:via-[#1F1B35] dark:to-[#161722] border border-white/80 dark:border-white/10 shadow-xs flex flex-col justify-center">
+        {/* Right side floating glass icon badge with illuminated bar chart */}
+        <div className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-2xl bg-white/80 dark:bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/70 dark:border-white/10 shadow-sm pointer-events-none">
+          <div className="flex items-end gap-1 h-6">
+            <span className="w-1.5 h-3 rounded-full bg-indigo-400 dark:bg-indigo-300" />
+            <span className="w-1.5 h-6 rounded-full bg-indigo-600 dark:bg-indigo-400" />
+            <span className="w-1.5 h-4.5 rounded-full bg-purple-500 dark:bg-purple-400" />
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Total Spending</span>
-          <span className="inline-flex items-center gap-0.5 text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
-            <ArrowDown className="w-3 h-3 stroke-[2.5]" />
-            {pctExp}%
+        <div className="pr-16 flex flex-col">
+          <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-300">
+            Total Spending
           </span>
-        </div>
 
-        <div className="mt-2">
-          <span className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
-            {formatCurrency(currExp)}
-          </span>
-        </div>
+          <div className="flex items-center gap-2.5 mt-1.5 flex-wrap">
+            <span className="text-[30px] font-extrabold tracking-tight text-zinc-900 dark:text-white leading-none">
+              {formatCurrency(currExp)}
+            </span>
+            <span className="inline-flex items-center gap-0.5 text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
+              <ArrowDown className="w-3.5 h-3.5 stroke-[2.5]" />
+              {pctExp}%
+            </span>
+          </div>
 
-        <p className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium">
-          vs last month
-        </p>
+          <p className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium">
+            vs last month
+          </p>
+        </div>
 
         {/* Decorative subtle wave glow at bottom */}
-        <div className="absolute -bottom-4 left-0 right-0 h-10 bg-gradient-to-t from-white/30 dark:from-white/5 to-transparent pointer-events-none" />
+        <div className="absolute -bottom-4 left-0 right-0 h-10 bg-gradient-to-t from-white/35 dark:from-white/5 to-transparent pointer-events-none" />
       </div>
 
       {/* Spending Trend Spline Chart Card */}
-      <div className="rounded-[28px] p-5 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-3">
+      <div className="rounded-[28px] p-5 shrink-0 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <h2 className="font-bold text-sm text-zinc-900 dark:text-white">Spending Trend</h2>
           <div className="flex items-center gap-1 text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-700/50">
@@ -246,7 +252,7 @@ export function AnalyticsScreen() {
       </div>
 
       {/* Income vs Expenses 2-Card Row */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 shrink-0">
         {/* Income Card */}
         <div className="rounded-[24px] p-4 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-1.5">
           <div className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
@@ -279,7 +285,7 @@ export function AnalyticsScreen() {
       </div>
 
       {/* Category Breakdown Donut Card */}
-      <div className="rounded-[28px] p-5 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-4">
+      <div className="rounded-[28px] p-5 shrink-0 bg-white/90 dark:bg-zinc-800/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-xs flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h2 className="font-bold text-sm text-zinc-900 dark:text-white">Category Breakdown</h2>
           <button
@@ -356,7 +362,7 @@ export function AnalyticsScreen() {
       {/* Insight Card with Yellow Lightbulb */}
       <div
         onClick={() => navigateTo('HOME')}
-        className="rounded-[24px] p-4 bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/20 shadow-xs flex items-center gap-3.5 cursor-pointer hover:bg-amber-500/15 transition active:scale-[0.99]"
+        className="rounded-[24px] p-4 shrink-0 bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/20 shadow-xs flex items-center gap-3.5 cursor-pointer hover:bg-amber-500/15 transition active:scale-[0.99]"
       >
         <div className="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
           <Lightbulb className="w-5 h-5 fill-amber-500/30" />
