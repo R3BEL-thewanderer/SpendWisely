@@ -123,16 +123,16 @@ export function BottomNavigation() {
   }, [currentScreen, activeIndex]);
 
   return (
-    <div className="absolute bottom-4 sm:bottom-5 inset-x-0 z-30 pointer-events-none flex items-center justify-center px-3 sm:px-4">
+    <div className="absolute bottom-4 sm:bottom-5 inset-x-0 z-30 pointer-events-none flex items-center justify-center px-2.5 sm:px-4">
       <div className="pointer-events-auto flex items-center gap-2 sm:gap-2.5 max-w-full">
         {/* Floating Glassmorphic Capsule Navbar */}
         <div
           ref={navContainerRef}
-          className="relative flex items-center p-1 sm:p-1.5 rounded-full bg-white/75 dark:bg-[#181615]/80 backdrop-blur-2xl border border-white/70 dark:border-white/[0.12] shadow-[0_12px_36px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_16px_45px_rgba(0,0,0,0.5),0_2px_8px_rgba(0,0,0,0.3)] transition-all duration-300 select-none"
+          className="relative flex items-center p-1.5 sm:p-1.5 rounded-full bg-white/75 dark:bg-[#181615]/80 backdrop-blur-2xl border border-white/70 dark:border-white/[0.12] shadow-[0_12px_36px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_16px_45px_rgba(0,0,0,0.5),0_2px_8px_rgba(0,0,0,0.3)] select-none"
         >
           {/* Smooth Flowing Indicator Pill */}
           <div
-            className="absolute top-1 bottom-1 sm:top-1.5 sm:bottom-1.5 rounded-full pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.3,0.64,1)] bg-white dark:bg-[#24211e] shadow-[0_2px_10px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.4)] border border-black/[0.04] dark:border-white/[0.08]"
+            className="nav-pill-indicator absolute top-1.5 bottom-1.5 rounded-full pointer-events-none bg-white dark:bg-[#24211e] shadow-[0_2px_10px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.4)] border border-black/[0.04] dark:border-white/[0.08]"
             style={{
               left: `${indicatorStyle.left}px`,
               width: `${indicatorStyle.width}px`,
@@ -154,14 +154,14 @@ export function BottomNavigation() {
                 onClick={() => navigateTo(item.id)}
                 className={`relative z-10 flex items-center justify-center rounded-full select-none cursor-pointer transition-[color,transform] duration-150 ${
                   isSelected
-                    ? 'px-3.5 sm:px-4 py-1.5 gap-1.5 text-[#0c0a09] dark:text-white shrink-0'
-                    : 'w-8.5 h-8.5 sm:w-9 sm:h-9 text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white active:scale-90 shrink-0'
+                    ? 'px-4 sm:px-4.5 py-2 sm:py-2 gap-2 text-[#0c0a09] dark:text-white shrink-0'
+                    : 'w-[38px] h-[38px] sm:w-[38px] sm:h-[38px] text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white active:scale-90 shrink-0'
                 }`}
                 aria-label={item.label}
               >
-                <div className="w-4 h-4 flex items-center justify-center shrink-0">
+                <div className="w-[18px] h-[18px] flex items-center justify-center shrink-0">
                   <IconComponent
-                    className={`w-4 h-4 transition-transform duration-200 ${
+                    className={`w-[18px] h-[18px] transition-transform duration-200 ${
                       isSelected
                         ? 'stroke-[2.2] scale-105 text-[#0c0a09] dark:text-white'
                         : 'stroke-[1.7]'
@@ -170,7 +170,7 @@ export function BottomNavigation() {
                 </div>
 
                 {isSelected && (
-                  <span className="text-[11px] sm:text-xs font-medium tracking-tight whitespace-nowrap font-sans shrink-0">
+                  <span className="text-xs sm:text-[13px] font-medium tracking-tight whitespace-nowrap font-sans shrink-0 animate-fade-in">
                     {item.label}
                   </span>
                 )}
@@ -183,10 +183,10 @@ export function BottomNavigation() {
         {requiresPlusButton && (
           <button
             onClick={handlePlusAction}
-            className="w-10 h-10 sm:w-10.5 sm:h-10.5 rounded-full flex items-center justify-center bg-[#0c0a09] dark:bg-white text-white dark:text-[#0c0a09] border border-black/10 dark:border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.18),0_2px_6px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_24px_rgba(255,255,255,0.15),0_2px_6px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer shrink-0 animate-fade-in"
+            className="w-[44px] h-[44px] sm:w-[46px] sm:h-[46px] rounded-full flex items-center justify-center bg-[#0c0a09] dark:bg-white text-white dark:text-[#0c0a09] border border-black/10 dark:border-white/20 shadow-[0_8px_24px_rgba(0,0,0,0.18),0_2px_6px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_24px_rgba(255,255,255,0.15),0_2px_6px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer shrink-0 animate-pop-in"
             aria-label="Quick Action"
           >
-            <Plus className="w-4.5 h-4.5 stroke-[2.2]" />
+            <Plus className="w-5 h-5 stroke-[2.2]" />
           </button>
         )}
       </div>

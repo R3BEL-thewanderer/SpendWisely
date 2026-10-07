@@ -56,7 +56,12 @@ function MainContent() {
 
   return (
     <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-hidden overflow-x-hidden">
-      <ScreenRenderer />
+      <div
+        key={currentScreen}
+        className="page-screen-container relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-hidden overflow-x-hidden"
+      >
+        <ScreenRenderer />
+      </div>
       {!isLanding && <BottomNavigation />}
     </div>
   );
