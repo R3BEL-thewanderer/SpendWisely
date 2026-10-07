@@ -64,9 +64,9 @@ export function TransactionsScreen() {
   }, [filteredTransactions]);
 
   return (
-    <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-hidden">
+    <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-hidden">
       {/* Scrollable transactions list */}
-      <div className="flex-1 w-full overflow-y-auto px-5 pt-3 pb-24 flex flex-col gap-4 no-scrollbar">
+      <div className="flex-1 w-full max-w-full overflow-y-auto overflow-x-hidden touch-pan-y px-5 pt-3 pb-24 flex flex-col gap-4 no-scrollbar">
         {/* Header: Title & Back Button */}
         <div className="flex items-center justify-between shrink-0 pt-1">
           <div className="flex items-center gap-3">

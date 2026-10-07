@@ -31,7 +31,7 @@ export function PhoneShell({ children }: PhoneShellProps) {
 
   return (
     <div
-      className={`fixed inset-0 w-full h-full overflow-hidden sm:overflow-visible sm:relative sm:inset-auto sm:min-h-screen sm:flex sm:items-center sm:justify-center sm:p-4 md:p-8 transition-colors duration-300 ${
+      className={`fixed inset-0 w-full h-full max-w-full overflow-hidden overflow-x-hidden touch-pan-y sm:overflow-visible sm:relative sm:inset-auto sm:min-h-screen sm:flex sm:items-center sm:justify-center sm:p-4 md:p-8 transition-colors duration-300 ${
         isDark ? 'bg-[#0c0a09] text-[#ffffff]' : 'bg-[#f5f5f5] text-[#0c0a09]'
       }`}
     >
@@ -66,7 +66,7 @@ export function PhoneShell({ children }: PhoneShellProps) {
       {/* SMARTPHONE CONTAINER */}
       {/* On desktop: 400px x 844px centered device. On mobile: full static viewport (100vw, 100vh) */}
       <div
-        className={`relative w-full h-full sm:w-[400px] sm:h-[844px] sm:max-h-[92vh] sm:rounded-[44px] sm:border transition-all duration-300 flex flex-col overflow-hidden shadow-none sm:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] rounded-none border-0 ${
+        className={`relative w-full h-full max-w-full sm:w-[400px] sm:h-[844px] sm:max-h-[92vh] sm:rounded-[44px] sm:border transition-all duration-300 flex flex-col overflow-hidden overflow-x-hidden shadow-none sm:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] rounded-none border-0 ${
           isDark
             ? 'bg-[#0c0a09] sm:border-white/10 text-[#ffffff]'
             : 'bg-[#f5f5f5] sm:border-[#e7e5e4] text-[#0c0a09]'
@@ -107,7 +107,7 @@ export function PhoneShell({ children }: PhoneShellProps) {
         </div>
 
         {/* Inner Phone Screen Viewport */}
-        <div className="relative flex-1 w-full overflow-hidden flex flex-col min-h-0">
+        <div className="relative flex-1 w-full max-w-full overflow-hidden overflow-x-hidden flex flex-col min-h-0">
           {children}
         </div>
 

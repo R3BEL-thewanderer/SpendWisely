@@ -64,8 +64,8 @@ export function BudgetsScreen() {
   // Editorial pastel stops for donut chart ring segments
   const PALETTE = ['#a8c8e8', '#f4c5a8', '#c8b8e0', '#a7e5d3', '#e8b8c4', '#d6d3d1'];
 
-  // Calculate SVG donut stroke offsets
-  const radius = 54;
+  // Calculate SVG donut stroke offsets with clean 100x100 viewBox
+  const radius = 38;
   const circumference = 2 * Math.PI * radius;
   const totalLimit = activeResult?.totalLimit || 1;
 
@@ -86,9 +86,9 @@ export function BudgetsScreen() {
   });
 
   return (
-    <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-y-auto px-5 pt-3 pb-24 gap-4 no-scrollbar animate-fade-in font-sans">
+    <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-y-auto overflow-x-hidden px-5 pt-3 pb-24 gap-4 no-scrollbar animate-fade-in font-sans touch-pan-y">
       {/* Top Header Navigation */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigateTo('HOME')}
@@ -138,28 +138,53 @@ export function BudgetsScreen() {
       </div>
 
       {!activeBudget || !activeResult ? (
-        <div className="p-10 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-center flex flex-col items-center">
+        <div className="p-10 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] text-center flex flex-col items-center shrink-0">
           <p className="text-sm font-medium text-[#777169] dark:text-[#a8a29e]">No active budget found</p>
         </div>
       ) : (
         <>
-          {/* Main Multicolor Donut & Legend Editorial Card */}
-          <div className="relative rounded-2xl p-5 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex flex-col gap-4 overflow-hidden">
+          {/* Main Multicolor Donut & Legend Editorial Card - NEVER shrinked, strictly responsive */}
+          <div className="relative shrink-0 w-full rounded-2xl p-5 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex flex-col gap-4 overflow-hidden">
             {/* Subtle atmospheric orb bloom in background */}
-            <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#c8b8e0]/20 blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-[#a7e5d3]/20 blur-3xl pointer-events-none" />
+            <div className="absolute -top-12 right-0 w-40 h-40 rounded-full bg-[#c8b8e0]/20 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-10 left-0 w-36 h-36 rounded-full bg-[#a7e5d3]/20 blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 flex items-center justify-between gap-3">
+            {/* Top Budget Header Row */}
+            <div className="relative z-10 flex items-center justify-between pb-1 border-b border-[#f0efed] dark:border-white/[0.06]">
+              <div>
+                <span className="text-[10px] uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-sans font-medium">
+                  Budget Health
+                </span>
+                <div className="flex items-baseline gap-1.5 mt-0.5">
+                  <span className="font-display font-light text-xl text-[#0c0a09] dark:text-white tracking-tight">
+                    {formatCurrency(activeResult.totalSpent)}
+                  </span>
+                  <span className="text-[11px] text-[#777169] dark:text-[#a8a29e]">
+                    / {formatCurrency(activeResult.totalLimit)}
+                  </span>
+                </div>
+              </div>
+
+              <div className={`px-2.5 py-1 rounded-full text-xs font-medium ${
+                activeResult.status === 'OVER_BUDGET'
+                  ? 'bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/40'
+                  : 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-[#e7e5e4] dark:border-white/[0.08]'
+              }`}>
+                {Math.round(activeResult.usagePercentage)}% used
+              </div>
+            </div>
+
+            <div className="relative z-10 flex items-center gap-3.5">
               {/* Multicolor Donut Chart SVG */}
-              <div className="relative w-36 h-36 flex items-center justify-center flex-shrink-0">
-                <svg className="w-full h-full -rotate-90" viewBox="0 0 140 140">
+              <div className="relative w-28 h-28 shrink-0 flex items-center justify-center">
+                <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
                   {/* Background Base Ring */}
                   <circle
-                    cx="70"
-                    cy="70"
+                    cx="50"
+                    cy="50"
                     r={radius}
                     className="stroke-[#f0efed] dark:stroke-[#24211e]"
-                    strokeWidth="11"
+                    strokeWidth="9"
                     fill="none"
                   />
 
@@ -167,12 +192,12 @@ export function BudgetsScreen() {
                   {donutSegments.map((seg, i) => (
                     <circle
                       key={seg.name + i}
-                      cx="70"
-                      cy="70"
+                      cx="50"
+                      cy="50"
                       r={radius}
                       stroke={seg.color}
-                      strokeWidth="11"
-                      strokeDasharray={`${circumference}`}
+                      strokeWidth="9"
+                      strokeDasharray={seg.strokeDasharray}
                       strokeDashoffset={seg.strokeDashoffset}
                       strokeLinecap="round"
                       fill="none"
@@ -182,38 +207,35 @@ export function BudgetsScreen() {
                 </svg>
 
                 {/* Center Donut Text with Waldenburg Light / EB Garamond 300 display */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-2">
-                  <span className="font-display font-light text-xl tracking-tight text-[#0c0a09] dark:text-white leading-tight">
-                    {formatCurrency(activeResult.totalSpent)}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+                  <span className="font-display font-light text-base tracking-tight text-[#0c0a09] dark:text-white leading-tight">
+                    {Math.round(activeResult.usagePercentage)}%
                   </span>
-                  <span className="text-[10px] text-[#777169] tracking-[0.16px]">
-                    of {formatCurrency(activeResult.totalLimit)}
-                  </span>
-                  <span className="text-[10px] font-medium text-[#292524] dark:text-zinc-300 mt-0.5">
-                    {Math.round(activeResult.usagePercentage)}% used
+                  <span className="text-[9.5px] text-[#777169] dark:text-[#a8a29e] tracking-[0.16px]">
+                    spent
                   </span>
                 </div>
               </div>
 
               {/* Right Side Category Legend Table */}
-              <div className="flex-1 flex flex-col gap-2 pl-2">
+              <div className="flex-1 flex flex-col justify-center gap-1.5 min-w-0">
                 {activeResult.categoryResults.slice(0, 5).map((cat, idx) => {
                   const dotColor = PALETTE[idx % PALETTE.length];
                   return (
                     <div
                       key={cat.categoryName}
-                      className="flex items-center justify-between text-xs py-0.5"
+                      className="flex items-center justify-between text-xs py-0.5 min-w-0"
                     >
-                      <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex items-center gap-2 min-w-0 flex-1 pr-1">
                         <div
-                          className="w-2 h-2 rounded-full flex-shrink-0"
+                          className="w-2 h-2 rounded-full shrink-0"
                           style={{ backgroundColor: dotColor }}
                         />
                         <span className="text-[11px] font-medium text-[#4e4e4e] dark:text-zinc-300 truncate tracking-[0.15px]">
                           {cat.categoryName}
                         </span>
                       </div>
-                      <span className="font-display font-light text-xs text-[#0c0a09] dark:text-white ml-2 tracking-tight">
+                      <span className="font-display font-light text-xs text-[#0c0a09] dark:text-white shrink-0 tracking-tight">
                         {formatCurrency(cat.spent)}
                       </span>
                     </div>
@@ -225,7 +247,7 @@ export function BudgetsScreen() {
             {/* Over Budget Notice if applicable */}
             {activeResult.status === 'OVER_BUDGET' && (
               <div className="px-3.5 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/30 text-rose-600 text-xs font-medium flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 flex-shrink-0 text-rose-500" />
+                <AlertTriangle className="w-4 h-4 shrink-0 text-rose-500" />
                 <span>Exceeded budget by {formatCurrency(activeResult.overBudgetAmount)}</span>
               </div>
             )}

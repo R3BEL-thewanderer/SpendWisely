@@ -70,9 +70,9 @@ export function GoalsScreen() {
     const GoalIcon = getGoalIconComponent(selectedGoal.iconType);
 
     return (
-      <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-hidden animate-fade-in font-sans">
+      <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-hidden animate-fade-in font-sans">
         {/* Scrollable Detail Body */}
-        <div className="flex-1 w-full overflow-y-auto px-5 pt-3 pb-6 flex flex-col gap-4 no-scrollbar">
+        <div className="flex-1 w-full max-w-full overflow-y-auto overflow-x-hidden touch-pan-y px-5 pt-3 pb-6 flex flex-col gap-4 no-scrollbar">
           {/* Top Header */}
           <div className="flex items-center justify-between shrink-0">
             <button
@@ -246,9 +246,9 @@ export function GoalsScreen() {
 
   // GOALS OVERVIEW LIST VIEW
   return (
-    <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-hidden animate-fade-in font-sans">
+    <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-hidden animate-fade-in font-sans">
       {/* Scrollable Goals List */}
-      <div className="flex-1 w-full overflow-y-auto px-5 pt-3 pb-24 flex flex-col gap-4 no-scrollbar">
+      <div className="flex-1 w-full max-w-full overflow-y-auto overflow-x-hidden touch-pan-y px-5 pt-3 pb-24 flex flex-col gap-4 no-scrollbar">
         {/* Top Header */}
         <div className="flex items-center justify-between shrink-0">
           <div>

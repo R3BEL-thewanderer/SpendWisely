@@ -34,7 +34,7 @@ export function BottomNavigation() {
   if (currentScreen === 'LANDING') return null;
 
   return (
-    <div className="shrink-0 w-full px-3 pb-2 sm:pb-2.5 pt-0.5 z-30 pointer-events-auto">
+    <div className="shrink-0 w-full max-w-full overflow-hidden px-3 pb-2 sm:pb-2.5 pt-0.5 z-30 pointer-events-auto">
       <div className="w-full rounded-[24px] px-1.5 py-1.5 flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] border border-[#e7e5e4] dark:border-white/[0.08] bg-white/95 dark:bg-[#181615]/95 backdrop-blur-xl transition-all">
         {NAV_ITEMS.map((item) => {
           const isSelected =

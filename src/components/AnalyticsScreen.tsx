@@ -92,7 +92,7 @@ export function AnalyticsScreen() {
   });
 
   return (
-    <div className="relative flex-1 w-full min-h-0 flex flex-col overflow-y-auto px-5 pt-3 pb-8 gap-4.5 no-scrollbar animate-fade-in">
+    <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-y-auto overflow-x-hidden touch-pan-y px-5 pt-3 pb-8 gap-4.5 no-scrollbar animate-fade-in">
       {/* Top Header */}
       <div className="flex items-center justify-between shrink-0 pt-1">
         <div>

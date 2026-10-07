@@ -54,10 +54,10 @@ export function HomeScreen() {
   const displayBalance = totals.balance || 48250;
 
   return (
-    <div className="relative flex-1 w-full px-5 pt-3 pb-8 flex flex-col gap-5 overflow-y-auto no-scrollbar">
+    <div className="relative flex-1 w-full max-w-full px-5 pt-3 pb-8 flex flex-col gap-5 overflow-y-auto overflow-x-hidden no-scrollbar touch-pan-y">
       {/* Atmospheric Pastel Gradient Orbs (signature brand pattern) */}
       <div className="absolute -top-16 left-1/4 w-72 h-72 rounded-full orb-peach opacity-60 dark:opacity-20 pointer-events-none" />
-      <div className="absolute top-48 -right-12 w-64 h-64 rounded-full orb-mint opacity-50 dark:opacity-20 pointer-events-none" />
+      <div className="absolute top-48 right-0 w-64 h-64 rounded-full orb-mint opacity-50 dark:opacity-20 pointer-events-none" />
 
       {/* Header: Greeting in Waldenburg / EB Garamond 300 */}
       <div className="relative z-10 flex items-center justify-between shrink-0 pt-1">
@@ -357,7 +357,7 @@ export function HomeScreen() {
             </h2>
           </div>
 
-          <div className="flex items-stretch gap-3 overflow-x-auto pb-1 -mx-5 px-5 no-scrollbar">
+          <div className="flex items-stretch gap-3 overflow-x-auto pb-1 -mx-5 px-5 no-scrollbar overscroll-contain touch-pan-x">
             {insights.map((insight) => (
               <SmartInsightCard
                 key={insight.id}

@@ -24,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full w-full overflow-hidden">
-      <body className="h-full w-full overflow-hidden flex flex-col antialiased selection:bg-purple-500/20">
+    <html lang="en" className="h-full w-full max-w-full overflow-hidden overflow-x-hidden touch-pan-y">
+      <body className="h-full w-full max-w-full overflow-hidden overflow-x-hidden touch-pan-y flex flex-col antialiased selection:bg-purple-500/20">
         {children}
       </body>
     </html>

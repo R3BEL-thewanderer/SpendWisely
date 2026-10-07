@@ -50,7 +50,7 @@ export function ProfileScreen() {
   // 1. APPEARANCE VIEW
   if (subView === 'APPEARANCE') {
     return (
-      <div className="flex-1 w-full px-5 pt-3 pb-28 flex flex-col gap-4 animate-fade-in font-sans min-h-full">
+      <div className="flex-1 w-full max-w-full px-5 pt-3 pb-28 flex flex-col gap-4 animate-fade-in font-sans min-h-full overflow-y-auto overflow-x-hidden touch-pan-y no-scrollbar">
         {/* Header */}
         <div className="flex items-center gap-3">
           <button
@@ -202,7 +202,7 @@ export function ProfileScreen() {
   // 2. SETTINGS VIEW
   if (subView === 'SETTINGS') {
     return (
-      <div className="flex-1 w-full px-5 pt-3 pb-28 flex flex-col gap-4 animate-fade-in overflow-y-auto no-scrollbar font-sans">
+      <div className="flex-1 w-full max-w-full px-5 pt-3 pb-28 flex flex-col gap-4 animate-fade-in overflow-y-auto overflow-x-hidden touch-pan-y no-scrollbar font-sans">
         {/* Top Header */}
         <div className="flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
@@ -359,7 +359,7 @@ export function ProfileScreen() {
 
   // 3. MAIN PROFILE VIEW
   return (
-    <div className="flex-1 w-full px-5 pt-3 pb-28 flex flex-col gap-4 animate-fade-in overflow-y-auto no-scrollbar font-sans">
+    <div className="flex-1 w-full max-w-full px-5 pt-3 pb-28 flex flex-col gap-4 animate-fade-in overflow-y-auto overflow-x-hidden touch-pan-y no-scrollbar font-sans">
       {/* Top Header */}
       <div className="flex items-center justify-between shrink-0">
         <div>
