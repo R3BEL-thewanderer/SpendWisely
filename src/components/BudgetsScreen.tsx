@@ -17,6 +17,7 @@ import {
   Plus,
   Receipt,
   ShoppingBag,
+  Sparkles,
   Target,
   Tv,
 } from 'lucide-react';
@@ -86,7 +87,7 @@ export function BudgetsScreen() {
   });
 
   return (
-    <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-y-auto overflow-x-hidden px-5 pt-3 pb-24 gap-4 no-scrollbar animate-fade-in font-sans touch-pan-y">
+    <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-y-auto overflow-x-hidden px-5 pt-3 pb-32 gap-4.5 no-scrollbar animate-fade-in font-sans touch-pan-y">
       {/* Top Header Navigation */}
       <div className="flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
@@ -329,34 +330,59 @@ export function BudgetsScreen() {
             </div>
           </div>
 
-          {/* Stay on Track Bottom Editorial Card */}
-          <div className="relative rounded-2xl p-4 bg-[#fafafa] dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex items-center justify-between overflow-hidden">
-            {/* Soft mint bloom */}
-            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#a7e5d3]/20 blur-2xl pointer-events-none" />
+          {/* Stay on Track Editorial Advisory Card (Never shrinked, premium layout) */}
+          <div className="relative shrink-0 w-full rounded-2xl p-4.5 sm:p-5 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-3.5 overflow-hidden">
+            {/* Atmospheric soft pastel background blooms */}
+            <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full orb-mint opacity-70 dark:opacity-20 pointer-events-none" />
+            <div className="absolute -bottom-10 right-14 w-32 h-32 rounded-full orb-peach opacity-60 dark:opacity-15 pointer-events-none" />
 
-            <div className="relative z-10 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] text-[#0c0a09] dark:text-white flex items-center justify-center">
-                <Target className="w-4 h-4 stroke-[1.8]" />
+            {/* Header row: Icon, Category Tag & Health Badge */}
+            <div className="relative z-10 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-full bg-[#f0efed] dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/[0.08] text-[#0c0a09] dark:text-white flex items-center justify-center">
+                  <Sparkles className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-[10px] uppercase tracking-widest text-[#777169] dark:text-[#a8a29e] font-sans font-semibold">
+                  Pacing Advisory
+                </span>
               </div>
-              <div className="flex flex-col">
-                <h4 className="font-display font-light text-sm text-[#0c0a09] dark:text-white tracking-tight">
-                  Stay on Track
-                </h4>
-                <p className="text-[11px] text-[#777169] dark:text-[#a8a29e] tracking-[0.15px]">
-                  {activeResult.status === 'OVER_BUDGET'
-                    ? 'Review category allocations to rebalance spending.'
-                    : `You're ${Math.max(100 - Math.round(activeResult.usagePercentage), 0)}% under your planned limit.`}
-                </p>
-              </div>
+
+              <span
+                className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full ${
+                  activeResult.status === 'OVER_BUDGET'
+                    ? 'bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/40'
+                    : 'bg-[#f0efed] dark:bg-[#24211e] text-[#0c0a09] dark:text-white border border-[#e7e5e4] dark:border-white/[0.08]'
+                }`}
+              >
+                {activeResult.status === 'OVER_BUDGET' ? 'Over Limit' : 'Disciplined'}
+              </span>
             </div>
 
-            <button
-              onClick={() => openModal('AI_ASSISTANT')}
-              className="relative z-10 w-8 h-8 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] flex items-center justify-center shadow-xs transition active:scale-95"
-              aria-label="View Insights"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            {/* Title & Detailed Insight */}
+            <div className="relative z-10 flex flex-col gap-1">
+              <h3 className="font-display font-light text-lg text-[#0c0a09] dark:text-white tracking-tight leading-snug">
+                Stay on Track
+              </h3>
+              <p className="text-xs text-[#4e4e4e] dark:text-[#d6d3d1] leading-relaxed">
+                {activeResult.status === 'OVER_BUDGET'
+                  ? `You have exceeded this month's budget by ${formatCurrency(activeResult.overBudgetAmount)}. Rebalancing high-spending categories will help bring your totals back on track.`
+                  : `You've spent ${formatCurrency(activeResult.totalSpent)} of your ${formatCurrency(activeResult.totalLimit)} monthly limit. You are comfortably ${Math.max(100 - Math.round(activeResult.usagePercentage), 0)}% under your planned spending ceiling.`}
+              </p>
+            </div>
+
+            {/* Interactive Bottom Action Bar */}
+            <div className="relative z-10 pt-3 border-t border-[#f0efed] dark:border-white/[0.06] flex items-center justify-between">
+              <span className="text-[11px] text-[#777169] dark:text-[#a8a29e]">
+                AI-driven financial guidance
+              </span>
+              <button
+                onClick={() => openModal('AI_ASSISTANT')}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0c0a09] hover:bg-[#292524] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] text-xs font-medium shadow-xs transition active:scale-95 cursor-pointer"
+              >
+                <span>AI Insights</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </>
       )}
