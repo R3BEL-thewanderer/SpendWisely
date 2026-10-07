@@ -55,12 +55,10 @@ function MainContent() {
   const isLanding = currentScreen === 'LANDING';
 
   return (
-    <>
-      <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-hidden overflow-x-hidden">
-        <ScreenRenderer />
-      </div>
+    <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-hidden overflow-x-hidden">
+      <ScreenRenderer />
       {!isLanding && <BottomNavigation />}
-    </>
+    </div>
   );
 }
 
