@@ -195,17 +195,6 @@ export function TransactionsScreen() {
           </div>
         )}
       </div>
-
-      {/* Floating Action Button (Warm near-black ink pill circle) */}
-      <div className="absolute bottom-4 right-4 z-20 pointer-events-auto">
-        <button
-          onClick={() => openModal('ADD_EXPENSE')}
-          className="w-12 h-12 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] shadow-lg flex items-center justify-center transition active:scale-95 cursor-pointer"
-          aria-label="Add Entry"
-        >
-          <Plus className="w-5 h-5 stroke-[2.2]" />
-        </button>
-      </div>
     </div>
   );
 }

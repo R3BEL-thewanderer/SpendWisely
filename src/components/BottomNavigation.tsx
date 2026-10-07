@@ -39,8 +39,8 @@ export function BottomNavigation() {
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const navContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // Hide on Landing / Onboarding screen
-  if (currentScreen === 'LANDING') return null;
+  // Hide on Landing or Goal Detail sub-view
+  if (currentScreen === 'LANDING' || currentScreen === 'GOAL_DETAIL') return null;
 
   // Pages where the plus (+) action button is required
   const requiresPlusButton =
@@ -71,11 +71,7 @@ export function BottomNavigation() {
     }
   };
 
-  const activeIndex = NAV_ITEMS.findIndex(
-    (item) =>
-      item.id === currentScreen ||
-      (item.id === 'GOALS' && currentScreen === 'GOAL_DETAIL')
-  );
+  const activeIndex = NAV_ITEMS.findIndex((item) => item.id === currentScreen);
 
   // Smooth flowing glassmorphic pill indicator calculation
   useLayoutEffect(() => {
@@ -123,9 +119,7 @@ export function BottomNavigation() {
 
           {/* Navigation Items */}
           {NAV_ITEMS.map((item, index) => {
-            const isSelected =
-              currentScreen === item.id ||
-              (item.id === 'GOALS' && currentScreen === 'GOAL_DETAIL');
+            const isSelected = currentScreen === item.id;
             const IconComponent = item.icon;
 
             return (

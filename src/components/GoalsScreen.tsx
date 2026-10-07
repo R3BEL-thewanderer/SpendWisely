@@ -384,17 +384,6 @@ export function GoalsScreen() {
           })}
         </div>
       </div>
-
-      {/* Near-Black Ink Pill Primary CTA */}
-      <div className="absolute bottom-3 left-5 right-5 z-20 pointer-events-auto">
-        <button
-          onClick={() => openModal('CREATE_GOAL')}
-          className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] font-medium text-xs shadow-xs flex items-center justify-center gap-2 transition active:scale-[0.98] cursor-pointer tracking-[0.15px]"
-        >
-          <Plus className="w-4 h-4 stroke-[2]" />
-          <span>Create Goal</span>
-        </button>
-      </div>
     </div>
   );
 }

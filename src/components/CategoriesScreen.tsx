@@ -184,17 +184,6 @@ export function CategoriesScreen() {
           )}
         </div>
       </div>
-
-      {/* Static Pinned Add Category Ink Pill Button */}
-      <div className="absolute bottom-3 left-5 right-5 z-20 pointer-events-auto">
-        <button
-          onClick={handleAddCategory}
-          className="w-full py-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] font-medium text-xs shadow-xs flex items-center justify-center gap-2 active:scale-[0.98] transition cursor-pointer font-sans"
-        >
-          <Plus className="w-4 h-4 stroke-[2]" />
-          <span>Add New Category</span>
-        </button>
-      </div>
     </div>
   );
 }
