@@ -19,7 +19,12 @@ import { HomeScreen } from './HomeScreen';
 import { LandingScreen } from './LandingScreen';
 import { PhoneShell } from './PhoneShell';
 import { ProfileScreen } from './ProfileScreen';
+import { ReceiptScannerModal } from './ReceiptScannerModal';
 import { ScanReceiptModal } from './ScanReceiptModal';
+import { SubscriptionsModal } from './SubscriptionsModal';
+import { SplitBillModal } from './SplitBillModal';
+import { VoiceInputModal } from './VoiceInputModal';
+import { StatementImportModal } from './StatementImportModal';
 import { TransactionDetailModal } from './TransactionDetailModal';
 import { TransactionsScreen } from './TransactionsScreen';
 
@@ -83,6 +88,11 @@ export function SpendWiseApp() {
         <TransactionDetailModal />
         <AiAssistantModal />
         <ScanReceiptModal />
+        <ReceiptScannerModal />
+        <StatementImportModal />
+        <SubscriptionsModal />
+        <SplitBillModal />
+        <VoiceInputModal />
         <AuthModals />
       </PhoneShell>
     </SpendWiseProvider>

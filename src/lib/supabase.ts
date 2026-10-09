@@ -39,7 +39,24 @@ export async function checkSupabaseConnection(): Promise<{
   try {
     const { data, error } = await supabase.from('transactions').select('id').limit(1);
     if (error) {
-      // If table doesn't exist yet, we are still connected to Supabase URL
+      const msg = (error.message || '').toLowerCase();
+      const isNetworkError =
+        msg.includes('fetch') ||
+        msg.includes('network') ||
+        msg.includes('enotfound') ||
+        msg.includes('econnrefused') ||
+        msg.includes('timeout') ||
+        !error.code;
+
+      if (isNetworkError) {
+        return {
+          connected: false,
+          tablesAvailable: false,
+          error: error.message || 'Cannot resolve Supabase host',
+        };
+      }
+
+      // If database responded but table doesn't exist yet
       return {
         connected: true,
         tablesAvailable: false,

@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from 'react';
 import {
   ArrowLeft,
+  FileSpreadsheet,
   MoreHorizontal,
   Plus,
   Search,
@@ -121,8 +122,18 @@ export function TransactionsScreen() {
             onClick={() => openModal('TRANSACTION_FILTER')}
             className="w-10 h-10 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition hover:border-[#0c0a09] active:scale-95 text-[#0c0a09] dark:text-white shrink-0"
             aria-label="Filter"
+            title="Filter Transactions"
           >
             <SlidersHorizontal className="w-4 h-4 stroke-[1.8]" />
+          </button>
+
+          <button
+            onClick={() => openModal('IMPORT_STATEMENT')}
+            className="w-10 h-10 rounded-lg bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-[#0c0a09] flex items-center justify-center shadow-xs transition active:scale-95 shrink-0"
+            aria-label="Import Bank Statement"
+            title="Import Excel or PDF Statement"
+          >
+            <FileSpreadsheet className="w-4 h-4 stroke-[2]" />
           </button>
         </div>
 

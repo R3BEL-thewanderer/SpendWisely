@@ -184,12 +184,54 @@ export interface MonthlyAiSummary {
   aiExplanation: string;
 }
 
+export interface PaymentMethodBreakdownItem {
+  method: string;
+  amount: number;
+  count: number;
+  percentage: number;
+}
+
+export interface CreditCardRecommendation {
+  id: string;
+  cardName: string;
+  issuer: string;
+  category: string;
+  rewardText: string;
+  potentialMonthlySavings: number;
+  potentialYearlySavings: number;
+  joiningFeeText: string;
+  applyUrl: string;
+  badge?: string;
+  colorHex?: string;
+  perks: string[];
+}
+
+export type AssistantCardType =
+  | 'PAYMENT_BREAKDOWN'
+  | 'TOP_SPENDS'
+  | 'CARD_RECOMMENDATION'
+  | 'BUDGET_ALERT';
+
+export interface AssistantCardPayload {
+  type: AssistantCardType;
+  paymentBreakdown?: PaymentMethodBreakdownItem[];
+  topTransactions?: TransactionItem[];
+  cardRecommendation?: CreditCardRecommendation;
+  budgetAlert?: {
+    category: string;
+    spent: number;
+    limit: number;
+    percent: number;
+  };
+}
+
 export interface AssistantMessage {
   id: string;
   text: string;
   isUser: boolean;
   timestamp: string;
   suggestedActions?: string[];
+  cardPayload?: AssistantCardPayload;
 }
 
 export type AppScreen =
@@ -216,6 +258,11 @@ export type ActiveModal =
   | 'ADD_MONEY_GOAL'
   | 'AI_ASSISTANT'
   | 'TRANSACTION_FILTER'
+  | 'SCAN_RECEIPT'
+  | 'IMPORT_STATEMENT'
+  | 'SUBSCRIPTIONS'
+  | 'SPLIT_BILL'
+  | 'VOICE_INPUT'
   | 'ADD_CATEGORY'
   | 'EDIT_CATEGORY'
   | 'AUTH_SIGN_IN'
@@ -223,6 +270,52 @@ export type ActiveModal =
   | 'AUTH_FORGOT_PASSWORD'
   | 'AUTH_ONBOARDING'
   | 'DELETE_CONFIRM';
+
+export interface SubscriptionItem {
+  id: string;
+  name: string;
+  amount: number;
+  billingCycle: 'MONTHLY' | 'YEARLY' | 'QUARTERLY';
+  category: string;
+  nextRenewalDate: string;
+  daysUntilRenewal: number;
+  serviceIcon: string;
+  colorHex?: string;
+  cancelUrl?: string;
+  isZombie?: boolean;
+  priceHikeAlert?: {
+    previousAmount: number;
+    difference: number;
+    percentHike: number;
+  };
+  isActive: boolean;
+  paymentMethod?: string;
+}
+
+export interface SplitDueItem {
+  id: string;
+  transactionId?: string;
+  expenseTitle: string;
+  totalAmount: number;
+  friendName: string;
+  friendUpiId?: string;
+  friendShare: number;
+  yourShare: number;
+  status: 'PENDING' | 'SETTLED';
+  date: string;
+  note?: string;
+  splitType: 'EQUAL' | 'CUSTOM';
+}
+
+export interface ParsedVoiceExpense {
+  amount: number;
+  title: string;
+  category: string;
+  paymentMethod: string;
+  notes?: string;
+  confidence: number;
+  rawTranscript: string;
+}
 
 export type ThemeMode = 'LIGHT' | 'DARK';
 

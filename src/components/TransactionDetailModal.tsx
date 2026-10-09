@@ -18,6 +18,7 @@ import {
   Sparkles,
   Tag,
   Trash2,
+  Users,
   X,
 } from 'lucide-react';
 import { useSpendWise } from '../context/SpendWiseContext';
@@ -27,6 +28,7 @@ export function TransactionDetailModal() {
   const {
     activeModal,
     closeModal,
+    openModal,
     selectedTransaction,
     updateTransaction,
     deleteTransaction,
@@ -364,6 +366,17 @@ export function TransactionDetailModal() {
                 })}
               </div>
             </div>
+
+            {/* Split Bill CTA (for Expense items) */}
+            {selectedTransaction.type === 'EXPENSE' && (
+              <button
+                onClick={() => openModal('SPLIT_BILL')}
+                className="w-full py-3 px-3 rounded-full bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 font-medium text-xs flex items-center justify-center gap-2 shadow-2xs transition active:scale-95 mt-1"
+              >
+                <Users className="w-3.5 h-3.5" />
+                <span>Split This Bill via UPI (Group Tabs)</span>
+              </button>
+            )}
 
             {/* Bottom Actions: Edit & Delete */}
             <div className="grid grid-cols-2 gap-2 mt-1">

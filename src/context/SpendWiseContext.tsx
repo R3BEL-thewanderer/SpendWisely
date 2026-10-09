@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { calculateAnalytics } from '../lib/analytics';
-import { answerFinancialQuery } from '../lib/assistant';
+import { answerFinancialQuery, generateAiFinancialResponse } from '../lib/assistant';
 import { calculateBudget } from '../lib/budgets';
 import { calculateCategoryBreakdown } from '../lib/categories';
 import { calculateTotals, roundMoney } from '../lib/finance';
@@ -113,6 +113,7 @@ interface SpendWiseContextType {
   }) => boolean;
   updateTransaction: (tx: TransactionItem) => boolean;
   deleteTransaction: (id: string) => void;
+  importTransactionsBatch: (newTxs: TransactionItem[]) => void;
 
   addGoal: (goal: Omit<GoalItem, 'id' | 'contributions'> & { initialSavings?: number }) => boolean;
   addMoneyToGoal: (goalId: string, amount: number) => boolean;
@@ -198,7 +199,7 @@ export function SpendWiseProvider({ children }: { children: React.ReactNode }) {
     lastSync: string | null;
     isSyncing: boolean;
   }>({
-    connected: true,
+    connected: false,
     tablesAvailable: false,
     lastSync: null,
     isSyncing: false,
@@ -503,6 +504,15 @@ export function SpendWiseProvider({ children }: { children: React.ReactNode }) {
     showToast('Transaction deleted');
   };
 
+  const importTransactionsBatch = (newTxs: TransactionItem[]) => {
+    if (!newTxs || newTxs.length === 0) return;
+    const nextList = [...newTxs, ...transactions];
+    setTransactionsState(nextList);
+    saveTransactions(nextList);
+    closeModal();
+    showToast(`Successfully imported ${newTxs.length} transactions`);
+  };
+
   // Goals CRUD
   const addGoal = (goalData: Omit<GoalItem, 'id' | 'contributions'> & { initialSavings?: number }): boolean => {
     if (!goalData.name.trim()) {
@@ -718,33 +728,37 @@ export function SpendWiseProvider({ children }: { children: React.ReactNode }) {
     setAssistantMessages((prev) => [...prev, userMsg]);
     setIsAssistantThinking(true);
 
-    setTimeout(() => {
-      const answer = answerFinancialQuery(
-        q,
-        totals,
-        categoryBreakdown,
-        budgetResults,
-        goalResults,
-        analytics.monthlyTrends,
-        transactions
-      );
-
-      const aiMsg: AssistantMessage = {
-        id: `msg-${Date.now()}-a`,
-        text: answer,
-        isUser: false,
-        timestamp: 'Now',
-        suggestedActions: [
-          'Where did most of my money go?',
-          'How much on food?',
-          'Am I spending more than last month?',
-          'How is my budget?',
-        ],
-      };
-
-      setAssistantMessages((prev) => [...prev, aiMsg]);
-      setIsAssistantThinking(false);
-    }, 450);
+    generateAiFinancialResponse(
+      q,
+      totals,
+      categoryBreakdown,
+      budgetResults,
+      goalResults,
+      analytics.monthlyTrends,
+      transactions
+    )
+      .then((res) => {
+        const aiMsg: AssistantMessage = {
+          id: `msg-${Date.now()}-a`,
+          text: res.text,
+          isUser: false,
+          timestamp: 'Now',
+          cardPayload: res.cardPayload,
+          suggestedActions: res.suggestedActions || [
+            'How did I pay most expenses?',
+            'What was my highest single spend?',
+            'Which credit card will save me money?',
+            'Where did most of my money go?',
+          ],
+        };
+        setAssistantMessages((prev) => [...prev, aiMsg]);
+      })
+      .catch((err) => {
+        console.error('Error generating AI response:', err);
+      })
+      .finally(() => {
+        setIsAssistantThinking(false);
+      });
   };
 
   // Reset
@@ -797,6 +811,7 @@ export function SpendWiseProvider({ children }: { children: React.ReactNode }) {
         addIncome,
         updateTransaction,
         deleteTransaction,
+        importTransactionsBatch,
         addGoal,
         addMoneyToGoal,
         deleteGoalContribution,

@@ -7,9 +7,12 @@ import {
   Camera,
   Check,
   ChevronRight,
+  Cloud,
+  CloudOff,
   Crown,
   Download,
   Eye,
+  FileSpreadsheet,
   Lock,
   LogOut,
   Mail,
@@ -18,6 +21,7 @@ import {
   Palette,
   Pencil,
   PieChart,
+  RefreshCw,
   RotateCcw,
   Shield,
   Sliders,
@@ -25,6 +29,8 @@ import {
   Trash2,
   TrendingUp,
   User,
+  Users,
+  Mic,
   X,
 } from 'lucide-react';
 import { useSpendWise } from '../context/SpendWiseContext';
@@ -41,6 +47,8 @@ export function ProfileScreen() {
     navigateTo,
     openModal,
     resetData,
+    supabaseStatus,
+    triggerCloudSync,
   } = useSpendWise();
 
   const [subView, setSubView] = useState<ProfileSubView>('PROFILE');
@@ -313,6 +321,100 @@ export function ProfileScreen() {
             Data
           </span>
           <div className="rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-2xs overflow-hidden">
+            {/* Supabase Cloud Database Status Row */}
+            <div className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5">
+              <div className="flex items-center gap-3">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                  supabaseStatus.connected
+                    ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400'
+                    : 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400'
+                }`}>
+                  {supabaseStatus.connected ? <Cloud className="w-4 h-4" /> : <CloudOff className="w-4 h-4" />}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
+                      Cloud Database (Supabase)
+                    </span>
+                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider ${
+                      supabaseStatus.connected
+                        ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300'
+                        : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'
+                    }`}>
+                      {supabaseStatus.connected ? 'Online' : 'Offline / Paused'}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-[#777169] block mt-0.5">
+                    {supabaseStatus.connected
+                      ? `Last synced: ${supabaseStatus.lastSync || 'Recently'}`
+                      : 'Free project paused or unreachable. Data is safely stored in local ledger.'}
+                  </span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => triggerCloudSync()}
+                disabled={supabaseStatus.isSyncing}
+                className="px-2.5 py-1.5 rounded-lg border border-[#e7e5e4] dark:border-white/10 hover:bg-[#fafafa] dark:hover:bg-white/5 text-[11px] font-medium text-[#0c0a09] dark:text-white flex items-center gap-1.5 transition active:scale-95 disabled:opacity-50"
+                title="Sync with Supabase"
+              >
+                <RefreshCw className={`w-3 h-3 ${supabaseStatus.isSyncing ? 'animate-spin' : ''}`} />
+                <span>{supabaseStatus.isSyncing ? 'Syncing...' : 'Sync Now'}</span>
+              </button>
+            </div>
+
+            <div
+              onClick={() => openModal('IMPORT_STATEMENT')}
+              className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"
+            >
+              <div className="flex items-center gap-2.5">
+                <FileSpreadsheet className="w-4 h-4 text-[#777169]" />
+                <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
+                  Import Bank Statement (Excel/PDF)
+                </span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-[#a8a29e]" />
+            </div>
+
+            <div
+              onClick={() => openModal('SUBSCRIPTIONS')}
+              className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"
+            >
+              <div className="flex items-center gap-2.5">
+                <RefreshCw className="w-4 h-4 text-amber-500" />
+                <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
+                  Subscriptions & Zombie Spend Killer
+                </span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-[#a8a29e]" />
+            </div>
+
+            <div
+              onClick={() => openModal('SPLIT_BILL')}
+              className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"
+            >
+              <div className="flex items-center gap-2.5">
+                <Users className="w-4 h-4 text-indigo-500" />
+                <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
+                  SpendWise Split & Group Tabs (UPI)
+                </span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-[#a8a29e]" />
+            </div>
+
+            <div
+              onClick={() => openModal('VOICE_INPUT')}
+              className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"
+            >
+              <div className="flex items-center gap-2.5">
+                <Mic className="w-4 h-4 text-rose-500" />
+                <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
+                  Voice-to-Ledger Quick Entry
+                </span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-[#a8a29e]" />
+            </div>
+
             <div
               onClick={() => alert('Data exported to spendwise-ledger.json')}
               className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"

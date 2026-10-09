@@ -8,10 +8,13 @@ import {
   Bell,
   Eye,
   EyeOff,
+  Mic,
   MoreHorizontal,
   Plus,
   QrCode,
+  RefreshCw,
   Sparkles,
+  Users,
 } from 'lucide-react';
 import { useSpendWise } from '../context/SpendWiseContext';
 import { formatCurrency } from '../lib/currency';
@@ -148,7 +151,14 @@ export function HomeScreen() {
             <span className="font-medium text-[#0c0a09] dark:text-white">{formatCurrency(currExpenses)}</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => openModal('VOICE_INPUT')}
+              title="Voice-to-Ledger Quick Entry"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 transition active:scale-95 shadow-xs"
+            >
+              <Mic className="w-3.5 h-3.5 stroke-[2.2]" />
+            </button>
             <button
               onClick={() => openModal('ADD_EXPENSE')}
               className="inline-flex items-center justify-center h-8 px-3.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] text-xs font-medium font-sans transition active:scale-95 shadow-xs"
@@ -194,7 +204,7 @@ export function HomeScreen() {
 
         {/* Scan Receipt */}
         <button
-          onClick={() => openModal('TRANSACTION_FILTER')}
+          onClick={() => openModal('SCAN_RECEIPT')}
           className="flex flex-col items-center gap-1.5 group"
         >
           <div className="w-[66px] h-[66px] rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-center shadow-xs transition group-hover:border-[#0c0a09] dark:group-hover:border-white/30 active:scale-95">
@@ -225,7 +235,57 @@ export function HomeScreen() {
 
           {/* Popup Dropdown for More menu */}
           {showMoreMenu && (
-            <div className="absolute right-0 top-20 z-40 w-48 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-lg p-1.5 flex flex-col gap-0.5 text-xs animate-slide-up">
+            <div className="absolute right-0 top-20 z-40 w-52 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xl p-1.5 flex flex-col gap-0.5 text-xs animate-slide-up">
+              <button
+                onClick={() => {
+                  setShowMoreMenu(false);
+                  openModal('SUBSCRIPTIONS');
+                }}
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+              >
+                <span>🔄</span>
+                <span>Subscriptions & Zombies</span>
+              </button>
+              <button
+                onClick={() => {
+                  setShowMoreMenu(false);
+                  openModal('SPLIT_BILL');
+                }}
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+              >
+                <span>👥</span>
+                <span>SpendWise Split & Tabs</span>
+              </button>
+              <button
+                onClick={() => {
+                  setShowMoreMenu(false);
+                  openModal('VOICE_INPUT');
+                }}
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+              >
+                <span>🎙️</span>
+                <span>Voice Quick Entry</span>
+              </button>
+              <button
+                onClick={() => {
+                  setShowMoreMenu(false);
+                  openModal('IMPORT_STATEMENT');
+                }}
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+              >
+                <span>📄</span>
+                <span>Import Statement</span>
+              </button>
+              <button
+                onClick={() => {
+                  setShowMoreMenu(false);
+                  openModal('AI_ASSISTANT');
+                }}
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+              >
+                <span>✨</span>
+                <span>Ask SpendWise AI</span>
+              </button>
               <button
                 onClick={() => {
                   setShowMoreMenu(false);
@@ -245,26 +305,6 @@ export function HomeScreen() {
               >
                 <span>🏆</span>
                 <span>Savings Goals</span>
-              </button>
-              <button
-                onClick={() => {
-                  setShowMoreMenu(false);
-                  openModal('AI_ASSISTANT');
-                }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
-              >
-                <span>✨</span>
-                <span>Ask SpendWise AI</span>
-              </button>
-              <button
-                onClick={() => {
-                  setShowMoreMenu(false);
-                  navigateTo('LANDING');
-                }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
-              >
-                <span>📖</span>
-                <span>Editorial Cover</span>
               </button>
             </div>
           )}

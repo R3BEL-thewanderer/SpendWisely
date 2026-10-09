@@ -1,16 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   ArrowDown,
   ArrowUp,
   ChevronDown,
   ChevronRight,
+  CreditCard,
+  ExternalLink,
   Lightbulb,
+  Sparkles,
 } from 'lucide-react';
 import { useSpendWise } from '../context/SpendWiseContext';
 import { formatCurrency } from '../lib/currency';
 import { calculateAnalytics } from '../lib/analytics';
+import { calculateCardRecommendations } from '../lib/creditCards';
 import { DatePeriod } from '../lib/types';
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -90,6 +94,11 @@ export function AnalyticsScreen() {
       pct: Math.round(fraction * 100),
     };
   });
+
+  const topCardRecommendation = useMemo(() => {
+    const recs = calculateCardRecommendations(transactions, activeAnalytics.categoryBreakdown);
+    return recs && recs.length > 0 ? recs[0] : null;
+  }, [transactions, activeAnalytics.categoryBreakdown]);
 
   return (
     <div className="relative flex-1 w-full max-w-full min-h-0 flex flex-col overflow-y-auto overflow-x-hidden touch-pan-y px-5 pt-3 pb-28 sm:pb-32 gap-4.5 no-scrollbar animate-fade-in">
@@ -361,6 +370,61 @@ export function AnalyticsScreen() {
           </div>
         </div>
       </div>
+
+      {/* Credit Card Cashback & Rewards Partner Recommendation */}
+      {topCardRecommendation && (
+        <div className="rounded-2xl p-4.5 bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent border border-amber-200/90 dark:border-amber-500/20 shadow-xs flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-xs">
+                <CreditCard className="w-4 h-4" />
+              </div>
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] text-amber-700 dark:text-amber-400 font-bold uppercase tracking-wider">
+                    {topCardRecommendation.issuer}
+                  </span>
+                  <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 font-semibold">
+                    Partner Offer
+                  </span>
+                </div>
+                <h3 className="font-display text-sm font-semibold text-[#0c0a09] dark:text-white">
+                  {topCardRecommendation.cardName}
+                </h3>
+              </div>
+            </div>
+
+            <span className="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/50">
+              +{formatCurrency(topCardRecommendation.potentialMonthlySavings)}/mo
+            </span>
+          </div>
+
+          <p className="text-[11.5px] text-[#57534e] dark:text-zinc-300 leading-snug">
+            Based on your highest recorded spends in{' '}
+            <strong className="text-[#0c0a09] dark:text-white">{topCardRecommendation.category}</strong>,
+            switching your payment mode to this card could save you approx{' '}
+            <span className="text-emerald-700 dark:text-emerald-400 font-semibold">
+              {formatCurrency(topCardRecommendation.potentialMonthlySavings)} each month
+            </span>{' '}
+            (~{formatCurrency(topCardRecommendation.potentialYearlySavings)}/yr)!
+          </p>
+
+          <div className="flex items-center justify-between pt-1 border-t border-[#e7e5e4] dark:border-white/5">
+            <span className="text-[10px] text-[#777169]">
+              {topCardRecommendation.joiningFeeText}
+            </span>
+            <a
+              href={topCardRecommendation.applyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-1.5 px-3 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-[#0c0a09] text-[11px] font-semibold flex items-center gap-1 transition active:scale-95"
+            >
+              <span>Apply Now</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Insight Card (Quiet editorial callout) */}
       <div
