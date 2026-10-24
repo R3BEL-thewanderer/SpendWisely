@@ -39,11 +39,7 @@ export function VoiceInputModal() {
   // Demo voice queries for quick testing
   const DEMO_VOICE_PROMPTS = [
     'Spent 450 rupees on Swiggy dinner through UPI',
-    'Paid 1200 for petrol at Shell with HDFC credit card',
-    'Bought groceries from Blinkit 850 in cash',
-    'Uber cab to airport 680 on Google Pay',
-    'Movie tickets at PVR 760 via PhonePe',
-    'Coffee at Starbucks 350 with card',
+    'Paid 1200 for petrol at Shell with HDFC card',
   ];
 
   // Initialize SpeechRecognition if available in browser

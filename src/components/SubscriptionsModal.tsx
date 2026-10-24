@@ -25,6 +25,7 @@ import {
   SubscriptionMetrics,
 } from '../lib/subscriptions';
 import { SubscriptionItem } from '../lib/types';
+import { BrandLogo } from './BrandLogo';
 
 export function SubscriptionsModal() {
   const { activeModal, closeModal, showToast } = useSpendWise();
@@ -41,7 +42,7 @@ export function SubscriptionsModal() {
   const [nextRenewalDate, setNextRenewalDate] = useState('15 Nov 2026');
   const [daysUntilRenewal, setDaysUntilRenewal] = useState('14');
   const [cancelUrl, setCancelUrl] = useState('');
-  const [serviceIcon, setServiceIcon] = useState('⚡');
+  const [serviceIcon, setServiceIcon] = useState('subscriptions');
 
   useEffect(() => {
     if (activeModal === 'SUBSCRIPTIONS') {
@@ -93,7 +94,7 @@ export function SubscriptionsModal() {
       category,
       nextRenewalDate: nextRenewalDate.trim() || 'In 30 days',
       daysUntilRenewal: parseInt(daysUntilRenewal) || 30,
-      serviceIcon: serviceIcon || '⚡',
+      serviceIcon: serviceIcon || 'subscriptions',
       cancelUrl: cancelUrl.trim() || undefined,
       isActive: true,
       colorHex: '#3b82f6',
@@ -387,9 +388,9 @@ export function SubscriptionsModal() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div
-                          className="w-10 h-10 rounded-2xl flex items-center justify-center text-lg bg-[#f0efed] dark:bg-white/5 border border-black/5 dark:border-white/5"
+                          className="w-10 h-10 rounded-2xl flex items-center justify-center bg-[#f0efed] dark:bg-white/5 border border-black/5 dark:border-white/5 text-[#0c0a09] dark:text-white group"
                         >
-                          <span>{item.serviceIcon || '⚡'}</span>
+                          <BrandLogo name={item.serviceIcon || item.name} size={20} />
                         </div>
                         <div>
                           <div className="flex items-center gap-1.5 flex-wrap">

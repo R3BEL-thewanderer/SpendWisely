@@ -20,16 +20,14 @@ export interface DemoReceiptProfile {
   id: string;
   label: string;
   description: string;
-  emoji: string;
   data: ParsedReceiptData;
 }
 
 export const DEMO_RECEIPTS: DemoReceiptProfile[] = [
   {
     id: 'starbucks',
-    label: 'Starbucks Coffee Cafe',
+    label: 'Starbucks Cafe Receipt',
     description: 'Cafe register slip with Grande Latte & Butter Croissant',
-    emoji: '☕',
     data: {
       merchantName: 'Starbucks Reserve',
       amount: 425,
@@ -46,31 +44,9 @@ export const DEMO_RECEIPTS: DemoReceiptProfile[] = [
     },
   },
   {
-    id: 'swiggy',
-    label: 'Swiggy UPI Payment Screenshot',
-    description: 'Instant mobile UPI screenshot of grocery & dinner delivery',
-    emoji: '🛵',
-    data: {
-      merchantName: 'Swiggy Instamart & Food',
-      amount: 684,
-      date: '2026-10-08',
-      category: 'Food & Dining',
-      paymentMethod: 'UPI',
-      items: [
-        { name: 'Farm Fresh Organic Milk (2L)', price: 140 },
-        { name: 'Robusta Bananas (1kg)', price: 84 },
-        { name: 'Dark Roast Filter Coffee Powder', price: 460 },
-      ],
-      taxAmount: 0,
-      confidence: 0.99,
-      notes: 'UPI Ref 42938491 • Scanned receipt',
-    },
-  },
-  {
     id: 'dmart',
-    label: 'D-Mart Supermarket Invoice',
+    label: 'D-Mart Supermarket Bill',
     description: 'Printed grocery barcode receipt with itemized breakdown',
-    emoji: '🛒',
     data: {
       merchantName: 'Avenue Supermarts (D-Mart)',
       amount: 2450,
@@ -85,23 +61,6 @@ export const DEMO_RECEIPTS: DemoReceiptProfile[] = [
       taxAmount: 116.6,
       confidence: 0.96,
       notes: 'Itemized supermarket bill • Saved ₹340 via D-Mart discounts',
-    },
-  },
-  {
-    id: 'shell',
-    label: 'Shell Fuel Station Slip',
-    description: 'Petrol station automated terminal receipt',
-    emoji: '⛽',
-    data: {
-      merchantName: 'Shell Fuel Station Whitefield',
-      amount: 1800,
-      date: '2026-10-06',
-      category: 'Transportation',
-      paymentMethod: 'Debit Card',
-      items: [{ name: 'V-Power Petrol (17.5L @ ₹102.85)', price: 1800 }],
-      taxAmount: 0,
-      confidence: 0.97,
-      notes: 'Pump #04 • Full tank commute fuel',
     },
   },
 ];

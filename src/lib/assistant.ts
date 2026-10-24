@@ -56,14 +56,31 @@ export function answerFinancialQuery(
     return items.sort((a, b) => b.amount - a.amount);
   };
 
-  // 0. CONVERSATIONAL GREETINGS & SMALL TALK
+  // 0. DOMAIN GUARDRAILS: Strictly decline off-topic queries (coding, trivia, chit-chat)
+  const isOffTopic =
+    /(python|javascript|typescript|c\+\+|java\b|html|css|coding|code|programmer|programming|react\b|node\b|script|developer|bug\b|recipe|weather|joke|poem|essay|history|geography|translate|politics|president|capital of)/i.test(
+      q
+    );
+
+  if (isOffTopic) {
+    return {
+      text: "I am your SpendWise financial co-pilot and can only assist with your personal ledger, spending insights, budgets, and card rewards. How can I help with your finances today?",
+      suggestedActions: [
+        'How did I pay most expenses?',
+        'What was my highest single spend?',
+        'Which credit card will save me money?',
+      ],
+    };
+  }
+
+  // 1. CONVERSATIONAL GREETINGS & SMALL TALK
   const isGreeting = /^(hello|hi|hey|good\s*(morning|afternoon|evening)|namaste|hola|sup|greetings|howdy)\b/i.test(q);
   const isHowAreYou = /^(how\s*are\s*you|how's\s*it\s*going|how\s*are\s*things|what's\s*up|wassup)\b/i.test(q);
   const isIdentityOrHelp = /^(who\s*are\s*you|what\s*can\s*you\s*do|help|what\s*do\s*you\s*do|introduce\s*yourself|what\s*are\s*your\s*features)\b/i.test(q);
 
   if (isGreeting || isHowAreYou) {
     return {
-      text: `Hello! I'm your SpendWise financial assistant 👋\n\nI analyze your verified transactions to give you clear, instant insights about your money, payment methods, credit card savings, and budgets.\n\nWhat would you like to explore today?`,
+      text: `Hello! I'm your SpendWise financial co-pilot.\n\nI analyze your verified transactions to give you clear, instant insights about your money, payment methods, credit card savings, and budgets.\n\nWhat would you like to explore today?`,
       suggestedActions: [
         'How did I pay most expenses?',
         'What was my highest single spend?',
@@ -75,7 +92,7 @@ export function answerFinancialQuery(
 
   if (isIdentityOrHelp) {
     return {
-      text: `I'm **SpendWise Intelligence**, your personal financial co-pilot 🧠✨\n\nHere is how I can help you:\n• **Payment Breakdown**: See how much you paid via UPI, Credit Card, or Cash.\n• **Spending Leaderboard**: Spot your biggest single spends and top merchant drains.\n• **Credit Card Advisor**: Recommend cards that maximize cashback for your unique spending.\n• **Budget & Goals**: Monitor your monthly limits and Digital Gulak savings pace.\n\nAsk me anything in plain words, or tap any suggestion below!`,
+      text: `I'm **SpendWise Intelligence**, your personal financial co-pilot.\n\nHere is how I can help you:\n• **Payment Breakdown**: See how much you paid via UPI, Credit Card, or Cash.\n• **Spending Leaderboard**: Spot your biggest single spends and top merchant drains.\n• **Credit Card Advisor**: Recommend cards that maximize cashback for your unique spending.\n• **Budget & Goals**: Monitor your monthly limits and Digital Gulak savings pace.\n\nAsk me anything about your finances, or tap any suggestion below!`,
       suggestedActions: [
         'How did I pay most expenses?',
         'What was my highest single spend?',
@@ -247,7 +264,7 @@ export function answerFinancialQuery(
           topCat.categoryName
         }** at **${formatCurrency(topCat.spentAmount)}**, which is ${Math.round(
           topCat.percentageOfTotal
-        )}% of your total spending (${formatCurrency(totals.totalExpenses)}).\n\n💡 Pro Tip: Since ${
+        )}% of your total spending (${formatCurrency(totals.totalExpenses)}).\n\nPro Tip: Since ${
           topCat.categoryName
         } is your biggest spend, using the **${bestCard?.cardName}** would unlock ~**${formatCurrency(
           bestCard?.potentialMonthlySavings || 0
@@ -301,15 +318,15 @@ export function answerFinancialQuery(
       let budgetNote = '';
       if (budget) {
         if (budget.status === 'OVER_BUDGET') {
-          budgetNote = ` ⚠️ (Over budget by ${formatCurrency(budget.overBudgetAmount)})`;
+          budgetNote = ` [Over budget by ${formatCurrency(budget.overBudgetAmount)}]`;
         } else if (budget.status === 'NEAR_LIMIT') {
-          budgetNote = ` ⚠️ (${Math.round(budget.usagePercentage)}% of ${formatCurrency(
+          budgetNote = ` [${Math.round(budget.usagePercentage)}% of ${formatCurrency(
             budget.allocatedLimit
-          )} limit)`;
+          )} limit]`;
         } else {
-          budgetNote = ` ✅ (${Math.round(budget.usagePercentage)}% of ${formatCurrency(
+          budgetNote = ` [${Math.round(budget.usagePercentage)}% of ${formatCurrency(
             budget.allocatedLimit
-          )} limit)`;
+          )} limit]`;
         }
       }
 
@@ -389,15 +406,15 @@ export function answerFinancialQuery(
     if (b) {
       let statusText = '';
       if (b.status === 'OVER_BUDGET') {
-        statusText = `⚠️ Over Budget: You have exceeded your limit by ${formatCurrency(
+        statusText = `Over Budget: You have exceeded your limit by ${formatCurrency(
           b.overBudgetAmount
         )}.`;
       } else if (b.status === 'NEAR_LIMIT') {
-        statusText = `⚠️ Near Limit: You have used ${Math.round(
+        statusText = `Near Limit: You have used ${Math.round(
           b.usagePercentage
         )}% of your budget (${formatCurrency(b.remainingBudget)} remaining).`;
       } else {
-        statusText = `✅ On Track: You have used ${Math.round(
+        statusText = `On Track: You have used ${Math.round(
           b.usagePercentage
         )}% of your ${formatCurrency(b.totalLimit)} budget with ${formatCurrency(
           b.remainingBudget
@@ -451,7 +468,7 @@ export function answerFinancialQuery(
     if (goalResults.length > 0) {
       const lines = goalResults.map((g) => {
         const status = g.isCompleted
-          ? '🎉 Complete!'
+          ? 'Completed'
           : `${Math.round(g.progressPercent)}% (${formatCurrency(g.remainingAmount)} left)`;
         const forecast =
           !g.isCompleted && g.remainingAmount > 0

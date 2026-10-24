@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useSpendWise } from '../context/SpendWiseContext';
 import { formatCurrency } from '../lib/currency';
+import { BrandLogo } from './BrandLogo';
 
 export function AiAssistantModal() {
   const {
@@ -40,10 +41,6 @@ export function AiAssistantModal() {
     'How did I pay most expenses?',
     'What was my highest single spend?',
     'Which credit card will save me money?',
-    'Where did most of my money go?',
-    'How much on food?',
-    'Am I spending more than last month?',
-    'What is my balance?',
   ];
 
   const handleSend = () => {
@@ -239,7 +236,7 @@ export function AiAssistantModal() {
                                 </div>
                               </div>
                             </div>
-                            <span className="font-mono font-bold text-xs text-rose-600 dark:text-rose-400">
+                            <span className="font-display font-light text-sm text-[#0c0a09] dark:text-white">
                               -{formatCurrency(tx.amount)}
                             </span>
                           </div>
@@ -251,60 +248,62 @@ export function AiAssistantModal() {
                 {/* RICH CARD 3: Credit Card Recommendation & Affiliate Partner Card */}
                 {msg.cardPayload?.type === 'CARD_RECOMMENDATION' &&
                   msg.cardPayload.cardRecommendation && (
-                    <div className="rounded-xl overflow-hidden bg-white dark:bg-[#181615] border border-amber-200/80 dark:border-amber-500/20 shadow-sm flex flex-col">
+                    <div className="rounded-2xl overflow-hidden bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/10 shadow-xs flex flex-col group">
                       {/* Card Header Banner */}
-                      <div className="p-3 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border-b border-[#e7e5e4] dark:border-white/5 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow-xs">
-                            <CreditCard className="w-4 h-4" />
+                      <div className="p-3.5 bg-[#fafafa] dark:bg-[#1c1917] border-b border-[#e7e5e4] dark:border-white/5 flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-xl bg-white dark:bg-[#24211e] border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white shadow-2xs">
+                            <BrandLogo name={msg.cardPayload.cardRecommendation.issuer} size={18} />
                           </div>
                           <div>
-                            <span className="text-[10px] text-amber-700 dark:text-amber-400 font-semibold uppercase tracking-wider block">
+                            <span className="text-[9.5px] text-[#777169] dark:text-[#a8a29e] font-medium uppercase tracking-wider block">
                               {msg.cardPayload.cardRecommendation.issuer}
                             </span>
-                            <h4 className="text-xs font-bold text-[#0c0a09] dark:text-white">
+                            <h4 className="font-display font-light text-xs text-[#0c0a09] dark:text-white tracking-tight">
                               {msg.cardPayload.cardRecommendation.cardName}
                             </h4>
                           </div>
                         </div>
 
                         {msg.cardPayload.cardRecommendation.badge && (
-                          <span className="px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 text-[9px] font-semibold">
+                          <span className="px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white text-[9.5px] font-medium border border-[#e7e5e4] dark:border-white/10">
                             {msg.cardPayload.cardRecommendation.badge}
                           </span>
                         )}
                       </div>
 
                       {/* Savings Projection Callout */}
-                      <div className="p-3 flex flex-col gap-2.5">
-                        <div className="p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/40 flex items-center justify-between">
+                      <div className="p-3.5 flex flex-col gap-3">
+                        <div className="p-3 rounded-xl bg-[#fafafa] dark:bg-[#121110] border border-[#e7e5e4] dark:border-white/5 flex items-baseline justify-between">
                           <div>
-                            <span className="text-[9.5px] uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-medium block">
+                            <span className="text-[9.5px] uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-medium block">
                               Estimated Rewards Value
                             </span>
-                            <span className="text-sm font-bold text-emerald-800 dark:text-emerald-200 font-mono">
-                              +{formatCurrency(msg.cardPayload.cardRecommendation.potentialMonthlySavings)}
-                              <span className="text-[10px] font-normal text-emerald-600 dark:text-emerald-400">
+                            <div className="flex items-baseline gap-1 mt-0.5">
+                              <span className="font-display font-light text-2xl tracking-tight text-[#0c0a09] dark:text-white">
+                                +{formatCurrency(msg.cardPayload.cardRecommendation.potentialMonthlySavings)}
+                              </span>
+                              <span className="text-xs text-[#777169] dark:text-[#a8a29e]">
                                 /month
                               </span>
-                            </span>
+                            </div>
                           </div>
-                          <span className="text-[10.5px] font-semibold text-emerald-700 dark:text-emerald-300">
+                          <span className="font-display font-light text-sm text-[#777169] dark:text-[#a8a29e]">
                             ~{formatCurrency(msg.cardPayload.cardRecommendation.potentialYearlySavings)} /yr
                           </span>
                         </div>
 
                         {/* Perks */}
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-1.5">
                           {msg.cardPayload.cardRecommendation.perks.map((p, i) => (
-                            <div key={i} className="flex items-start gap-1.5 text-[10.5px] text-[#44403c] dark:text-zinc-300">
-                              <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0 mt-0.5" />
-                              <span>{p}</span>
+                            <div key={i} className="flex items-start gap-2 text-xs text-[#44403c] dark:text-zinc-300">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-[#0c0a09] dark:text-white shrink-0 mt-0.5 opacity-70" />
+                              <span className="leading-snug">{p}</span>
                             </div>
                           ))}
                         </div>
 
-                        <div className="text-[10px] text-[#777169] flex items-center justify-between pt-1 border-t border-[#e7e5e4] dark:border-white/5">
+                        <div className="text-[11px] text-[#777169] dark:text-[#a8a29e] flex items-center justify-between pt-1 border-t border-[#e7e5e4] dark:border-white/5">
                           <span>Annual Fee: {msg.cardPayload.cardRecommendation.joiningFeeText}</span>
                         </div>
 
@@ -313,13 +312,13 @@ export function AiAssistantModal() {
                           href={msg.cardPayload.cardRecommendation.applyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full py-2 px-3 rounded-lg bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-[#0c0a09] text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs transition active:scale-98"
+                          className="w-full py-2.5 px-3 rounded-xl bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-[#0c0a09] text-xs font-medium tracking-[0.15px] flex items-center justify-center gap-1.5 shadow-xs transition active:scale-98"
                         >
                           <span>Apply Through SpendWise Partner</span>
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
 
-                        <span className="text-[8.5px] text-center text-[#a8a29e]">
+                        <span className="text-[9px] text-center text-[#a8a29e] tracking-tight">
                           Verified Partner Link • Special Welcome Bonus Included
                         </span>
                       </div>

@@ -578,7 +578,7 @@ export function SpendWiseProvider({ children }: { children: React.ReactNode }) {
     syncGoalAddOrUpdate(updatedGoal, nextGoals);
     setSelectedGoal(updatedGoal);
     closeModal();
-    showToast(`Added ₹${roundedAmt} to ${g.name}! 🎉`);
+    showToast(`Added ₹${roundedAmt} to ${g.name}!`);
     return true;
   };
 

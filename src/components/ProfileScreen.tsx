@@ -36,6 +36,7 @@ import {
 import { useSpendWise } from '../context/SpendWiseContext';
 import { formatCurrency } from '../lib/currency';
 import { ThemeToggle } from './ThemeToggle';
+import { BrandLogo } from './BrandLogo';
 
 type ProfileSubView = 'PROFILE' | 'SETTINGS' | 'APPEARANCE';
 
@@ -95,8 +96,9 @@ export function ProfileScreen() {
           </div>
           <div className="relative z-10 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[11px] font-medium text-[#0c0a09] dark:text-zinc-200">
             <span className="text-[#777169]">Currently Active:</span>
-            <span className="font-medium">
-              {isDark ? '🌙 Night Mode' : '☀️ Day Mode'}
+            <span className="font-medium inline-flex items-center gap-1.5">
+              <BrandLogo name={isDark ? 'moon' : 'sun'} size={13} />
+              <span>{isDark ? 'Night Mode' : 'Day Mode'}</span>
             </span>
           </div>
         </div>
@@ -241,8 +243,8 @@ export function ProfileScreen() {
             {/* Animated Day & Night Toggle Row */}
             <div className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-sm">
-                  {isDark ? '🌙' : '☀️'}
+                <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white group">
+                  <BrandLogo name={isDark ? 'moon' : 'sun'} size={15} />
                 </div>
                 <div>
                   <span className="text-xs font-medium text-[#0c0a09] dark:text-white block tracking-[0.15px]">

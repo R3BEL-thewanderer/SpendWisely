@@ -24,6 +24,7 @@ import {
   parseReceiptHeuristics,
   parseReceiptWithGemini,
 } from '../lib/receiptScanner';
+import { BrandLogo } from './BrandLogo';
 
 export function ReceiptScannerModal() {
   const { activeModal, closeModal, categories, addExpense, showToast } = useSpendWise();
@@ -316,14 +317,16 @@ export function ReceiptScannerModal() {
                     <button
                       key={demo.id}
                       onClick={() => loadDemo(demo)}
-                      className="p-2.5 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/10 hover:border-[#0c0a09] dark:hover:border-white/40 flex items-center gap-2.5 text-left transition active:scale-95 shadow-2xs cursor-pointer"
+                      className="p-2.5 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/10 hover:border-[#0c0a09] dark:hover:border-white/40 flex items-center gap-2.5 text-left transition active:scale-95 shadow-2xs cursor-pointer group"
                     >
-                      <span className="text-lg">{demo.emoji}</span>
+                      <div className="w-8 h-8 rounded-lg bg-[#f0efed] dark:bg-white/5 flex items-center justify-center shrink-0 text-[#0c0a09] dark:text-white">
+                        <BrandLogo name={demo.id} size={18} />
+                      </div>
                       <div className="flex-1 truncate">
-                        <span className="text-xs font-semibold text-[#0c0a09] dark:text-white block truncate">
+                        <span className="text-xs font-medium text-[#0c0a09] dark:text-white block truncate tracking-[0.15px]">
                           {demo.label}
                         </span>
-                        <span className="text-[10px] text-[#777169] block truncate">
+                        <span className="text-[10px] text-[#777169] block truncate font-display font-light">
                           ₹{demo.data.amount} • {demo.data.category}
                         </span>
                       </div>

@@ -522,3 +522,79 @@ html, body {
   will-change: left, width;
   transform: translateZ(0);
 }
+
+/* ==========================================================================
+   Logo & Icon Vector Line-Drawing Flow Animation
+   When hovered: static icon fades, line vector draws in a smooth flowing stroke
+   ========================================================================== */
+@keyframes logoStrokeDraw {
+  0% {
+    stroke-dashoffset: 140;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.logo-flow-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.logo-flow-container .logo-static {
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logo-flow-container .logo-flow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.logo-flow-container .logo-flow svg path,
+.logo-flow-container .logo-flow svg rect,
+.logo-flow-container .logo-flow svg circle,
+.logo-flow-container .logo-flow svg line,
+.logo-flow-container .logo-flow svg polyline {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+}
+
+.logo-flow-container:hover .logo-static,
+.group:hover .logo-flow-container .logo-static {
+  opacity: 0;
+  transform: scale(0.82);
+}
+
+.logo-flow-container:hover .logo-flow,
+.group:hover .logo-flow-container .logo-flow {
+  opacity: 1;
+}
+
+.logo-flow-container:hover .logo-flow svg path,
+.logo-flow-container:hover .logo-flow svg rect,
+.logo-flow-container:hover .logo-flow svg circle,
+.logo-flow-container:hover .logo-flow svg line,
+.logo-flow-container:hover .logo-flow svg polyline,
+.group:hover .logo-flow-container .logo-flow svg path,
+.group:hover .logo-flow-container .logo-flow svg rect,
+.group:hover .logo-flow-container .logo-flow svg circle,
+.group:hover .logo-flow-container .logo-flow svg line,
+.group:hover .logo-flow-container .logo-flow svg polyline {
+  animation: logoStrokeDraw 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

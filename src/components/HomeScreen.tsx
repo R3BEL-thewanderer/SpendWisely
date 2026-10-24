@@ -21,6 +21,7 @@ import { formatCurrency } from '../lib/currency';
 import { SmartInsightCard } from './SmartInsightCard';
 import { TransactionRow } from './TransactionRow';
 import { ThemeToggle } from './ThemeToggle';
+import { BrandLogo } from './BrandLogo';
 
 export function HomeScreen() {
   const {
@@ -241,9 +242,9 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   openModal('SUBSCRIPTIONS');
                 }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white group"
               >
-                <span>🔄</span>
+                <BrandLogo name="subscriptions" size={15} />
                 <span>Subscriptions</span>
               </button>
               <button
@@ -251,9 +252,9 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   openModal('SPLIT_BILL');
                 }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white group"
               >
-                <span>👥</span>
+                <BrandLogo name="split" size={15} />
                 <span>Split Bill</span>
               </button>
               <button
@@ -261,9 +262,9 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   openModal('VOICE_INPUT');
                 }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white group"
               >
-                <span>🎙️</span>
+                <BrandLogo name="voice" size={15} />
                 <span>Voice Entry</span>
               </button>
               <button
@@ -271,9 +272,9 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   openModal('IMPORT_STATEMENT');
                 }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white group"
               >
-                <span>📄</span>
+                <BrandLogo name="statement" size={15} />
                 <span>Import Statement</span>
               </button>
               <button
@@ -281,9 +282,9 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   openModal('AI_ASSISTANT');
                 }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white group"
               >
-                <span>✨</span>
+                <BrandLogo name="ai" size={15} />
                 <span>Ask SpendWise AI</span>
               </button>
               <button
@@ -291,9 +292,9 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   navigateTo('CATEGORIES');
                 }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white group"
               >
-                <span>🏷️</span>
+                <BrandLogo name="categories" size={15} />
                 <span>Categories</span>
               </button>
               <button
@@ -301,9 +302,9 @@ export function HomeScreen() {
                   setShowMoreMenu(false);
                   navigateTo('GOALS');
                 }}
-                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
+                className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white group"
               >
-                <span>🏆</span>
+                <BrandLogo name="goals" size={15} />
                 <span>Savings Goals</span>
               </button>
             </div>

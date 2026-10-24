@@ -105,7 +105,7 @@ export function generateInsights(
   if (completedGoal) {
     insights.push({
       id: 'insight-goal-complete',
-      title: 'Goal Achieved! 🎉',
+      title: 'Goal Achieved!',
       description: `You've successfully reached your target of ${formatCurrency(
         completedGoal.targetAmount
       )} for '${completedGoal.name}'!`,

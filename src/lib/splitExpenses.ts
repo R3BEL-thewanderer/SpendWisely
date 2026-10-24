@@ -162,13 +162,13 @@ export function createWhatsAppShareMessage({
   upiLink: string;
 }): string {
   return (
-    `Hey ${friendName}! 👋\n\n` +
+    `Hey ${friendName}!\n\n` +
     `Here's the split for *"${expenseTitle}"* via SpendWise:\n` +
     `• Total Bill: ₹${totalAmount.toLocaleString('en-IN')}\n` +
     `• Your Share: *₹${friendShare.toLocaleString('en-IN')}*\n\n` +
-    `⚡ Pay directly with any UPI app (GPay / PhonePe / Paytm):\n` +
+    `Pay directly with any UPI app (GPay / PhonePe / Paytm):\n` +
     `${upiLink}\n\n` +
     `Or send directly to UPI ID: \`${userUpiId}\`\n` +
-    `— Tracked with SpendWise 📊`
+    `— Tracked with SpendWise`
   );
 }

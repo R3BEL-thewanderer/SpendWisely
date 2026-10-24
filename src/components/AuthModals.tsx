@@ -11,6 +11,7 @@ import {
   Mail,
   User,
   Wallet,
+  Sliders,
   X,
 } from 'lucide-react';
 import { useSpendWise } from '../context/SpendWiseContext';
@@ -483,7 +484,7 @@ export function AuthModals() {
 
                 {/* Monthly Spending Budget */}
                 <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#24211e] border border-[#d6d3d1] dark:border-white/[0.08] shadow-2xs">
-                  <span className="text-xs text-[#a8a29e]">📊</span>
+                  <Sliders className="w-3.5 h-3.5 text-[#a8a29e]" />
                   <div className="flex flex-col flex-1">
                     <span className="text-[9px] font-medium text-[#777169] dark:text-[#a8a29e] uppercase tracking-wider">Monthly Planned Budget</span>
                     <input

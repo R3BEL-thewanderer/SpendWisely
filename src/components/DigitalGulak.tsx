@@ -263,8 +263,8 @@ export function DigitalGulak({
               of {formatCurrency(targetAmount)}
             </span>
             {isCompleted && (
-              <span className="mt-1 text-[11px] font-medium px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                Goal Reached 🎉
+              <span className="mt-1 text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white border border-[#e7e5e4] dark:border-white/10">
+                Goal Reached
               </span>
             )}
           </div>
