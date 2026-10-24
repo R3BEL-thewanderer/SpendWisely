@@ -173,18 +173,15 @@ export function SplitBillModal() {
         {/* Header Bar */}
         <div className="relative px-5 pt-4 pb-3 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/[0.08] shrink-0 bg-white/70 dark:bg-[#181615]/70 backdrop-blur-md">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-2xl bg-indigo-500/10 dark:bg-indigo-400/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-2xl bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
               <Users className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="font-display font-light text-lg text-[#0c0a09] dark:text-white flex items-center gap-1.5">
-                SpendWise Split & Tabs
-                <span className="text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
-                  Instant UPI
-                </span>
+              <h2 className="font-display font-light text-lg text-[#0c0a09] dark:text-white">
+                Split Bill
               </h2>
               <p className="text-[11px] text-[#777169] dark:text-[#a8a29e]">
-                Split bills with friends & generate 1-tap UPI payment links.
+                Split expenses and share direct UPI payment links.
               </p>
             </div>
           </div>
@@ -214,13 +211,13 @@ export function SplitBillModal() {
               onClick={() => setActiveTab('DUES_LEDGER')}
               className={`px-3 py-1 rounded-lg font-medium transition flex items-center gap-1.5 ${
                 activeTab === 'DUES_LEDGER'
-                  ? 'bg-white dark:bg-[#24211e] text-indigo-600 dark:text-indigo-400 shadow-2xs'
+                  ? 'bg-white dark:bg-[#24211e] text-[#0c0a09] dark:text-white shadow-2xs'
                   : 'text-[#777169] dark:text-[#a8a29e]'
               }`}
             >
               <span>Pending Dues</span>
               {summary && summary.pendingCount > 0 && (
-                <span className="px-1.5 py-0.2 rounded-full bg-indigo-600 text-white text-[9px] font-bold">
+                <span className="px-1.5 py-0.2 rounded-full bg-[#292524] dark:bg-white text-white dark:text-[#0c0a09] text-[9px] font-bold">
                   ₹{summary.totalPendingDues.toLocaleString('en-IN')}
                 </span>
               )}
@@ -230,7 +227,7 @@ export function SplitBillModal() {
           {activeTab === 'DUES_LEDGER' && (
             <button
               onClick={() => setActiveTab('NEW_SPLIT')}
-              className="text-xs text-indigo-600 dark:text-indigo-400 font-medium hover:underline flex items-center gap-1"
+              className="text-xs text-[#0c0a09] dark:text-white font-medium hover:underline flex items-center gap-1"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>New Split</span>
@@ -295,10 +292,10 @@ export function SplitBillModal() {
                           key={nameChip}
                           type="button"
                           onClick={() => setFriendName(nameChip)}
-                          className={`px-2.5 py-1 rounded-full text-[10.5px] font-medium transition ${
+                          className={`px-2.5 py-1 rounded-full text-[10.5px] font-medium transition cursor-pointer ${
                             friendName === nameChip
-                              ? 'bg-indigo-600 text-white shadow-2xs'
-                              : 'bg-black/5 dark:bg-white/5 text-[#777169] dark:text-[#a8a29e] hover:bg-black/10'
+                              ? 'bg-[#292524] text-white dark:bg-white dark:text-[#0c0a09] shadow-2xs'
+                              : 'bg-black/5 dark:bg-white/5 text-[#777169] dark:text-[#a8a29e] hover:bg-black/10 dark:hover:bg-white/10'
                           }`}
                         >
                           {nameChip}
@@ -318,10 +315,10 @@ export function SplitBillModal() {
                       <button
                         type="button"
                         onClick={() => setSplitMode('EQUAL')}
-                        className={`px-2.5 py-0.5 rounded-lg font-medium transition ${
+                        className={`px-2.5 py-0.5 rounded-lg font-medium transition cursor-pointer ${
                           splitMode === 'EQUAL'
-                            ? 'bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800'
-                            : 'text-[#777169]'
+                            ? 'bg-[#292524] text-white dark:bg-white dark:text-[#0c0a09]'
+                            : 'text-[#777169] hover:text-[#0c0a09] dark:hover:text-white'
                         }`}
                       >
                         Equal Split
@@ -329,10 +326,10 @@ export function SplitBillModal() {
                       <button
                         type="button"
                         onClick={() => setSplitMode('CUSTOM')}
-                        className={`px-2.5 py-0.5 rounded-lg font-medium transition ${
+                        className={`px-2.5 py-0.5 rounded-lg font-medium transition cursor-pointer ${
                           splitMode === 'CUSTOM'
-                            ? 'bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800'
-                            : 'text-[#777169]'
+                            ? 'bg-[#292524] text-white dark:bg-white dark:text-[#0c0a09]'
+                            : 'text-[#777169] hover:text-[#0c0a09] dark:hover:text-white'
                         }`}
                       >
                         Custom Amount
@@ -351,9 +348,9 @@ export function SplitBillModal() {
                             key={count}
                             type="button"
                             onClick={() => setNumPeople(count)}
-                            className={`w-7 h-7 rounded-lg text-xs font-semibold flex items-center justify-center transition ${
+                            className={`w-7 h-7 rounded-lg text-xs font-semibold flex items-center justify-center transition cursor-pointer ${
                               numPeople === count
-                                ? 'bg-indigo-600 text-white'
+                                ? 'bg-[#292524] text-white dark:bg-white dark:text-[#0c0a09]'
                                 : 'bg-black/5 dark:bg-white/5 text-[#777169] dark:text-[#a8a29e]'
                             }`}
                           >
@@ -380,16 +377,16 @@ export function SplitBillModal() {
 
                   {/* Calculated Shares Highlight */}
                   <div className="grid grid-cols-2 gap-2 mt-1">
-                    <div className="p-3 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/30">
-                      <span className="text-[10px] text-indigo-700 dark:text-indigo-300 font-semibold uppercase tracking-wider block">
+                    <div className="p-3 rounded-xl bg-[#fafafa] dark:bg-[#121110] border border-[#e7e5e4] dark:border-white/[0.08]">
+                      <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] font-semibold uppercase tracking-wider block">
                         {friendName || 'Friend'} Owes You
                       </span>
-                      <span className="font-display font-light text-xl text-indigo-700 dark:text-indigo-300 block mt-0.5">
+                      <span className="font-display font-light text-xl text-[#0c0a09] dark:text-white block mt-0.5">
                         {formatCurrency(friendShare)}
                       </span>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5">
+                    <div className="p-3 rounded-xl bg-[#fafafa] dark:bg-[#121110] border border-[#e7e5e4] dark:border-white/[0.08]">
                       <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] font-semibold uppercase tracking-wider block">
                         Your Personal Share
                       </span>
@@ -419,13 +416,13 @@ export function SplitBillModal() {
               <div className="p-4 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex flex-col gap-3">
                 <div className="flex items-center justify-between">
                   <h4 className="text-xs font-semibold text-[#0c0a09] dark:text-white uppercase tracking-wider flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                    <span>Instant UPI Settlement Link</span>
+                    <ShieldCheck className="w-4 h-4 text-[#777169] dark:text-[#a8a29e]" />
+                    <span>UPI Settlement Link</span>
                   </h4>
                   <button
                     type="button"
                     onClick={() => setShowQrModal(!showQrModal)}
-                    className="text-xs text-indigo-600 dark:text-indigo-400 font-medium flex items-center gap-1 hover:underline"
+                    className="text-xs text-[#777169] dark:text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white font-medium flex items-center gap-1 hover:underline cursor-pointer"
                   >
                     <QrCode className="w-3.5 h-3.5" />
                     <span>{showQrModal ? 'Hide Link' : 'Show UPI URI'}</span>
@@ -484,21 +481,21 @@ export function SplitBillModal() {
             <div className="flex flex-col gap-3">
               {/* Summary Stats Banner */}
               {summary && (
-                <div className="p-4 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/40 flex items-center justify-between">
+                <div className="p-4 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex items-center justify-between shadow-xs">
                   <div>
-                    <span className="text-[10.5px] uppercase tracking-wider text-indigo-700 dark:text-indigo-300 font-semibold block">
+                    <span className="text-[10.5px] uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-semibold block">
                       Total Unsettled Dues
                     </span>
-                    <span className="font-display font-light text-2xl text-indigo-700 dark:text-indigo-300 block mt-0.5">
+                    <span className="font-display font-light text-2xl text-[#0c0a09] dark:text-white block mt-0.5">
                       {formatCurrency(summary.totalPendingDues)}
                     </span>
-                    <span className="text-[11px] text-indigo-600/80 dark:text-indigo-300/80 mt-0.5 block">
+                    <span className="text-[11px] text-[#777169] dark:text-[#a8a29e] mt-0.5 block">
                       From {summary.pendingCount} pending friend tabs
                     </span>
                   </div>
 
                   <div className="text-right">
-                    <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-semibold border border-emerald-500/20">
+                    <span className="px-2.5 py-1 rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white text-[10px] font-semibold border border-[#e7e5e4] dark:border-white/10">
                       {summary.settledCount} Settled
                     </span>
                   </div>
@@ -526,13 +523,13 @@ export function SplitBillModal() {
                         key={due.id}
                         className={`p-3.5 rounded-2xl bg-white dark:bg-[#181615] border transition shadow-xs flex flex-col gap-2.5 ${
                           isPending
-                            ? 'border-indigo-200 dark:border-indigo-900/40'
+                            ? 'border-[#e7e5e4] dark:border-white/[0.08]'
                             : 'border-[#e7e5e4] dark:border-white/[0.08] opacity-60'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-9 h-9 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold text-xs flex items-center justify-center">
+                            <div className="w-9 h-9 rounded-full bg-[#f0efed] dark:bg-white/5 text-[#0c0a09] dark:text-white font-semibold text-xs flex items-center justify-center border border-[#e7e5e4] dark:border-white/10">
                               {due.friendName.charAt(0)}
                             </div>
                             <div>
@@ -547,11 +544,7 @@ export function SplitBillModal() {
 
                           <div className="text-right">
                             <span
-                              className={`font-display font-light text-base block ${
-                                isPending
-                                  ? 'text-indigo-600 dark:text-indigo-400 font-medium'
-                                  : 'text-[#777169] dark:text-[#a8a29e]'
-                              }`}
+                              className="font-display font-light text-base block text-[#0c0a09] dark:text-white font-medium"
                             >
                               {formatCurrency(due.friendShare)}
                             </span>

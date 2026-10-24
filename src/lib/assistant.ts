@@ -99,7 +99,7 @@ export function answerFinancialQuery(
     const potentialSaving = Math.round(topAmount * 0.1);
 
     return {
-      text: `Here are 3 tailored insights to optimize your monthly cash flow:\n\n1. **Trim Top Category**: Your highest spend is **${topCat?.categoryName || 'Food & Dining'}** (${formatCurrency(topAmount)}). Reducing this by just 10% saves you **${formatCurrency(potentialSaving)}/month**.\n2. **Eliminate Zombie Spends**: Audit your Subscriptions tab to cancel duplicate streaming or unused memberships.\n3. **Maximize Payment Rewards**: Shift major dining, grocery, and utility spends to an optimal cashback card to earn 2%–5% back automatically.`,
+      text: `Here are 3 tailored insights to optimize your monthly cash flow:\n\n1. **Trim Top Category**: Your highest spend is **${topCat?.categoryName || 'Food & Dining'}** (${formatCurrency(topAmount)}). Reducing this by just 10% saves you **${formatCurrency(potentialSaving)}/month**.\n2. **Review Recurring Spends**: Audit your Subscriptions tab to cancel duplicate streaming or unused memberships.\n3. **Maximize Payment Rewards**: Shift major dining, grocery, and utility spends to an optimal cashback card to earn 2%–5% back automatically.`,
       suggestedActions: [
         'Which credit card will save me money?',
         'Where did most of my money go?',

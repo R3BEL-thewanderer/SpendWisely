@@ -63,7 +63,7 @@ export const DEMO_RECEIPTS: DemoReceiptProfile[] = [
       ],
       taxAmount: 0,
       confidence: 0.99,
-      notes: 'UPI Ref 42938491 • Auto-extracted via Gemini Vision',
+      notes: 'UPI Ref 42938491 • Scanned receipt',
     },
   },
   {
@@ -148,7 +148,7 @@ export async function parseReceiptWithGemini(
           items: json.data.items || [],
           taxAmount: json.data.taxAmount || 0,
           confidence: json.data.confidence || 0.95,
-          notes: json.data.notes || 'Auto-extracted with NVIDIA Vision AI',
+          notes: json.data.notes || 'Auto-extracted via receipt scanner',
         };
       }
     }
@@ -220,7 +220,7 @@ export async function parseReceiptWithGemini(
       items: Array.isArray(parsed.items) ? parsed.items : [],
       taxAmount: parsed.taxAmount || 0,
       confidence: parsed.confidence || 0.92,
-      notes: parsed.notes || 'Auto-extracted with Gemini Vision',
+      notes: parsed.notes || 'Auto-extracted via receipt scanner',
     };
   } catch (err) {
     console.warn('Gemini Vision OCR extraction failed or unavailable:', err);

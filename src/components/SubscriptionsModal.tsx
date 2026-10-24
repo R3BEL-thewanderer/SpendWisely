@@ -74,7 +74,7 @@ export function SubscriptionsModal() {
   const handleDismissZombie = (id: string) => {
     const updated = subscriptions.map((s) => (s.id === id ? { ...s, isZombie: false } : s));
     updateList(updated);
-    showToast('Zombie warning dismissed');
+    showToast('Warning dismissed');
   };
 
   const handleAddSubscription = (e: React.FormEvent) => {
@@ -125,18 +125,15 @@ export function SubscriptionsModal() {
         {/* Header Bar */}
         <div className="relative px-5 pt-4 pb-3 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/[0.08] shrink-0 bg-white/70 dark:bg-[#181615]/70 backdrop-blur-md">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-2xl bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-2xl bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
               <RefreshCw className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="font-display font-light text-lg text-[#0c0a09] dark:text-white flex items-center gap-1.5">
-                Subscriptions & Recurring
-                <span className="text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                  Zombie Shield 🛡️
-                </span>
+              <h2 className="font-display font-light text-lg text-[#0c0a09] dark:text-white">
+                Subscriptions &amp; Recurring
               </h2>
               <p className="text-[11px] text-[#777169] dark:text-[#a8a29e]">
-                Recurring commitments & potential ghost spends.
+                Recurring commitments &amp; potential unused spends.
               </p>
             </div>
           </div>
@@ -178,35 +175,35 @@ export function SubscriptionsModal() {
                 </span>
               </div>
 
-              <div className="p-3 rounded-2xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200/60 dark:border-rose-900/40 shadow-xs flex flex-col">
-                <span className="text-[10px] uppercase tracking-wider text-rose-600 dark:text-rose-400 font-medium">
-                  Zombie Waste
+              <div className="p-3 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex flex-col">
+                <span className="text-[10px] uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] font-medium">
+                  Potential Waste
                 </span>
-                <span className="font-display font-light text-base text-rose-600 dark:text-rose-400 mt-1">
+                <span className="font-display font-light text-base text-[#0c0a09] dark:text-white mt-1">
                   {formatCurrency(metrics.potentialZombieSavings)}
                 </span>
-                <span className="text-[9.5px] text-rose-500/80 dark:text-rose-400/80 mt-0.5">
-                  Save {metrics.zombieCount} services
+                <span className="text-[9.5px] text-[#777169] dark:text-[#a8a29e] mt-0.5">
+                  {metrics.zombieCount} review items
                 </span>
               </div>
             </div>
           )}
 
-          {/* Zombie Alert Highlighters */}
+          {/* Alert Highlighters */}
           {metrics && metrics.zombieCount > 0 && (
-            <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex flex-col gap-2 shrink-0">
+            <div className="p-3.5 rounded-2xl bg-[#fafafa] dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] flex flex-col gap-2 shrink-0">
               <div className="flex items-center gap-2">
-                <ShieldAlert className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
-                <h4 className="text-xs font-semibold text-amber-800 dark:text-amber-300">
-                  Zombie Spend Alarms Detected ({metrics.zombieCount})
+                <ShieldAlert className="w-4 h-4 text-[#777169] dark:text-[#a8a29e] shrink-0" />
+                <h4 className="text-xs font-semibold text-[#0c0a09] dark:text-white">
+                  Recurring Spend Alerts ({metrics.zombieCount})
                 </h4>
               </div>
-              <ul className="text-[11px] text-amber-900/80 dark:text-amber-200/80 space-y-1 pl-5 list-disc">
+              <ul className="text-[11px] text-[#777169] dark:text-[#a8a29e] space-y-1 pl-5 list-disc">
                 <li>
                   <strong>Price Hike:</strong> Spotify increased +₹30 (₹119 → ₹149/mo).
                 </li>
                 <li>
-                  <strong>Duplicate Streaming:</strong> You have both Spotify & YouTube Premium active. Save ₹149/mo by keeping one.
+                  <strong>Duplicate Streaming:</strong> You have both Spotify &amp; YouTube Premium active. Save ₹149/mo by keeping one.
                 </li>
                 <li>
                   <strong>Inactivity Warning:</strong> Cult.fit Gym (₹1,800/mo) has no logged activities in 45 days.
@@ -232,13 +229,13 @@ export function SubscriptionsModal() {
                 onClick={() => setActiveTab('ZOMBIES')}
                 className={`px-3 py-1 rounded-lg font-medium transition flex items-center gap-1 ${
                   activeTab === 'ZOMBIES'
-                    ? 'bg-white dark:bg-[#24211e] text-rose-600 dark:text-rose-400 shadow-2xs'
+                    ? 'bg-white dark:bg-[#24211e] text-[#0c0a09] dark:text-white shadow-2xs'
                     : 'text-[#777169] dark:text-[#a8a29e]'
                 }`}
               >
-                <span>🧟 Zombies</span>
+                <span>Inactive</span>
                 {metrics && metrics.zombieCount > 0 && (
-                  <span className="w-4 h-4 rounded-full bg-rose-500 text-white text-[9px] flex items-center justify-center font-bold">
+                  <span className="w-4 h-4 rounded-full bg-[#292524] dark:bg-white text-white dark:text-[#0c0a09] text-[9px] flex items-center justify-center font-bold">
                     {metrics.zombieCount}
                   </span>
                 )}
@@ -247,7 +244,7 @@ export function SubscriptionsModal() {
                 onClick={() => setActiveTab('UPCOMING')}
                 className={`px-3 py-1 rounded-lg font-medium transition ${
                   activeTab === 'UPCOMING'
-                    ? 'bg-white dark:bg-[#24211e] text-amber-600 dark:text-amber-400 shadow-2xs'
+                    ? 'bg-white dark:bg-[#24211e] text-[#0c0a09] dark:text-white shadow-2xs'
                     : 'text-[#777169] dark:text-[#a8a29e]'
                 }`}
               >
@@ -383,19 +380,14 @@ export function SubscriptionsModal() {
                 return (
                   <div
                     key={item.id}
-                    className={`p-3.5 rounded-2xl bg-white dark:bg-[#181615] border transition shadow-xs flex flex-col gap-2 ${
-                      item.isZombie
-                        ? 'border-rose-300 dark:border-rose-900/50'
-                        : isUrgent
-                        ? 'border-amber-300 dark:border-amber-900/50'
-                        : 'border-[#e7e5e4] dark:border-white/[0.08]'
-                    } ${!item.isActive ? 'opacity-50' : ''}`}
+                    className={`p-3.5 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] transition shadow-xs flex flex-col gap-2 ${
+                      !item.isActive ? 'opacity-50' : ''
+                    }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div
-                          className="w-10 h-10 rounded-2xl flex items-center justify-center text-lg border border-black/5 dark:border-white/5"
-                          style={{ backgroundColor: `${item.colorHex || '#6366f1'}15` }}
+                          className="w-10 h-10 rounded-2xl flex items-center justify-center text-lg bg-[#f0efed] dark:bg-white/5 border border-black/5 dark:border-white/5"
                         >
                           <span>{item.serviceIcon || '⚡'}</span>
                         </div>
@@ -405,12 +397,12 @@ export function SubscriptionsModal() {
                               {item.name}
                             </h3>
                             {item.isZombie && (
-                              <span className="px-1.5 py-0.5 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 text-[9px] font-semibold border border-rose-500/20">
-                                🧟 Zombie Spend
+                              <span className="px-1.5 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white text-[9px] font-medium border border-[#e7e5e4] dark:border-white/10">
+                                Inactive
                               </span>
                             )}
                             {item.priceHikeAlert && (
-                              <span className="px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[9px] font-semibold border border-amber-500/20">
+                              <span className="px-1.5 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white text-[9px] font-medium border border-[#e7e5e4] dark:border-white/10">
                                 +₹{item.priceHikeAlert.difference} Hike
                               </span>
                             )}
@@ -434,14 +426,8 @@ export function SubscriptionsModal() {
                     {/* Renewal Countdown and Action Bar */}
                     <div className="pt-2 border-t border-[#f0efed] dark:border-white/[0.05] flex items-center justify-between text-xs">
                       <div className="flex items-center gap-1.5">
-                        <Clock className={`w-3 h-3 ${isUrgent ? 'text-amber-500' : 'text-[#777169]'}`} />
-                        <span
-                          className={`text-[11px] font-medium ${
-                            isUrgent
-                              ? 'text-amber-600 dark:text-amber-400'
-                              : 'text-[#777169] dark:text-[#a8a29e]'
-                          }`}
-                        >
+                        <Clock className="w-3 h-3 text-[#777169] dark:text-[#a8a29e]" />
+                        <span className="text-[11px] font-medium text-[#777169] dark:text-[#a8a29e]">
                           Renews in {item.daysUntilRenewal} days ({item.nextRenewalDate})
                         </span>
                       </div>
@@ -462,18 +448,14 @@ export function SubscriptionsModal() {
 
                         <button
                           onClick={() => handleToggleActive(item.id)}
-                          className={`px-2 py-1 rounded-lg text-[10.5px] font-medium transition ${
-                            item.isActive
-                              ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20'
-                              : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20'
-                          }`}
+                          className="px-2.5 py-1 rounded-lg text-[10.5px] font-medium bg-[#f0efed] dark:bg-white/5 hover:bg-[#e7e5e4] dark:hover:bg-white/10 text-[#0c0a09] dark:text-white transition"
                         >
                           {item.isActive ? 'Pause' : 'Resume'}
                         </button>
 
                         <button
                           onClick={() => handleDelete(item.id, item.name)}
-                          className="p-1 rounded-lg text-[#a8a29e] hover:text-rose-600 dark:hover:text-rose-400 transition"
+                          className="p-1 rounded-lg text-[#a8a29e] hover:text-[#0c0a09] dark:hover:text-white transition"
                           title="Delete subscription"
                         >
                           <Trash2 className="w-3.5 h-3.5" />

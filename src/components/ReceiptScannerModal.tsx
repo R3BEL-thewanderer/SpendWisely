@@ -98,11 +98,11 @@ export function ReceiptScannerModal() {
       const base64 = await fileToBase64(file);
       setImagePreview(URL.createObjectURL(file));
 
-      // Try Gemini Vision first
+      // Try Vision first
       const geminiResult = await parseReceiptWithGemini(base64, file.type || 'image/jpeg');
       if (geminiResult) {
         setParsedData(geminiResult);
-        showToast('Receipt parsed with Gemini Vision!');
+        showToast('Receipt scanned successfully!');
       } else {
         // Fallback heuristics
         const heuristicResult = await parseReceiptHeuristics(file);
@@ -125,7 +125,7 @@ export function ReceiptScannerModal() {
       const geminiResult = await parseReceiptWithGemini(base64, mime);
       if (geminiResult) {
         setParsedData(geminiResult);
-        showToast('Receipt analyzed with Gemini Vision!');
+        showToast('Receipt analyzed successfully!');
       } else {
         // Fallback to sample Starbucks
         setParsedData(DEMO_RECEIPTS[0].data);
@@ -160,7 +160,7 @@ export function ReceiptScannerModal() {
       category: parsedData.category,
       date: parsedData.date,
       paymentMethod: parsedData.paymentMethod,
-      tags: ['Receipt AI', parsedData.category],
+      tags: ['Receipt OCR', parsedData.category],
       notes: parsedData.notes || `Scanned receipt items: ${parsedData.items?.map((i) => i.name).join(', ')}`,
     });
 
@@ -176,15 +176,15 @@ export function ReceiptScannerModal() {
         {/* Header */}
         <div className="px-5 py-3.5 border-b border-[#e7e5e4] dark:border-white/5 flex items-center justify-between flex-shrink-0 bg-white dark:bg-[#1c1917]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 flex items-center justify-center shadow-2xs">
+            <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 flex items-center justify-center text-[#0c0a09] dark:text-white shadow-2xs">
               <Scan className="w-4 h-4" />
             </div>
             <div>
               <h2 className="font-display font-light text-base tracking-tight text-[#0c0a09] dark:text-white">
-                Receipt &amp; Bill AI Scanner
+                Receipt &amp; Bill Scanner
               </h2>
               <p className="text-[10px] text-[#777169] tracking-[0.16px]">
-                Instant OCR extraction for receipts, invoices &amp; UPI screenshots
+                Instant extraction for receipts, invoices &amp; UPI screenshots
               </p>
             </div>
           </div>
@@ -274,9 +274,9 @@ export function ReceiptScannerModal() {
                   }}
                 />
 
-                <div className="w-12 h-12 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
                   {isScanning ? (
-                    <Loader2 className="w-6 h-6 animate-spin" />
+                    <Loader2 className="w-6 h-6 animate-spin text-[#777169] dark:text-[#a8a29e]" />
                   ) : (
                     <Scan className="w-6 h-6" />
                   )}
@@ -284,7 +284,7 @@ export function ReceiptScannerModal() {
 
                 <div>
                   <h3 className="text-sm font-semibold text-[#0c0a09] dark:text-white">
-                    {isScanning ? 'Extracting text with Vision AI...' : 'Upload receipt image or bill'}
+                    {isScanning ? 'Analyzing receipt...' : 'Upload receipt image or bill'}
                   </h3>
                   <p className="text-[11px] text-[#777169] mt-1">
                     Drag and drop PNG, JPG, or screenshot from Swiggy/Zomato/UPI
@@ -298,7 +298,7 @@ export function ReceiptScannerModal() {
                       e.stopPropagation();
                       startCamera();
                     }}
-                    className="px-3.5 py-1.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-[#0c0a09] text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-xs"
+                    className="px-3.5 py-1.5 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-[#0c0a09] text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer"
                   >
                     <Camera className="w-3.5 h-3.5" />
                     <span>Open Camera</span>
@@ -337,12 +337,12 @@ export function ReceiptScannerModal() {
           {/* Scanning Progress Screen */}
           {isScanning && (
             <div className="py-8 flex flex-col items-center justify-center gap-3">
-              <div className="relative w-16 h-16 rounded-2xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
-                <Sparkles className="w-8 h-8 text-amber-500 animate-spin" />
+              <div className="relative w-16 h-16 rounded-2xl bg-[#f0efed] dark:bg-white/5 flex items-center justify-center border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white">
+                <Sparkles className="w-8 h-8 text-[#777169] dark:text-[#a8a29e] animate-spin" />
               </div>
               <div className="text-center">
                 <h4 className="text-sm font-semibold text-[#0c0a09] dark:text-white">
-                  Gemini Vision OCR in Progress
+                  Analyzing Receipt Details...
                 </h4>
                 <p className="text-xs text-[#777169] mt-0.5">
                   Detecting merchant, total amount, taxes &amp; line items...
@@ -358,11 +358,11 @@ export function ReceiptScannerModal() {
               <div className="rounded-2xl p-4 bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/10 shadow-xs flex flex-col gap-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
                       <CheckCircle2 className="w-4 h-4" />
                     </div>
                     <div>
-                      <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold uppercase tracking-wider block">
+                      <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] font-semibold uppercase tracking-wider block">
                         Verified Extraction
                       </span>
                       <h3 className="font-display text-base font-semibold text-[#0c0a09] dark:text-white">
@@ -386,7 +386,7 @@ export function ReceiptScannerModal() {
                   </div>
 
                   <div className="flex flex-col items-end gap-1">
-                    <span className="px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-200 text-[10px] font-semibold">
+                    <span className="px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white text-[10px] font-medium border border-[#e7e5e4] dark:border-white/10">
                       {parsedData.category}
                     </span>
                     <span className="text-[10px] text-[#a8a29e]">

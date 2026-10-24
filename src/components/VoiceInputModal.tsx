@@ -114,7 +114,7 @@ export function VoiceInputModal() {
 
   const startListening = () => {
     if (!recognitionRef.current) {
-      showToast('Speech recognition not supported in this browser. Try the quick demo chips!');
+      showToast('Microphone access unavailable. Try the quick presets below.');
       return;
     }
     try {
@@ -190,18 +190,15 @@ export function VoiceInputModal() {
         {/* Header Bar */}
         <div className="relative px-5 pt-4 pb-3 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/[0.08] shrink-0 bg-white/70 dark:bg-[#181615]/70 backdrop-blur-md">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-2xl bg-rose-500/10 dark:bg-rose-400/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-2xl bg-[#f0efed] dark:bg-white/5 border border-[#e7e5e4] dark:border-white/10 text-[#0c0a09] dark:text-white flex items-center justify-center">
               <Mic className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="font-display font-light text-lg text-[#0c0a09] dark:text-white flex items-center gap-1.5">
-                Voice-to-Ledger Quick Entry
-                <span className="text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
-                  Natural Speech AI
-                </span>
+              <h2 className="font-display font-light text-lg text-[#0c0a09] dark:text-white">
+                Voice Entry
               </h2>
               <p className="text-[11px] text-[#777169] dark:text-[#a8a29e]">
-                Speak naturally to record expenses instantly without typing.
+                Speak naturally to record expenses into your ledger.
               </p>
             </div>
           </div>
@@ -221,8 +218,8 @@ export function VoiceInputModal() {
             {/* Waveform radar rings when active */}
             {isListening && (
               <>
-                <div className="absolute w-36 h-36 rounded-full bg-rose-500/15 animate-ping pointer-events-none" />
-                <div className="absolute w-28 h-28 rounded-full bg-rose-500/25 animate-pulse pointer-events-none" />
+                <div className="absolute w-36 h-36 rounded-full bg-black/5 dark:bg-white/10 animate-ping pointer-events-none" />
+                <div className="absolute w-28 h-28 rounded-full bg-black/10 dark:bg-white/15 animate-pulse pointer-events-none" />
               </>
             )}
 
@@ -230,7 +227,7 @@ export function VoiceInputModal() {
               onClick={toggleListening}
               className={`relative z-10 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg active:scale-90 ${
                 isListening
-                  ? 'bg-rose-600 text-white shadow-rose-500/40 ring-4 ring-rose-500/30 scale-105'
+                  ? 'bg-[#0c0a09] dark:bg-white text-white dark:text-[#0c0a09] ring-4 ring-black/10 dark:ring-white/20 scale-105'
                   : 'bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] shadow-black/10'
               }`}
             >
@@ -250,7 +247,7 @@ export function VoiceInputModal() {
           <div className="w-full p-4 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex flex-col gap-1.5">
             <span className="text-[10px] font-semibold uppercase tracking-wider text-[#777169] dark:text-[#a8a29e] flex items-center gap-1.5">
               <Volume2 className="w-3.5 h-3.5" />
-              <span>Spoken Voice Transcript</span>
+              <span>Spoken Transcript</span>
             </span>
             <p className="text-sm font-medium text-[#0c0a09] dark:text-white min-h-[38px] flex items-center italic">
               {transcript ? (
@@ -265,21 +262,21 @@ export function VoiceInputModal() {
 
           {/* Parsed Entity Confirmation Card */}
           {parsed && (
-            <div className="w-full p-4 rounded-2xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200/80 dark:border-rose-900/50 shadow-xs flex flex-col gap-3 animate-slide-up">
+            <div className="w-full p-4 rounded-2xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] shadow-xs flex flex-col gap-3 animate-slide-up">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5 text-rose-700 dark:text-rose-300">
-                  <Sparkles className="w-4 h-4" />
+                <div className="flex items-center gap-1.5 text-[#0c0a09] dark:text-white">
+                  <Sparkles className="w-4 h-4 text-[#777169] dark:text-[#a8a29e]" />
                   <span className="text-xs font-semibold uppercase tracking-wider">
-                    Parsed Financial Entities
+                    Detected Details
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
+                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#f0efed] dark:bg-white/10 text-[#0c0a09] dark:text-white border border-[#e7e5e4] dark:border-white/10">
                     {Math.round(parsed.confidence * 100)}% match
                   </span>
                   <button
                     onClick={() => setIsEditing(!isEditing)}
-                    className="p-1 rounded-lg text-rose-700 dark:text-rose-300 hover:bg-rose-500/10 transition"
+                    className="p-1 rounded-lg text-[#777169] dark:text-[#a8a29e] hover:bg-black/5 dark:hover:bg-white/5 transition"
                     title="Edit values"
                   >
                     <Edit2 className="w-3.5 h-3.5" />
@@ -296,7 +293,7 @@ export function VoiceInputModal() {
                       type="text"
                       value={editTitle}
                       onChange={(e) => setEditTitle(e.target.value)}
-                      className="w-full px-2.5 py-1.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/10"
+                      className="w-full px-2.5 py-1.5 rounded-lg bg-[#fafafa] dark:bg-[#121110] border border-[#d6d3d1] dark:border-white/10 text-[#0c0a09] dark:text-white focus:outline-none"
                     />
                   </div>
                   <div>
@@ -305,7 +302,7 @@ export function VoiceInputModal() {
                       type="number"
                       value={editAmount}
                       onChange={(e) => setEditAmount(e.target.value)}
-                      className="w-full px-2.5 py-1.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/10"
+                      className="w-full px-2.5 py-1.5 rounded-lg bg-[#fafafa] dark:bg-[#121110] border border-[#d6d3d1] dark:border-white/10 text-[#0c0a09] dark:text-white focus:outline-none"
                     />
                   </div>
                   <div>
@@ -314,7 +311,7 @@ export function VoiceInputModal() {
                       type="text"
                       value={editCategory}
                       onChange={(e) => setEditCategory(e.target.value)}
-                      className="w-full px-2.5 py-1.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/10"
+                      className="w-full px-2.5 py-1.5 rounded-lg bg-[#fafafa] dark:bg-[#121110] border border-[#d6d3d1] dark:border-white/10 text-[#0c0a09] dark:text-white focus:outline-none"
                     />
                   </div>
                   <div>
@@ -323,23 +320,23 @@ export function VoiceInputModal() {
                       type="text"
                       value={editPaymentMethod}
                       onChange={(e) => setEditPaymentMethod(e.target.value)}
-                      className="w-full px-2.5 py-1.5 rounded-lg bg-white dark:bg-[#181615] border border-[#d6d3d1] dark:border-white/10"
+                      className="w-full px-2.5 py-1.5 rounded-lg bg-[#fafafa] dark:bg-[#121110] border border-[#d6d3d1] dark:border-white/10 text-[#0c0a09] dark:text-white focus:outline-none"
                     />
                   </div>
                 </div>
               ) : (
                 /* Readonly Grid */
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="p-2.5 rounded-xl bg-white/70 dark:bg-[#181615]/70 border border-rose-200/50 dark:border-rose-900/30">
+                  <div className="p-2.5 rounded-xl bg-[#fafafa] dark:bg-[#121110] border border-[#e7e5e4] dark:border-white/[0.06]">
                     <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] block">
                       Amount
                     </span>
-                    <span className="font-display font-light text-lg text-rose-700 dark:text-rose-300 font-semibold block mt-0.5">
+                    <span className="font-display font-light text-lg text-[#0c0a09] dark:text-white block mt-0.5">
                       {formatCurrency(parseFloat(editAmount) || parsed.amount)}
                     </span>
                   </div>
 
-                  <div className="p-2.5 rounded-xl bg-white/70 dark:bg-[#181615]/70 border border-rose-200/50 dark:border-rose-900/30">
+                  <div className="p-2.5 rounded-xl bg-[#fafafa] dark:bg-[#121110] border border-[#e7e5e4] dark:border-white/[0.06]">
                     <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] block">
                       Merchant / Title
                     </span>
@@ -348,7 +345,7 @@ export function VoiceInputModal() {
                     </span>
                   </div>
 
-                  <div className="p-2.5 rounded-xl bg-white/70 dark:bg-[#181615]/70 border border-rose-200/50 dark:border-rose-900/30">
+                  <div className="p-2.5 rounded-xl bg-[#fafafa] dark:bg-[#121110] border border-[#e7e5e4] dark:border-white/[0.06]">
                     <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] block">
                       Category
                     </span>
@@ -357,7 +354,7 @@ export function VoiceInputModal() {
                     </span>
                   </div>
 
-                  <div className="p-2.5 rounded-xl bg-white/70 dark:bg-[#181615]/70 border border-rose-200/50 dark:border-rose-900/30">
+                  <div className="p-2.5 rounded-xl bg-[#fafafa] dark:bg-[#121110] border border-[#e7e5e4] dark:border-white/[0.06]">
                     <span className="text-[10px] text-[#777169] dark:text-[#a8a29e] block">
                       Payment Mode
                     </span>
@@ -375,7 +372,7 @@ export function VoiceInputModal() {
                 className="w-full py-3 rounded-full bg-[#292524] hover:bg-[#0c0a09] dark:bg-white dark:hover:bg-[#f0efed] text-white dark:text-[#0c0a09] font-medium text-xs flex items-center justify-center gap-2 shadow-xs transition active:scale-95 mt-1"
               >
                 <Check className="w-4 h-4 stroke-[3]" />
-                <span>Confirm & Log to Ledger (₹{editAmount || parsed.amount})</span>
+                <span>Confirm &amp; Record (₹{editAmount || parsed.amount})</span>
               </button>
             </div>
           )}
@@ -383,7 +380,7 @@ export function VoiceInputModal() {
           {/* Quick Demo Test Chips */}
           <div className="w-full flex flex-col gap-2 pt-1 border-t border-[#f0efed] dark:border-white/[0.05]">
             <span className="text-[10.5px] font-semibold uppercase tracking-wider text-[#777169] dark:text-[#a8a29e]">
-              One-Tap Spoken Voice Presets (Quick Test)
+              Quick Test Presets
             </span>
             <div className="flex flex-col gap-1.5">
               {DEMO_VOICE_PROMPTS.map((promptText, idx) => (
@@ -391,10 +388,10 @@ export function VoiceInputModal() {
                   key={idx}
                   type="button"
                   onClick={() => handleSimulateVoicePrompt(promptText)}
-                  className="p-2 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] hover:border-rose-400 dark:hover:border-rose-500 text-left text-xs text-[#0c0a09] dark:text-white flex items-center justify-between group transition"
+                  className="p-2.5 rounded-xl bg-white dark:bg-[#181615] border border-[#e7e5e4] dark:border-white/[0.08] hover:border-[#0c0a09] dark:hover:border-white/30 text-left text-xs text-[#0c0a09] dark:text-white flex items-center justify-between group transition cursor-pointer"
                 >
                   <span className="truncate">&ldquo;{promptText}&rdquo;</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#a8a29e] group-hover:text-rose-500 group-hover:translate-x-0.5 transition shrink-0 ml-2" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#a8a29e] group-hover:text-[#0c0a09] dark:group-hover:text-white group-hover:translate-x-0.5 transition shrink-0 ml-2" />
                 </button>
               ))}
             </div>
@@ -404,11 +401,11 @@ export function VoiceInputModal() {
         {/* Footer */}
         <div className="p-4 border-t border-[#e7e5e4] dark:border-white/[0.08] bg-white/70 dark:bg-[#181615]/70 flex items-center justify-between text-xs shrink-0">
           <span className="text-[11px] text-[#777169] dark:text-[#a8a29e]">
-            Powered by Browser Web Speech API & NLP entity recognition.
+            Speak clearly to record expenses into your ledger.
           </span>
           <button
             onClick={closeModal}
-            className="px-4 py-2 rounded-full border border-[#d6d3d1] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white hover:bg-black/5 transition"
+            className="px-4 py-2 rounded-full border border-[#d6d3d1] dark:border-white/10 text-xs font-medium text-[#0c0a09] dark:text-white hover:bg-black/5 transition cursor-pointer"
           >
             Close
           </button>

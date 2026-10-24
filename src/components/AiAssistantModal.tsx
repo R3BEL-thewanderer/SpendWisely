@@ -63,14 +63,11 @@ export function AiAssistantModal() {
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="font-display font-light text-base tracking-tight text-[#0c0a09] dark:text-white flex items-center gap-1.5">
-                <span>Ledger Intelligence</span>
-                <span className="text-[9px] font-sans font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                  Llama 3.2 NIM
-                </span>
+              <h2 className="font-display font-light text-base tracking-tight text-[#0c0a09] dark:text-white">
+                Ledger Intelligence
               </h2>
               <p className="text-[10px] text-[#777169] tracking-[0.16px]">
-                Powered by NVIDIA NIM • Payment breakdown & financial advisor
+                Payment breakdown, top spends &amp; advisory
               </p>
             </div>
           </div>
@@ -335,8 +332,8 @@ export function AiAssistantModal() {
           {/* Thinking Indicator */}
           {isAssistantThinking && (
             <div className="flex items-center gap-2 text-xs text-[#777169] dark:text-[#a8a29e] pl-9">
-              <Sparkles className="w-3.5 h-3.5 animate-spin text-amber-500" />
-              <span>Analyzing ledger balances & reward matrices...</span>
+              <Sparkles className="w-3.5 h-3.5 animate-spin text-[#777169] dark:text-[#a8a29e]" />
+              <span>Analyzing ledger balances...</span>
             </div>
           )}
 

@@ -154,10 +154,10 @@ export function HomeScreen() {
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => openModal('VOICE_INPUT')}
-              title="Voice-to-Ledger Quick Entry"
-              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 transition active:scale-95 shadow-xs"
+              title="Voice-to-Ledger Entry"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#f0efed] hover:bg-[#e7e5e4] dark:bg-[#24211e] dark:hover:bg-[#2d2a26] text-[#0c0a09] dark:text-white border border-transparent dark:border-white/[0.04] transition active:scale-95 shadow-xs"
             >
-              <Mic className="w-3.5 h-3.5 stroke-[2.2]" />
+              <Mic className="w-3.5 h-3.5 stroke-[2]" />
             </button>
             <button
               onClick={() => openModal('ADD_EXPENSE')}
@@ -244,7 +244,7 @@ export function HomeScreen() {
                 className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
               >
                 <span>🔄</span>
-                <span>Subscriptions & Zombies</span>
+                <span>Subscriptions</span>
               </button>
               <button
                 onClick={() => {
@@ -254,7 +254,7 @@ export function HomeScreen() {
                 className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
               >
                 <span>👥</span>
-                <span>SpendWise Split & Tabs</span>
+                <span>Split Bill</span>
               </button>
               <button
                 onClick={() => {
@@ -264,7 +264,7 @@ export function HomeScreen() {
                 className="px-3 py-2 rounded-lg text-left font-normal hover:bg-black/5 dark:hover:bg-white/5 flex items-center gap-2 text-[#0c0a09] dark:text-white"
               >
                 <span>🎙️</span>
-                <span>Voice Quick Entry</span>
+                <span>Voice Entry</span>
               </button>
               <button
                 onClick={() => {

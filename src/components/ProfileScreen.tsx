@@ -381,9 +381,9 @@ export function ProfileScreen() {
               className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"
             >
               <div className="flex items-center gap-2.5">
-                <RefreshCw className="w-4 h-4 text-amber-500" />
+                <RefreshCw className="w-4 h-4 text-[#777169] dark:text-[#a8a29e]" />
                 <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
-                  Subscriptions & Zombie Spend Killer
+                  Subscriptions
                 </span>
               </div>
               <ChevronRight className="w-4 h-4 text-[#a8a29e]" />
@@ -394,9 +394,9 @@ export function ProfileScreen() {
               className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"
             >
               <div className="flex items-center gap-2.5">
-                <Users className="w-4 h-4 text-indigo-500" />
+                <Users className="w-4 h-4 text-[#777169] dark:text-[#a8a29e]" />
                 <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
-                  SpendWise Split & Group Tabs (UPI)
+                  Split Bill
                 </span>
               </div>
               <ChevronRight className="w-4 h-4 text-[#a8a29e]" />
@@ -407,9 +407,9 @@ export function ProfileScreen() {
               className="p-3.5 flex items-center justify-between border-b border-[#e7e5e4] dark:border-white/5 cursor-pointer hover:bg-[#fafafa] dark:hover:bg-white/5"
             >
               <div className="flex items-center gap-2.5">
-                <Mic className="w-4 h-4 text-rose-500" />
+                <Mic className="w-4 h-4 text-[#777169] dark:text-[#a8a29e]" />
                 <span className="text-xs font-medium text-[#0c0a09] dark:text-white tracking-[0.15px]">
-                  Voice-to-Ledger Quick Entry
+                  Voice Entry
                 </span>
               </div>
               <ChevronRight className="w-4 h-4 text-[#a8a29e]" />
