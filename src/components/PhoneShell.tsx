@@ -75,7 +75,10 @@ export function PhoneShell({ children }: PhoneShellProps) {
         {/* Phone Top Bezel / Dynamic Island / Speaker - HIDDEN on mobile devices */}
         <div className="hidden sm:flex relative w-full pt-2.5 pb-1 px-7 items-center justify-between z-30 select-none flex-shrink-0">
           {/* Status Time */}
-          <span className="text-xs font-medium tracking-tight w-12 text-[#0c0a09] dark:text-[#ffffff]">
+          <span
+            suppressHydrationWarning
+            className="text-xs font-medium tracking-tight w-12 text-[#0c0a09] dark:text-[#ffffff]"
+          >
             {timeStr}
           </span>
 

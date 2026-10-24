@@ -39,6 +39,7 @@ export function ThemeToggle({
           checked={isDark}
           onChange={toggleTheme}
           aria-checked={isDark}
+          suppressHydrationWarning
         />
         <div className="theme-switch__container">
           <div className="theme-switch__clouds" />
